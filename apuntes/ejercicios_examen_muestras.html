@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muestras de Ejercicios Prácticos para Examen — CSS3 & Flexbox/Grid</title>
+  <!-- Estilos separados en archivo .css externo -->
+  <link rel="stylesheet" href="styles/ejercicios_muestras.css">
+</head>
+<body>
+
+  <div class="contenedor-ejercicios">
+    <header style="text-align: center; margin-bottom: 10px;">
+      <h1 style="color: #0d477a;">📚 Muestras de Ejercicios Prácticos para Examen</h1>
+      <p style="color: #64748b;">Abre el código con tu editor o usa las herramientas de desarrollador (F12) para inspeccionar las propiedades explicadas.</p>
+    </header>
+
+    <!-- EJERCICIO 1 -->
+    <section class="tarjeta-ejercicio">
+      <h2>1. Barra de Navegación Responsiva con Flexbox</h2>
+      <p class="descripcion-ejercicio">
+        Usa <code>display: flex</code>, <code>justify-content: space-between</code> para empujar el logo y los enlaces a los extremos, y una media query para apilar en vertical en móviles.
+      </p>
+      <nav class="navbar-demo">
+        <div class="navbar-logo">CAPSULE CORP</div>
+        <ul class="navbar-links">
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Entrenamientos</a></li>
+          <li><a href="#">Técnicas</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <!-- EJERCICIO 2 -->
+    <section class="tarjeta-ejercicio">
+      <h2>2. Centrado Absoluto en Pantalla con Flexbox</h2>
+      <p class="descripcion-ejercicio">
+        Pregunta típica de examen: Centrar tanto horizontal como verticalmente usando <code>justify-content: center</code> y <code>align-items: center</code> en el contenedor padre.
+      </p>
+      <div class="caja-centrado-flex">
+        <div class="item-centrado">¡Centrado Perfecto!</div>
+      </div>
+    </section>
+
+    <!-- EJERCICIO 3 -->
+    <section class="tarjeta-ejercicio">
+      <h2>3. Cuadrícula de Tarjetas con CSS Grid (Auto-adaptable)</h2>
+      <p class="descripcion-ejercicio">
+        Se adapta automáticamente al ancho del contenedor mediante <code>grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))</code> y <code>gap: 15px</code>.
+      </p>
+      <div class="grid-tarjetas-demo">
+        <article class="tarjeta-item">
+          <h3>Fase 1: Saiyan</h3>
+          <p>Multiplicador base de Ki y agilidad.</p>
+          <button>Ver Detalles</button>
+        </article>
+        <article class="tarjeta-item">
+          <h3>Fase 2: Kaio-ken</h3>
+          <p>Técnica aprendida con Kaio del Norte.</p>
+          <button>Ver Detalles</button>
+        </article>
+        <article class="tarjeta-item">
+          <h3>Fase 3: Super Saiyan</h3>
+          <p>Despertado en el combate contra Freezer.</p>
+          <button>Ver Detalles</button>
+        </article>
+        <article class="tarjeta-item">
+          <h3>Fase 4: Ultra Instinct</h3>
+          <p>Estado supremo del dominio marcial y mental.</p>
+          <button>Ver Detalles</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- EJERCICIO 4 -->
+    <section class="tarjeta-ejercicio">
+      <h2>4. Barras de Progreso y Píldoras (Chips) Flexibles</h2>
+      <p class="descripcion-ejercicio">
+        Técnica idéntica a la utilizada en la columna lateral del currículum de Son Goku: carril con fondo suave, barra interior con porcentaje y chips con <code>border-radius: 50px</code>.
+      </p>
+      <div class="habilidades-demo">
+        <div class="fila-progreso">
+          <div class="fila-info"><span>Control del Ki</span><span>100%</span></div>
+          <div class="carril-progreso"><div class="relleno-progreso" style="width: 100%;"></div></div>
+        </div>
+        <div class="fila-progreso">
+          <div class="fila-info"><span>Fuerza Física</span><span>90%</span></div>
+          <div class="carril-progreso"><div class="relleno-progreso" style="width: 90%;"></div></div>
+        </div>
+        <div class="fila-progreso">
+          <div class="fila-info"><span>Estrategia</span><span>75%</span></div>
+          <div class="carril-progreso"><div class="relleno-progreso" style="width: 75%;"></div></div>
+        </div>
+      </div>
+
+      <div class="pildoras-flex">
+        <span class="pildora">Kamehameha</span>
+        <span class="pildora">Genkidama</span>
+        <span class="pildora">Shunkan-Ido</span>
+        <span class="pildora">Taiyoken</span>
+      </div>
+    </section>
+
+    <!-- EJERCICIO 5 -->
+    <section class="tarjeta-ejercicio">
+      <h2>5. Tabla Estilizada con Scroll Horizontal y Estados</h2>
+      <p class="descripcion-ejercicio">
+        Uso de <code>border-collapse: collapse</code>, cabecera coloreada y contenedor con <code>overflow-x: auto</code> para evitar roturas en móviles.
+      </p>
+      <div class="tabla-scroll">
+        <table class="tabla-demo">
+          <thead>
+            <tr>
+              <th>Adversario</th>
+              <th>Lugar / Evento</th>
+              <th>Resultado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Jackie Chun</td>
+              <td>21.º Torneo de las Artes Marciales</td>
+              <td><span class="badge-estado badge-derrota">Derrota</span></td>
+            </tr>
+            <tr>
+              <td>Piccolo Jr.</td>
+              <td>23.º Torneo de las Artes Marciales</td>
+              <td><span class="badge-estado badge-victoria">Victoria</span></td>
+            </tr>
+            <tr>
+              <td>Freezer</td>
+              <td>Planeta Namek</td>
+              <td><span class="badge-estado badge-victoria">Victoria</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

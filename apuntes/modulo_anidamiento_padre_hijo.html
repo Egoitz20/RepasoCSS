@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo de Estudio: Jerarquía y Anidamiento de Divs (Padre, Hijo, Nieto)</title>
+  <link rel="stylesheet" href="styles/modulo_anidamiento.css">
+</head>
+<body>
+
+  <header class="cabecera-modulo">
+    <div>
+      <h1 style="color: #0d477a;">🌳 Jerarquía y Anidamiento: Divs dentro de Divs</h1>
+      <p style="color: #64748b;">Aprende cómo interactúan las cajas anidadas, qué propiedades se heredan y cómo usar los combinadores.</p>
+    </div>
+    <a href="../INICIAR_REPASO_VISUAL.html" class="btn-volver">⬅ Volver al Laboratorio</a>
+  </header>
+
+  <main class="layout-doble">
+
+    <!-- CASO 1: ÁRBOL VISUAL DE CAJAS ANIDADAS -->
+    <section class="panel-estudio">
+      <h2>1. El Árbol de Contenedores: Abuelo ➔ Padre ➔ Hijo ➔ Nieto</h2>
+      <p>
+        Cada <code>&lt;div&gt;</code> interior vive contenido dentro del espacio que le deja su elemento padre.
+      </p>
+      
+      <div class="grid-comparativo">
+        <div class="bloque-codigo"><span class="comentario">&lt;!-- Estructura HTML Anidada --&gt;</span>
+&lt;div class="abuelo"&gt;
+  &lt;div class="padre"&gt;
+    &lt;div class="hijo"&gt;
+      &lt;div class="nieto"&gt;Texto más profundo&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+<span class="comentario">/* CSS: Herencia */</span>
+.abuelo {
+  color: #0d477a;     <span class="comentario">/* SÍ se hereda por todos */</span>
+  font-family: sans;  <span class="comentario">/* SÍ se hereda */</span>
+  padding: 20px;      <span class="comentario">/* NO se hereda: solo para el abuelo */</span>
+  border: 3px solid;  <span class="comentario">/* NO se hereda */</span>
+}</div>
+
+        <div class="bloque-resultado">
+          <div class="caja-abuelo">
+            <span class="etiqueta-rol rol-abuelo">Caja Abuelo</span>
+            <p>Contenedor raíz exterior</p>
+            
+            <div class="caja-padre">
+              <span class="etiqueta-rol rol-padre">Caja Padre</span>
+              <p>Hijo directo del abuelo</p>
+
+              <div class="caja-hijo">
+                <span class="etiqueta-rol rol-hijo">Caja Hijo</span>
+                <p>Nieto del abuelo, hijo del padre</p>
+
+                <div class="caja-nieto">
+                  <span class="etiqueta-rol rol-nieto">Caja Nieto</span>
+                  Texto interior profundo
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASO 2: COMBINADORES (HIJO DIRECTO vs DESCENDIENTE) -->
+    <section class="panel-estudio">
+      <h2>2. Combinadores: Hijo Directo (<code>&gt;</code>) vs Descendiente (Espacio)</h2>
+      <p>
+        Una pregunta clásica de examen es saber a qué elementos afecta exactamente cada selector.
+      </p>
+      
+      <div class="grid-comparativo">
+        <div class="bloque-codigo"><span class="comentario">/* 1. Selector descendiente (espacio):
+   Afecta a TODOS los párrafos dentro del padre,
+   sin importar cuántos niveles de anidamiento haya */</span>
+.padre p {
+  color: blue;
+}
+
+<span class="comentario">/* 2. Selector hijo directo (>):
+   Afecta ÚNICAMENTE a los hijos de primer nivel.
+   NO afectará a párrafos que estén dentro de otros divs */</span>
+.padre > p {
+  font-weight: bold;
+}
+
+<span class="comentario">/* 3. Hermano adyacente (+):
+   Selecciona el primer elemento que va INMEDIATAMENTE después */</span>
+h3 + p {
+  margin-top: 0;
+}</div>
+
+        <div class="bloque-resultado" style="display: block;">
+          <div style="background: white; padding: 15px; border-radius: 6px; border: 1px solid #cbd5e1;">
+            <p style="font-weight: bold; color: #0d477a;">• Hijo directo (.padre &gt; p):</p>
+            <p style="margin-left: 15px; color: #64748b;">Hereda estilos inmediatos sin penetrar en contenedores hijos.</p>
+            <p style="font-weight: bold; color: #0d477a; margin-top: 10px;">• Descendiente (.padre p):</p>
+            <p style="margin-left: 15px; color: #64748b;">Penetra en cualquier profundidad del árbol DOM.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASO 3: PATRÓN MAESTRO: PADRE RELATIVE + HIJO ABSOLUTE -->
+    <section class="panel-estudio">
+      <h2>3. Posicionamiento Anidado: Padre <code>relative</code> + Hijo <code>absolute</code></h2>
+      <p>
+        Para ubicar un botón flotante, una insignia o un avatar sobre una tarjeta, el padre DEBE tener <code>position: relative</code> para servir de anclaje.
+      </p>
+      
+      <div class="grid-comparativo">
+        <div class="bloque-codigo"><span class="comentario">/* 1. El padre actúa como marco de referencia */</span>
+.tarjeta-padre {
+  position: relative; <span class="comentario">/* ¡IMPRESCINDIBLE! */</span>
+  padding: 25px;
+  background: white;
+  border-radius: 10px;
+}
+
+<span class="comentario">/* 2. El hijo se fija a las esquinas del padre */</span>
+.badge-flotante {
+  position: absolute;
+  top: 10px;          <span class="comentario">/* A 10px del techo del padre */</span>
+  right: 10px;        <span class="comentario">/* A 10px de la derecha del padre */</span>
+  background: red;
+  color: white;
+}</div>
+
+        <div class="bloque-resultado">
+          <div class="tarjeta-padre-relative">
+            <span class="badge-hijo-absolute">NIVEL SAIYAN</span>
+            <h3 style="color: #0d477a; margin-bottom: 6px;">Son Goku — Super Saiyan</h3>
+            <p style="color: #64748b; font-size: 0.9rem;">
+              La insignia roja arriba a la derecha está posicionada de forma absoluta respecto al borde de esta tarjeta gracias a <code>position: relative</code> en el padre.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
+

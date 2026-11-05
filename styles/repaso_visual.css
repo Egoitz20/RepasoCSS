@@ -1,0 +1,802 @@
+/* ==========================================================================
+   1. VARIABLES CSS GLOBALES (:root)
+   Centralizamos la paleta de colores corporativa y radios para consistencia.
+   ========================================================================== */
+:root {
+  --color-primario: #0d477a;       /* Azul oscuro Goku */
+  --color-acento: #1972b9;         /* Azul medio brillante */
+  --color-fondo: #f4f8fb;          /* Fondo general suave */
+  --color-tarjeta-bg: #ffffff;
+  --color-blanco: #ffffff;
+  --color-texto: #1e293b;          /* Texto oscuro legible */
+  --color-texto-muted: #64748b;    /* Texto secundario gris */
+  
+  /* Colores semánticos para el Modelo de Caja */
+  --color-margin: #ffe0b2;         /* Naranja suave para margin externo */
+  --color-border: #90caf9;         /* Azul para bordes */
+  --color-padding: #c8e6c9;        /* Verde suave para relleno interno */
+  --color-content: #bbdefb;        /* Azul claro para contenido central */
+
+  /* Estados */
+  --color-verde: #2e7d32;
+  --color-rojo: #d32f2f;
+  --color-naranja: #e65100;
+  
+  --radio-tarjeta: 12px;
+  --radio-pildora: 50px;
+  --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.08);
+  --sombra-elevada: 0 10px 25px rgba(13, 71, 122, 0.18);
+}
+
+/* ==========================================================================
+   TEMA DINÁMICO REASIGNANDO VARIABLES EN EL CONTENEDOR (DEMO DE VARIABLES)
+   ========================================================================== */
+.tema-demo-oscuro {
+  --color-primario: #38bdf8;
+  --color-acento: #0284c7;
+  --color-tarjeta-bg: #1e293b;
+  --color-texto: #f8fafc;
+  --color-texto-muted: #94a3b8;
+}
+
+.tema-demo-saiyan {
+  --color-primario: #b45309;
+  --color-acento: #f59e0b;
+  --color-tarjeta-bg: #fffbeb;
+  --color-texto: #78350f;
+  --color-texto-muted: #92400e;
+}
+
+/* ==========================================================================
+   2. RESET Y ESTILOS BASE
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  padding-bottom: 80px;
+}
+
+/* Cabecera Principal */
+.header-principal {
+  background: linear-gradient(135deg, var(--color-primario), var(--color-acento));
+  color: var(--color-blanco);
+  padding: 35px 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.header-principal h1 {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.header-principal p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* Barra de Navegación Rápida con Flexbox */
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #093155;
+  padding: 12px 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.nav-btn {
+  background-color: transparent;
+  color: #e2e8f0;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 8px 16px;
+  border-radius: var(--radio-pildora);
+  cursor: pointer;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-btn:hover, .nav-btn.activo {
+  background-color: var(--color-blanco);
+  color: var(--color-primario);
+  border-color: var(--color-blanco);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(255,255,255,0.3);
+}
+
+.nav-btn.destacado {
+  background-color: #f59e0b;
+  color: #0f172a;
+  border-color: #f59e0b;
+  font-weight: bold;
+}
+.nav-btn.destacado:hover {
+  background-color: #fbbf24;
+}
+
+/* Contenedor central de contenidos */
+.contenedor-central {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* Tarjetas de Sección */
+.tarjeta-seccion {
+  background: var(--color-tarjeta-bg);
+  border-radius: var(--radio-tarjeta);
+  padding: 30px;
+  margin-bottom: 35px;
+  box-shadow: var(--sombra-suave);
+  border: 1px solid #e2e8f0;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.tarjeta-seccion h2 {
+  color: var(--color-primario);
+  font-size: 1.8rem;
+  border-bottom: 3px solid var(--color-acento);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.badge-teoria {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: var(--radio-pildora);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.btn-ver-modulo {
+  font-size: 0.85rem;
+  background-color: #f1f5f9;
+  color: var(--color-acento);
+  border: 1px solid #cbd5e1;
+  padding: 5px 12px;
+  border-radius: var(--radio-pildora);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.btn-ver-modulo:hover {
+  background-color: var(--color-acento);
+  color: white;
+  border-color: var(--color-acento);
+}
+
+.nota-didactica {
+  background: #eff6ff;
+  border-left: 4px solid var(--color-acento);
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   MÓDULO 1: SIMULADOR DE BOX MODEL (MARGIN VS PADDING)
+   ========================================================================== */
+.box-model-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  align-items: center;
+}
+
+.controles-box {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.control-item {
+  margin-bottom: 15px;
+}
+
+.control-item label {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.control-item input[type="range"] {
+  width: 100%;
+  accent-color: var(--color-acento);
+}
+
+.btn-toggle-boxsizing {
+  background: var(--color-primario);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 10px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-toggle-boxsizing:hover {
+  background: var(--color-acento);
+}
+.btn-toggle-boxsizing:active {
+  transform: scale(0.98);
+}
+
+.box-visual-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1f5f9;
+  border: 1px dashed #cbd5e1;
+  padding: 20px;
+  border-radius: 8px;
+  min-height: 330px;
+  overflow: hidden;
+}
+
+.capa-margin {
+  background-color: var(--color-margin);
+  border: 2px dashed #f57c00;
+  border-radius: 6px;
+  padding: 25px;
+  transition: padding 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.capa-margin::before {
+  content: "MARGIN (Espacio Exterior - Transparente)";
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #b26a00;
+  margin-bottom: 6px;
+}
+
+.capa-border {
+  background-color: var(--color-border);
+  border: 4px solid #1972b9;
+  border-radius: 6px;
+  padding: 20px;
+  transition: padding 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.capa-border::before {
+  content: "PADDING (Relleno Interno)";
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #0d477a;
+  margin-bottom: 6px;
+}
+
+.capa-content {
+  background-color: #ffffff;
+  color: #0d477a;
+  border: 2px solid #0d477a;
+  padding: 15px 20px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 4px;
+  width: 160px;
+}
+
+.info-medidas {
+  margin-top: 15px;
+  padding: 12px;
+  background: #e2e8f0;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* ==========================================================================
+   MÓDULO: ANIDAMIENTO JERÁRQUICO (DIV DENTRO DE DIV)
+   ========================================================================== */
+.arbol-anidado-demo {
+  background-color: #e0f2fe;
+  border: 3px solid #0284c7;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-top: 15px;
+}
+
+.caja-padre-demo {
+  background-color: #fef3c7;
+  border: 3px solid #f59e0b;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.caja-hijo-demo {
+  background-color: #dcfce7;
+  border: 3px solid #16a34a;
+  padding: 14px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.caja-nieto-demo {
+  background-color: #ffffff;
+  border: 2px dashed #0d477a;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 8px;
+  font-weight: bold;
+  color: #0d477a;
+}
+
+/* ==========================================================================
+   MÓDULO: CONDICIONALES EN CSS (:has, :not, temas)
+   ========================================================================== */
+.caja-condicional-has {
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+/* CONDICIONAL PURO EN CSS */
+.caja-condicional-has:has(input:checked) {
+  background-color: #dcfce7;
+  border-color: #16a34a;
+  box-shadow: 0 4px 15px rgba(22, 163, 74, 0.25);
+}
+
+.caja-condicional-has:has(input:checked) h3 {
+  color: #15803d;
+}
+
+/* ==========================================================================
+   MÓDULO 2: SIMULADOR VISUAL DE FLEXBOX CON ANIMACIÓN FLUIDA
+   ========================================================================== */
+.flex-panel-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #e2e8f0;
+}
+
+.flex-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 180px;
+}
+
+.flex-grupo label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--color-primario);
+}
+
+.flex-grupo select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.flex-grupo select:focus {
+  outline: none;
+  border-color: var(--color-acento);
+  box-shadow: 0 0 0 3px rgba(25, 114, 185, 0.2);
+}
+
+.barra-direccion-eje {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 10px 18px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.indicador-flecha {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+}
+
+.flecha-icono {
+  display: inline-block;
+  font-size: 1.4rem;
+  animation: pulsoFlecha 1.5s infinite ease-in-out;
+}
+
+@keyframes pulsoFlecha {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+.flex-escenario {
+  display: flex;
+  background: #f1f5f9;
+  border: 2px dashed #94a3b8;
+  border-radius: 8px;
+  padding: 25px;
+  min-height: 270px;
+  position: relative;
+  overflow: hidden;
+  transition: gap 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.4s ease;
+}
+
+.flex-caja {
+  background: linear-gradient(135deg, var(--color-primario), var(--color-acento));
+  color: white;
+  padding: 22px 26px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(13, 71, 122, 0.2);
+  cursor: grab;
+  user-select: none;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, background 0.3s ease;
+  will-change: transform;
+}
+
+.flex-caja:hover {
+  box-shadow: var(--sombra-elevada);
+  transform: scale(1.04);
+}
+
+.flex-caja span {
+  font-size: 0.75rem;
+  font-weight: normal;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.codigo-visor {
+  background: #1e293b;
+  color: #38bdf8;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9rem;
+  margin-top: 15px;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  border-left: 4px solid var(--color-acento);
+}
+
+.codigo-comentario {
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   MÓDULO 3: SIMULADOR VISUAL DE CSS GRID
+   ========================================================================== */
+.grid-panel-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-grid-preset {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.btn-grid-preset:hover, .btn-grid-preset.activo {
+  background: var(--color-primario);
+  color: white;
+  border-color: var(--color-primario);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(13, 71, 122, 0.25);
+}
+
+.grid-escenario {
+  display: grid;
+  gap: 15px;
+  background: #f1f5f9;
+  border: 2px dashed #94a3b8;
+  border-radius: 8px;
+  padding: 25px;
+  min-height: 270px;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.grid-caja {
+  background: #0284c7;
+  color: white;
+  padding: 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease;
+  will-change: transform;
+}
+
+.grid-caja:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.grid-area-header  { grid-area: header;  background: #0d477a; }
+.grid-area-lateral { grid-area: lateral; background: #0284c7; }
+.grid-area-main    { grid-area: main;    background: #0369a1; }
+.grid-area-footer  { grid-area: footer;  background: #334155; }
+
+/* ==========================================================================
+   MÓDULO 4: PROBADOR RESPONSIVE DE MEDIA QUERIES
+   ========================================================================== */
+.responsive-tester-wrapper {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.btn-simular-pantalla {
+  background: var(--color-acento);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radio-pildora);
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px 5px;
+  transition: transform 0.1s, background 0.2s, box-shadow 0.2s;
+}
+
+.btn-simular-pantalla:hover {
+  background: var(--color-primario);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.viewport-frame {
+  max-width: 950px;
+  margin: 20px auto;
+  border: 3px solid #334155;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  text-align: left;
+}
+
+.viewport-header {
+  background: #334155;
+  color: #94a3b8;
+  padding: 8px 15px;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  font-family: monospace;
+}
+
+.mini-cv-contenedor {
+  display: flex;
+  flex-direction: row;
+  transition: all 0.4s ease;
+}
+
+.mini-cv-sidebar {
+  flex: 1;
+  background: #eaf4fb;
+  padding: 20px;
+  border-right: 1px solid #dce5ed;
+  transition: all 0.3s ease;
+}
+
+.mini-cv-main {
+  flex: 3;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.modo-movil .viewport-frame {
+  max-width: 420px;
+}
+
+.modo-movil .mini-cv-contenedor {
+  flex-direction: column;
+}
+
+.modo-movil .mini-cv-sidebar {
+  border-right: none;
+  border-bottom: 2px solid #dce5ed;
+}
+
+.demo-competencia {
+  margin-bottom: 12px;
+}
+
+.demo-competencia-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.demo-barra-fondo {
+  width: 100%;
+  height: 8px;
+  background: #dce5ed;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.demo-barra-progreso {
+  height: 100%;
+  background: var(--color-primario);
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+.chips-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.chip-item {
+  background: white;
+  border: 1px solid #cbd5e1;
+  padding: 4px 10px;
+  border-radius: var(--radio-pildora);
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--color-primario);
+}
+
+.mini-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.85rem;
+}
+
+.mini-tabla th, .mini-tabla td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.mini-tabla th {
+  background: #f1f5f9;
+  color: var(--color-primario);
+}
+
+.victoria { color: var(--color-verde); font-weight: bold; }
+.derrota { color: var(--color-rojo); font-weight: bold; }
+.decisivo { color: var(--color-naranja); font-weight: bold; }
+
+/* ==========================================================================
+   MÓDULO 5: CUESTIONARIO TEÓRICO AUTOEVALUABLE
+   ========================================================================== */
+.faq-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.faq-pregunta {
+  padding: 16px 20px;
+  background: #f8fafc;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.faq-pregunta:hover {
+  background: #eff6ff;
+  color: var(--color-acento);
+}
+
+.faq-respuesta {
+  padding: 20px;
+  display: none;
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.faq-item.abierto .faq-respuesta {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.faq-item.abierto .faq-icono {
+  transform: rotate(180deg);
+}
+
+.faq-icono {
+  transition: transform 0.2s;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .box-model-demo {
+    grid-template-columns: 1fr;
+  }
+  .nav-tabs {
+    flex-direction: column;
+  }
+}

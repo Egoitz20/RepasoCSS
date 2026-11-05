@@ -1,0 +1,152 @@
+/* Estilos para el visor aislado de Flexbox */
+:root {
+  --color-primario: #0d477a;
+  --color-acento: #1972b9;
+  --color-fondo: #f1f5f9;
+  --color-tarjeta: #ffffff;
+  --color-texto: #1e293b;
+  --color-borde: #cbd5e1;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  padding: 25px 15px;
+  line-height: 1.6;
+}
+
+.cabecera-modulo {
+  max-width: 1100px;
+  margin: 0 auto 25px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.btn-volver {
+  background: var(--color-primario);
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.btn-volver:hover {
+  background: var(--color-acento);
+}
+
+.layout-doble {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.panel-estudio {
+  background: var(--color-tarjeta);
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid var(--color-borde);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.panel-estudio h2 {
+  color: var(--color-primario);
+  margin-bottom: 12px;
+}
+
+.grid-comparativo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+  .grid-comparativo {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bloque-codigo {
+  background: #1e293b;
+  color: #38bdf8;
+  padding: 18px;
+  border-radius: 8px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.88rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.comentario {
+  color: #94a3b8;
+}
+
+.bloque-resultado {
+  background: #f8fafc;
+  border: 2px dashed #94a3b8;
+  border-radius: 8px;
+  padding: 15px;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+}
+
+/* Clases específicas de los ejemplos de Flexbox */
+.flex-demo-1 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.flex-demo-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 120px;
+}
+
+.flex-demo-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.flex-demo-4 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+
+.caja-item {
+  background: var(--color-acento);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.caja-1 { background: #0d477a; }
+.caja-2 { background: #1972b9; }
+.caja-3 { background: #0284c7; }
+.caja-4 { background: #0369a1; }
+

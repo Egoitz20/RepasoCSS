@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio y Guía Visual de Repaso — CSS, Flexbox, Grid y UI</title>
+  <!-- Estilos separados en archivo externo para óptima organización -->
+  <link rel="stylesheet" href="styles/repaso_visual.css">
+</head>
+<body id="cuerpo-app">
+
+  <!-- CABECERA PRINCIPAL -->
+  <header class="header-principal">
+    <h1>⚔️ Laboratorio y Repaso de Examen: CSS, Flexbox & Grid</h1>
+    <p>Apuntes interactivos con código comentado, demostraciones visuales, ejercicios prácticos con código visible y preguntas teóricas.</p>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN FIJA -->
+  <nav class="nav-tabs">
+    <a href="#modulo-boxmodel" class="nav-btn activo">📦 1. Margin vs Padding</a>
+    <a href="#modulo-jerarquia" class="nav-btn">🌳 2. Divs Anidados</a>
+    <a href="#modulo-variables" class="nav-btn">🎨 3. Variables & Temas</a>
+    <a href="#modulo-condicionales" class="nav-btn">🔀 4. If / Else (:has)</a>
+    <a href="#modulo-ejercicios-teoria" class="nav-btn destacado">🚀 5. Ejercicios con Código</a>
+    <a href="#modulo-flexbox" class="nav-btn">⚡ 6. Flexbox Animado</a>
+    <a href="#modulo-grid" class="nav-btn">📐 7. Grid Animado</a>
+    <a href="#modulo-responsive" class="nav-btn">📱 8. Media Queries & Goku</a>
+    <a href="#modulo-test" class="nav-btn">📝 9. Preguntas Teóricas</a>
+  </nav>
+
+  <!-- CONTENIDO CENTRAL -->
+  <main class="contenedor-central">
+
+    <!-- =====================================================================
+         MÓDULO 1: BOX MODEL (MARGIN VS PADDING)
+         ===================================================================== -->
+    <section id="modulo-boxmodel" class="tarjeta-seccion">
+      <h2>
+        <span>📦 1. El Modelo de Caja (Box Model)</span>
+        <div>
+          <a href="apuntes/modulo_boxmodel.html" class="btn-ver-modulo">Ver Código Aislado ↗</a>
+          <span class="badge-teoria">Fijo en examen</span>
+        </div>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>💡 Regla de oro para el examen:</strong>
+        <br>• <strong>Padding (relleno):</strong> Espacio <em>interior</em> (entre el texto y el borde). Lleva el color de fondo del elemento y amplía la zona de clic.
+        <br>• <strong>Margin (margen):</strong> Espacio <em>exterior</em> (entre el borde del elemento y sus vecinos). Es 100% transparente.
+        <br>• <strong>box-sizing: border-box:</strong> Obligatorio en proyectos reales para que el padding y el border no sumen anchura extra y rompan la maquetación.
+      </div>
+
+      <div class="box-model-demo">
+        <div class="controles-box">
+          <div class="control-item">
+            <label>Padding (Relleno Verde): <span id="val-padding">20px</span></label>
+            <input type="range" id="input-padding" min="0" max="60" value="20" oninput="actualizarBoxModel()">
+          </div>
+
+          <div class="control-item">
+            <label>Margin (Margen Naranja): <span id="val-margin">25px</span></label>
+            <input type="range" id="input-margin" min="0" max="60" value="25" oninput="actualizarBoxModel()">
+          </div>
+
+          <div class="control-item">
+            <label>Borde (Borde Azul): <span id="val-border">4px</span></label>
+            <input type="range" id="input-border" min="1" max="15" value="4" oninput="actualizarBoxModel()">
+          </div>
+
+          <button class="btn-toggle-boxsizing" onclick="alternarBoxSizing()">
+            Cambiar Box-Sizing: <span id="val-boxsizing">border-box</span>
+          </button>
+
+          <div class="info-medidas" id="formula-medidas">
+            Ancho total = 200px (fijo gracias a border-box)
+          </div>
+        </div>
+
+        <div class="box-visual-container">
+          <div class="capa-margin" id="render-margin">
+            <div class="capa-border" id="render-border">
+              <div class="capa-content" id="render-content">
+                CONTENIDO<br>(width: 160px)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Reset universal indispensable en todo examen y proyecto */</span>
+*, *::before, *::after {
+  box-sizing: border-box; <span class="codigo-comentario">/* El width especificado incluye padding y border */</span>
+  margin: 0;
+  padding: 0;
+}</pre>
+    </section>
+
+    <!-- =====================================================================
+         MÓDULO 2: JERARQUÍA DOM Y ANIDAMIENTO (DIVS DENTRO DE DIVS)
+         ===================================================================== -->
+    <section id="modulo-jerarquia" class="tarjeta-seccion">
+      <h2>
+        <span>🌳 2. Jerarquía DOM y Anidamiento (Div dentro de Div)</span>
+        <div>
+          <a href="apuntes/modulo_anidamiento_padre_hijo.html" class="btn-ver-modulo">Ver Código Aislado ↗</a>
+          <span class="badge-teoria">Crucial</span>
+        </div>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>🔍 Cómo funcionan las cajas anidadas:</strong>
+        <br>• <strong>Herencia:</strong> Las propiedades de texto (<code>color</code>, <code>font-family</code>, <code>font-size</code>) se transmiten automáticamente a todos los hijos y nietos interiores.
+        <br>• <strong>NO se heredan:</strong> <code>margin</code>, <code>padding</code>, <code>border</code>, <code>width</code> y <code>background</code> solo pertenecen al contenedor que los declara.
+        <br>• <strong>Flexbox/Grid:</strong> Sólo aplican a los <strong>hijos directos</strong> (los nietos no se vuelven flexibles a menos que su propio padre sea flex).
+        <br>• <strong>Patrón Padre Relative + Hijo Absolute:</strong> Para fijar una insignia en la esquina de una tarjeta, el padre debe ser <code>position: relative</code>.
+      </div>
+
+      <div class="arbol-anidado-demo">
+        <strong style="color: #0369a1;">DIV ABUELO (.abuelo - color: azul; font-family)</strong>
+        <p style="font-size: 0.85rem; color: #64748b;">Contenedor raíz exterior. Sus propiedades de texto bañan a todos los elementos interiores.</p>
+        
+        <div class="caja-padre-demo">
+          <strong style="color: #b45309;">DIV PADRE (.padre - position: relative;)</strong>
+          <p style="font-size: 0.85rem; color: #78350f;">Hijo directo del abuelo. Sirve de marco de anclaje.</p>
+
+          <div class="caja-hijo-demo">
+            <strong style="color: #15803d;">DIV HIJO (.hijo - flex hijo directo)</strong>
+            <p style="font-size: 0.85rem; color: #166534;">Elemento intermedio contenido dentro del padre.</p>
+
+            <div class="caja-nieto-demo">
+              DIV NIETO (.nieto - contenido interior profundo)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Combinadores clave entre padres e hijos */</span>
+.padre p { color: blue; }         <span class="codigo-comentario">/* Descendiente (espacio): Hijos, nietos, etc. */</span>
+.padre > p { font-weight: bold; } <span class="codigo-comentario">/* Hijo directo (>): SOLO primer nivel */</span>
+h2 + p { margin-top: 0; }         <span class="codigo-comentario">/* Hermano adyacente (+): Inmediatamente después */</span></pre>
+    </section>
+
+    <!-- =====================================================================
+         MÓDULO 3: VARIABLES CSS (:root) Y CAMBIO DE TEMAS
+         ===================================================================== -->
+    <section id="modulo-variables" class="tarjeta-seccion" id="seccion-variables-demo">
+      <h2>
+        <span>🎨 3. Variables CSS (`:root`) y Sistema de Temas</span>
+        <div>
+          <a href="apuntes/modulo_variables_condicionales.html" class="btn-ver-modulo">Ver Código Aislado ↗</a>
+          <span class="badge-teoria">Moderno</span>
+        </div>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>💡 ¿Por qué usar Variables CSS?</strong>
+        <br>Permiten centralizar colores, medidas y fuentes en un único lugar. Cambiando una sola variable, toda la interfaz se actualiza al instante.
+        <br><strong>¡Prueba los botones para conmutar el tema visual de esta tarjeta!</strong>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <button class="btn-simular-pantalla" onclick="cambiarTemaTarjeta('')">🔵 Tema Base (Goku Azul)</button>
+        <button class="btn-simular-pantalla" style="background: #0f172a;" onclick="cambiarTemaTarjeta('tema-demo-oscuro')">🌑 Modo Oscuro (Vegeta)</button>
+        <button class="btn-simular-pantalla" style="background: #b45309;" onclick="cambiarTemaTarjeta('tema-demo-saiyan')">✨ Modo Saiyan Dorado</button>
+      </div>
+
+      <div style="background: var(--color-tarjeta-bg); border: 2px solid var(--color-primario); padding: 20px; border-radius: 10px; color: var(--color-texto);">
+        <h3 style="color: var(--color-primario); margin-bottom: 6px;">Demostración Dinámica de Variables</h3>
+        <p style="color: var(--color-texto-muted); font-size: 0.95rem;">
+          Esta tarjeta utiliza <code>var(--color-primario)</code>, <code>var(--color-tarjeta-bg)</code> y <code>var(--color-texto)</code>. Al pulsar los botones de arriba, solo cambiamos las variables y el diseño se transforma.
+        </p>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Declaración global en :root y reasignación de tema */</span>
+:root {
+  --color-primario: #0d477a; <span class="codigo-comentario">/* Variable global */</span>
+}
+body.modo-oscuro {
+  --color-primario: #38bdf8; <span class="codigo-comentario">/* Reasignada para todo el tema oscuro */</span>
+}
+.tarjeta {
+  background: var(--color-primario);
+}</pre>
+    </section>
+
+    <!-- =====================================================================
+         MÓDULO 4: EL "IF / ELSE" EN CSS (:has, :not, @supports)
+         ===================================================================== -->
+    <section id="modulo-condicionales" class="tarjeta-seccion">
+      <h2>
+        <span>🔀 4. Los "Condicionales" en CSS (If / Else)</span>
+        <div>
+          <a href="apuntes/modulo_variables_condicionales.html" class="btn-ver-modulo">Ver Código Aislado ↗</a>
+          <span class="badge-teoria">Muy preguntado</span>
+        </div>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>¿Cómo se hacen condicionales en CSS?</strong>
+        <br>• <strong>@media:</strong> <code>if (ancho <= 768px) { vertical; } else { horizontal; }</code>
+        <br>• <strong>:has():</strong> El condicional de hijos: <code>if (padre contiene hijo con estado X)</code>.
+        <br>• <strong>:not():</strong> La negación lógica: <code>if NOT condition</code>.
+        <br>• <strong>@supports:</strong> <code>if (navegador soporta display: grid)</code>.
+      </div>
+
+      <div class="caja-condicional-has">
+        <h3>🎯 Condicional :has() en Vivo</h3>
+        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 10px;">
+          Haz clic en la casilla para activar la condición CSS: <code>.caja:has(input:checked)</code>
+        </p>
+        <label style="display: flex; align-items: center; gap: 8px; font-weight: bold; cursor: pointer;">
+          <input type="checkbox"> Marcar técnica aprendida (Super Saiyan)
+        </label>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Condicionales puros en CSS */</span>
+.tarjeta:has(input:checked) {
+  background-color: #dcfce7;
+  border-color: #16a34a;
+}
+li:not(:last-child) {
+  border-bottom: 1px solid #cbd5e1;
+}</pre>
+    </section>
+
+    <!-- =====================================================================
+         MÓDULO 5: EJERCICIOS DE EXAMEN CON CÓDIGO Y EXPLICACIÓN DIRECTA
+         ===================================================================== -->
+    <section id="modulo-ejercicios-teoria" class="tarjeta-seccion" style="border-top: 4px solid #f59e0b;">
+      <h2>
+        <span>🚀 5. Ejercicios de Examen (Código de Demostración & Explicación)</span>
+        <a href="ejercicios/index.html" class="btn-ver-modulo" style="background: #f59e0b; color: #0f172a; font-weight: bold;">Ver Catálogo Completo ↗</a>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>📌 Demostración técnica de los ejercicios de <em>teoria.pdf</em> (Capítulo IV):</strong>
+        <br>Aquí puedes ver el código exacto que resuelve la **Calculadora (Grid)** y el **Reproductor de Música (Flexbox 50/50)** junto con la explicación de qué regla aplica en cada línea.
+      </div>
+
+      <!-- EJERCICIO CALCULADORA -->
+      <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 20px; margin-bottom: 25px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h3 style="color: var(--color-primario); margin: 0;">📱 Ejercicio 1.1: Calculadora Rotatoria con CSS Grid</h3>
+          <a href="ejercicios/calculadora/index.html" class="btn-ver-modulo">Abrir Calculadora Interactiva ↗</a>
+        </div>
+        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 12px;">
+          <strong>Explicación:</strong> Se utiliza <code>display: grid; grid-template-columns: repeat(4, 1fr);</code> para crear 4 columnas idénticas para la botonera. El botón de igual (<code>=</code>) se expande con <code>grid-column: span 2</code>. En modo apaisado (landscape), una Media Query reorganiza el display LCD a la izquierda y los botones a la derecha con <code>grid-template-columns: 240px 1fr</code>.
+        </p>
+
+        <pre class="codigo-visor"><span class="codigo-comentario">/* CÓDIGO CLAVE DE LA CALCULADORA (CSS GRID) */</span>
+.calculadora-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); <span class="codigo-comentario">/* 4 columnas exactamente iguales */</span>
+  gap: 12px;                            <span class="codigo-comentario">/* Separación entre botones */</span>
+}
+
+.btn-igual {
+  grid-column: span 2;                  <span class="codigo-comentario">/* El botón = ocupa 2 columnas */</span>
+  background-color: #10b981;
+}
+
+<span class="codigo-comentario">/* Rotación apaisada / landscape (según teoría) */</span>
+@media (orientation: landscape) and (min-width: 650px) {
+  .calculadora-card {
+    display: grid;
+    grid-template-columns: 240px 1fr;   <span class="codigo-comentario">/* Pantalla 240px a la izq, botonera al resto */</span>
+  }
+}</pre>
+      </div>
+
+      <!-- EJERCICIO MÚSICA -->
+      <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h3 style="color: var(--color-primario); margin: 0;">🎵 Ejercicio 1.2: Reproductor de Música Rotatorio con Flexbox</h3>
+          <a href="ejercicios/reproductor_musica/index.html" class="btn-ver-modulo">Abrir Reproductor Interactivo ↗</a>
+        </div>
+        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 12px;">
+          <strong>Explicación:</strong> Los controles principales se centran en fila con <code>display: flex; justify-content: center; align-items: center; gap: 25px;</code>. La barra de tiempo va fija al 25% y el volumen al 70%. Al rotar la pantalla, una Media Query activa <code>flex-direction: row;</code> y da <code>flex: 1;</code> al disco y <code>flex: 1;</code> a los controles para dividir la pantalla al 50%-50%.
+        </p>
+
+        <pre class="codigo-visor"><span class="codigo-comentario">/* CÓDIGO CLAVE DEL REPRODUCTOR (FLEXBOX 50/50) */</span>
+.reproductor-card {
+  display: flex;
+  flex-direction: column; <span class="codigo-comentario">/* Modo vertical */</span>
+  gap: 20px;
+}
+
+.barra-tiempo-progreso {
+  width: 25%;             <span class="codigo-comentario">/* Fijado al 25% por especificación del examen */</span>
+}
+
+<span class="codigo-comentario">/* División al 50%-50% en modo apaisado / horizontal */</span>
+@media (orientation: landscape) and (min-width: 650px) {
+  .reproductor-card {
+    flex-direction: row;  <span class="codigo-comentario">/* Pasa a dos columnas */</span>
+  }
+  .seccion-disco, .seccion-controles {
+    flex: 1;              <span class="codigo-comentario">/* 50% para carátula y 50% para controles */</span>
+  }
+}</pre>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MÓDULO 6: FLEXBOX ANIMADO
+         ===================================================================== -->
+    <section id="modulo-flexbox" class="tarjeta-seccion">
+      <h2>
+        <span>⚡ 6. Flexbox Interactivo y Animado (1D - Unidimensional)</span>
+        <div>
+          <a href="apuntes/modulo_flexbox.html" class="btn-ver-modulo">Ver Código Aislado ↗</a>
+          <span class="badge-teoria">Fundamental</span>
+        </div>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>🧭 Conceptos clave de Flexbox:</strong>
+        <br>• <strong>flex-direction:</strong> Define el eje principal (<code>row</code> = horizontal; <code>column</code> = vertical).
+        <br>• <strong>justify-content:</strong> Alinea a lo largo del <em>eje principal</em>.
+        <br>• <strong>align-items:</strong> Alinea a lo largo del <em>eje secundario/perpendicular</em>.
+        <br>• <strong>Animación Visible:</strong> Al cambiar cualquier opción, los bloques se desplazan con movimiento cinético y la flecha inferior indica la dirección del flujo.
+      </div>
+
+      <div class="barra-direccion-eje">
+        <span class="indicador-flecha">
+          <span class="flecha-icono" id="icono-flecha-eje">➡️</span>
+          <span id="lbl-eje-direccion">Eje Principal: X Horizontal (Izquierda → Derecha)</span>
+        </span>
+        <span style="font-size: 0.8rem; opacity: 0.85;">Eje Secundario: Perpendicular (Cross Axis)</span>
+      </div>
+
+      <div class="flex-panel-control">
+        <div class="flex-grupo">
+          <label>flex-direction (Eje Principal):</label>
+          <select id="select-flex-direction" onchange="actualizarFlexboxAnimado()">
+            <option value="row">row (Fila horizontal - Defecto)</option>
+            <option value="row-reverse">row-reverse (Fila horizontal invertida)</option>
+            <option value="column">column (Columna vertical)</option>
+            <option value="column-reverse">column-reverse (Columna vertical invertida)</option>
+          </select>
+        </div>
+
+        <div class="flex-grupo">
+          <label>justify-content (Alineación Eje Principal):</label>
+          <select id="select-justify" onchange="actualizarFlexboxAnimado()">
+            <option value="flex-start">flex-start (Al inicio del eje)</option>
+            <option value="center">center (Centrado)</option>
+            <option value="flex-end">flex-end (Al final del eje)</option>
+            <option value="space-between" selected>space-between (Reparto a extremos)</option>
+            <option value="space-around">space-around (Espacio parejo alrededor)</option>
+            <option value="space-evenly">space-evenly (Espacio exactamente igual)</option>
+          </select>
+        </div>
+
+        <div class="flex-grupo">
+          <label>align-items (Eje Secundario):</label>
+          <select id="select-align" onchange="actualizarFlexboxAnimado()">
+            <option value="center" selected>center (Centrado vertical)</option>
+            <option value="stretch">stretch (Estirar al 100%)</option>
+            <option value="flex-start">flex-start (Arriba)</option>
+            <option value="flex-end">flex-end (Abajo)</option>
+          </select>
+        </div>
+
+        <div class="flex-grupo">
+          <label>flex-wrap (Salto de línea):</label>
+          <select id="select-wrap" onchange="actualizarFlexboxAnimado()">
+            <option value="nowrap">nowrap (Una sola fila obligada)</option>
+            <option value="wrap" selected>wrap (Bajan de línea si no caben)</option>
+          </select>
+        </div>
+
+        <div class="flex-grupo">
+          <label>gap (Separación uniforme):</label>
+          <select id="select-gap" onchange="actualizarFlexboxAnimado()">
+            <option value="10px">10px</option>
+            <option value="20px" selected>20px</option>
+            <option value="35px">35px</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex-escenario" id="escenario-flex">
+        <div class="flex-caja">Kamehameha <span>flex hijo 1</span></div>
+        <div class="flex-caja">Genkidama <span>flex hijo 2</span></div>
+        <div class="flex-caja">Kaio-ken <span>flex hijo 3</span></div>
+        <div class="flex-caja">Ultra Instinct <span>flex hijo 4</span></div>
+      </div>
+
+      <pre class="codigo-visor" id="visor-css-flex"></pre>
+    </section>
+
+    <!-- =====================================================================
+         MÓDULO 7: CSS GRID ANIMADO
+         ===================================================================== -->
+    <section id="modulo-grid" class="tarjeta-seccion">
+      <h2>
+        <span>📐 7. CSS Grid Interactivo y Animado (2D - Bidimensional)</span>
+        <div>
+          <a href="apuntes/modulo_grid.html" class="btn-ver-modulo">Ver Código Aislado ↗</a>
+          <span class="badge-teoria">Muy útil</span>
+        </div>
+      </h2>
+
+      <div class="grid-panel-control">
+        <button class="btn-grid-preset activo" onclick="cambiarGridPresetAnimado('auto-fit', this)">
+          Magia Auto-fit: repeat(auto-fit, minmax(200px, 1fr))
+        </button>
+        <button class="btn-grid-preset" onclick="cambiarGridPresetAnimado('3-cols', this)">
+          3 Columnas: repeat(3, 1fr)
+        </button>
+        <button class="btn-grid-preset" onclick="cambiarGridPresetAnimado('asimetrico', this)">
+          Asimétrico: 250px 1fr 100px
+        </button>
+        <button class="btn-grid-preset" onclick="cambiarGridPresetAnimado('areas', this)">
+          Zonas Nombradas: grid-template-areas
+        </button>
+      </div>
+
+      <div class="grid-escenario" id="escenario-grid">
+        <div class="grid-caja" id="gc-1">Entrenamiento 01<br><small>Maestro Roshi</small></div>
+        <div class="grid-caja" id="gc-2">Entrenamiento 02<br><small>Torre de Korin</small></div>
+        <div class="grid-caja" id="gc-3">Entrenamiento 03<br><small>Kaio del Norte</small></div>
+        <div class="grid-caja" id="gc-4">Entrenamiento 04<br><small>Whis (Divino)</small></div>
+      </div>
+
+      <pre class="codigo-visor" id="visor-css-grid"></pre>
+    </section>
+
+    <!-- =====================================================================
+         MÓDULO 8: MEDIA QUERIES & ANÁLISIS CV SON GOKU
+         ===================================================================== -->
+    <section id="modulo-responsive" class="tarjeta-seccion">
+      <h2>
+        <span>📱 8. Media Queries y el Proyecto Son Goku CV</span>
+        <div>
+          <a href="apuntes/modulo_mediaqueries.html" class="btn-ver-modulo">Ver Código Aislado ↗</a>
+          <span class="badge-teoria">Práctica del curso</span>
+        </div>
+      </h2>
+
+      <div class="responsive-tester-wrapper" id="tester-wrapper">
+        <button class="btn-simular-pantalla" onclick="simularPantalla('desktop')">💻 Vista Escritorio (> 768px)</button>
+        <button class="btn-simular-pantalla" onclick="simularPantalla('mobile')">📱 Vista Móvil (≤ 768px)</button>
+
+        <div class="viewport-frame" id="simulador-marco">
+          <div class="viewport-header">
+            <span>Resolución simulada: <strong id="lbl-resolucion">1200px (Escritorio)</strong></span>
+            <span>@media (max-width: 768px)</span>
+          </div>
+
+          <div class="mini-cv-contenedor">
+            <div class="mini-cv-sidebar">
+              <h3 style="color: var(--color-primario); font-size: 1.1rem; margin-bottom: 10px;">SON GOKU (Lateral - flex: 1)</h3>
+              <div class="demo-competencia">
+                <div class="demo-competencia-info"><span>Control del Ki</span><span>5/5</span></div>
+                <div class="demo-barra-fondo"><div class="demo-barra-progreso" style="width: 100%;"></div></div>
+              </div>
+              <div class="chips-flex">
+                <span class="chip-item">Kamehameha</span>
+                <span class="chip-item">Genkidama</span>
+                <span class="chip-item">Kaio-ken</span>
+              </div>
+            </div>
+
+            <div class="mini-cv-main">
+              <h3 style="color: var(--color-primario); margin-bottom: 5px;">DEFENSOR DE LA TIERRA (Contenido - flex: 3)</h3>
+              <table class="mini-tabla">
+                <thead>
+                  <tr><th>RIVAL</th><th>RESULTADO</th><th>CONTEXTO</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Jackie Chun</td><td class="derrota">Derrota</td><td>21.º Budokai</td></tr>
+                  <tr><td>Piccolo Jr.</td><td class="victoria">Victoria</td><td>23.º Budokai</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         MÓDULO 9: PREGUNTAS TEÓRICAS TÍPICAS DE EXAMEN (AUTOEVALUACIÓN)
+         ===================================================================== -->
+    <section id="modulo-test" class="tarjeta-seccion">
+      <h2>
+        <span>📝 9. Preguntas Teóricas Frecuentes de Examen</span>
+        <span class="badge-teoria">Autoevaluación</span>
+      </h2>
+      <p style="margin-bottom: 15px; color: var(--color-texto-muted);">
+        Haz clic en cualquier pregunta para desplegar la respuesta teórica completa recomendada para el examen.
+      </p>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-pregunta">
+          <span>1. ¿Cómo funciona la herencia dentro de los bloques `div` anidados?</span>
+          <span class="faq-icono">▼</span>
+        </div>
+        <div class="faq-respuesta">
+          <strong>Respuesta modelo:</strong>
+          <ul>
+            <li><strong>Propiedades que SÍ se heredan:</strong> Tipografías y texto (<code>color</code>, <code>font-family</code>, <code>font-size</code>, <code>text-align</code>). Pasan automáticamente a todos los hijos y nietos interiores.</li>
+            <li><strong>Propiedades que NO se heredan:</strong> Modelo de caja (<code>margin</code>, <code>padding</code>, <code>border</code>), dimensiones (<code>width</code>, <code>height</code>), fondos y <code>display</code> (flex/grid). Solo se aplican al contenedor específico.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-pregunta">
+          <span>2. ¿Cuáles son los condicionales ("if / else") que existen en CSS?</span>
+          <span class="faq-icono">▼</span>
+        </div>
+        <div class="faq-respuesta">
+          <strong>Respuesta modelo:</strong>
+          <ul>
+            <li><code>@media</code>: Condicional de pantalla (ancho, orientación). Actúa como <code>if (ancho <= 768px)</code>.</li>
+            <li><code>:has()</code>: Condicional de hijos. Estiliza al padre si contiene a un determinado elemento (ej: <code>div:has(input:checked)</code>).</li>
+            <li><code>:not()</code>: Condicional de negación lógica.</li>
+            <li><code>@supports</code>: Condicional de compatibilidad de características del navegador.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-pregunta">
+          <span>3. ¿Cuál es la diferencia entre margin y padding en CSS?</span>
+          <span class="faq-icono">▼</span>
+        </div>
+        <div class="faq-respuesta">
+          <strong>Respuesta modelo:</strong>
+          <ul>
+            <li><strong>Padding (relleno):</strong> Espacio interior entre contenido y borde. Adopta el color de fondo y es clicable.</li>
+            <li><strong>Margin (margen):</strong> Espacio exterior entre el borde y los vecinos. Es transparente y separa elementos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lógica JS separada -->
+  <script src="js/animaciones_flex_grid.js"></script>
+  <script>
+    function cambiarTemaTarjeta(claseTema) {
+      const seccion = document.getElementById("seccion-variables-demo");
+      seccion.className = "tarjeta-seccion " + claseTema;
+    }
+  </script>
+</body>
+</html>

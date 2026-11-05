@@ -1,0 +1,161 @@
+/* ==========================================================================
+   ESTILOS DE LA CALCULADORA ROTATORIA (CSS GRID)
+   Basado en el Ejercicio 1.1 del temario de Desarrollo de Interfaces
+   ========================================================================== */
+
+:root {
+  --color-fondo-app: #0f172a;        /* Fondo oscuro moderno */
+  --color-pantalla: #1e293b;          /* Pantalla display LCD */
+  --color-texto-pantalla: #38bdf8;   /* Azul cian brillante */
+  --color-btn-numero: #334155;       /* Gris azulado para dígitos */
+  --color-btn-accion: #f59e0b;       /* Naranja para operadores */
+  --color-btn-especial: #ef4444;     /* Rojo para reset/borrar */
+  --color-btn-igual: #10b981;        /* Verde para calcular = */
+  --color-texto: #ffffff;
+  --radio-boton: 10px;               /* Botones cuadrados con esquinas suaves */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #f1f5f9;
+  color: var(--color-texto);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.cabecera-ejercicio {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+.cabecera-ejercicio h1 {
+  font-size: 1.8rem;
+  color: #0d477a;
+}
+
+.cabecera-ejercicio p {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+/* Enlace para volver */
+.btn-volver-hub {
+  display: inline-block;
+  margin-top: 8px;
+  color: #0284c7;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   CONTENEDOR DE LA CALCULADORA (MODO VERTICAL / PORTRAIT POR DEFECTO)
+   ========================================================================== */
+.calculadora-card {
+  background-color: var(--color-fondo-app);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 360px;
+  transition: all 0.4s ease;
+}
+
+/* Pantalla / Display LCD */
+.calculadora-display {
+  background-color: var(--color-pantalla);
+  color: var(--color-texto-pantalla);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2.5rem;
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-align: right;
+  margin-bottom: 20px;
+  min-height: 75px;
+  overflow: hidden;
+  word-break: break-all;
+  border: 1px solid #334155;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* ==========================================================================
+   BOTONERA CON CSS GRID (4 COLUMNAS)
+   ========================================================================== */
+.calculadora-grid {
+  display: grid;
+  /* 4 columnas exactamente iguales para los botones */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Estilos de botones individuales */
+.btn-calc {
+  background-color: var(--color-btn-numero);
+  color: white;
+  border: none;
+  border-radius: var(--radio-boton);
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 16px 0;
+  cursor: pointer;
+  transition: transform 0.1s, filter 0.2s, background 0.2s;
+  user-select: none;
+}
+
+.btn-calc:hover {
+  filter: brightness(1.2);
+}
+
+.btn-calc:active {
+  transform: scale(0.94);
+}
+
+/* Botones diferenciados según la especificación del ejercicio */
+.btn-operador {
+  background-color: var(--color-btn-accion);
+  color: #0f172a;
+}
+
+.btn-borrar {
+  background-color: var(--color-btn-especial);
+}
+
+.btn-igual {
+  background-color: var(--color-btn-igual);
+  grid-column: span 2; /* Ocupa 2 columnas de ancho */
+}
+
+/* ==========================================================================
+   VISTA APAISADA / LANDSCAPE (ROTACIÓN SEGÚN EL TEMARIO)
+   Aprovecha todo el ancho disponible reordenando los componentes
+   ========================================================================== */
+@media (orientation: landscape) and (min-width: 650px), (min-width: 800px) {
+  .calculadora-card.modo-apaisado,
+  body.vista-landscape .calculadora-card {
+    max-width: 680px;
+    display: grid;
+    grid-template-columns: 240px 1fr; /* Display a la izquierda, botonera a la derecha */
+    gap: 20px;
+    align-items: center;
+  }
+
+  .calculadora-card.modo-apaisado .calculadora-display,
+  body.vista-landscape .calculadora-display {
+    height: 100%;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+

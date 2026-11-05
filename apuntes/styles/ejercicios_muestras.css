@@ -1,0 +1,263 @@
+/* ==========================================================================
+   CONFIGURACIÓN GLOBAL Y RESET
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box; /* Fundamental: padding y border no alteran el ancho total */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  color: #1a202c;
+  padding: 30px 15px;
+  line-height: 1.5;
+}
+
+.contenedor-ejercicios {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.tarjeta-ejercicio {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 25px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.tarjeta-ejercicio h2 {
+  color: #0d477a;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #0d477a;
+  padding-bottom: 6px;
+}
+
+.descripcion-ejercicio {
+  color: #475569;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   EJERCICIO 1: BARRA DE NAVEGACIÓN FLEXBOX (NAVBAR RESPONSIVE)
+   ========================================================================== */
+.navbar-demo {
+  display: flex;                  /* 1. Activa contexto flex: hijos en fila */
+  justify-content: space-between; /* 2. Separa el logo a la izquierda y el menú a la derecha */
+  align-items: center;            /* 3. Centra verticalmente los elementos */
+  background-color: #0d477a;      /* Color corporativo */
+  padding: 15px 25px;
+  border-radius: 8px;
+  color: white;
+}
+
+.navbar-logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar-links {
+  display: flex;                  /* Menú interno flexible */
+  gap: 20px;                     /* Espacio limpio entre enlaces */
+  list-style: none;              /* Quita los puntos de la lista <ul> */
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;         /* Quita el subrayado */
+  font-size: 0.95rem;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.navbar-links a:hover {
+  background-color: #1972b9;     /* Feedback visual al pasar el ratón */
+}
+
+/* Adaptación a pantallas estrechas */
+@media (max-width: 600px) {
+  .navbar-demo {
+    flex-direction: column;      /* Pasa de fila a columna en móviles */
+    gap: 15px;
+    text-align: center;
+  }
+  .navbar-links {
+    flex-direction: column;      /* Los enlaces también se apilan verticalmente */
+    width: 100%;
+    gap: 10px;
+  }
+}
+
+/* ==========================================================================
+   EJERCICIO 2: CENTRADO PERFECTO (HORIZONTAL Y VERTICAL)
+   ========================================================================== */
+.caja-centrado-flex {
+  display: flex;
+  justify-content: center;       /* Centrado horizontal en el eje principal */
+  align-items: center;           /* Centrado vertical en el eje secundario */
+  min-height: 180px;             /* Altura para apreciar el centrado vertical */
+  background: #e2e8f0;
+  border-radius: 8px;
+  border: 2px dashed #94a3b8;
+}
+
+.item-centrado {
+  background: #1972b9;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 6px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* ==========================================================================
+   EJERCICIO 3: CUADRÍCULA DE TARJETAS CON CSS GRID AUTO-RESPONSIVE
+   ========================================================================== */
+.grid-tarjetas-demo {
+  display: grid;
+  /* repeat(auto-fit, minmax(200px, 1fr)):
+     Calcula automáticamente cuántas columnas de mínimo 200px caben.
+     Si caben 3, pone 3. Si achicas la ventana, bajan a 2 o a 1 sin media queries */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px; /* Espacio uniforme entre filas y columnas */
+}
+
+.tarjeta-item {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribuye título arriba y botón abajo */
+}
+
+.tarjeta-item h3 {
+  color: #0d477a;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.tarjeta-item p {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.tarjeta-item button {
+  background: #0d477a;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tarjeta-item button:hover {
+  background: #1972b9;
+}
+
+/* ==========================================================================
+   EJERCICIO 4: BARRAS DE PROGRESO Y PÍLDORAS (ESTILO SON GOKU)
+   ========================================================================== */
+.habilidades-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fila-progreso {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fila-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #0d477a;
+}
+
+.carril-progreso {
+  width: 100%;
+  height: 10px;
+  background-color: #dce5ed;
+  border-radius: 20px;
+  overflow: hidden; /* Corta las esquinas del relleno interno */
+}
+
+.relleno-progreso {
+  height: 100%;
+  background: linear-gradient(90deg, #1972b9, #0d477a);
+  border-radius: 20px;
+}
+
+/* Contenedor de píldoras/chips flexibles */
+.pildoras-flex {
+  display: flex;
+  flex-wrap: wrap; /* Permite saltar de línea */
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.pildora {
+  background-color: #eaf4fb;
+  border: 1px solid #1972b9;
+  color: #0d477a;
+  padding: 5px 12px;
+  border-radius: 50px; /* Radio píldora perfecto */
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   EJERCICIO 5: TABLA SEMÁNTICA CON COLAPSO DE BORDES Y RESPONSIVE
+   ========================================================================== */
+.tabla-scroll {
+  width: 100%;
+  overflow-x: auto; /* Permite desplazamiento lateral en móviles */
+}
+
+.tabla-demo {
+  width: 100%;
+  border-collapse: collapse; /* Elimina espacio doble entre celdas */
+  font-size: 0.9rem;
+}
+
+.tabla-demo th, .tabla-demo td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.tabla-demo th {
+  background-color: #0d477a;
+  color: white;
+}
+
+.tabla-demo tr:hover {
+  background-color: #f1f5f9; /* Efecto cebrado al pasar el cursor */
+}
+
+.badge-estado {
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 0.75rem;
+  display: inline-block;
+}
+.badge-victoria { background: #dcfce7; color: #15803d; }
+.badge-derrota  { background: #fee2e2; color: #b91c1c; }
+
