@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="base">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2: Modelo de Caja (Box Model) — Laboratorio CSS3</title>
+  <link rel="stylesheet" href="../styles/repaso_visual.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL CON SELECTOR DE TEMA -->
+  <header class="header-principal">
+    <div class="header-contenedor">
+      <div class="header-branding">
+        <div class="header-logo-badge">📦</div>
+        <div>
+          <h1>Módulo 2: El Modelo de Caja (Box Model)</h1>
+          <p>La piedra angular de toda la maquetación web: comprende el espacio interior, bordes y márgenes.</p>
+        </div>
+      </div>
+      <div class="theme-selector-box">
+        <label for="selector-tema-global">🎨 Tema:</label>
+        <select id="selector-tema-global" class="selector-tema-global">
+          <option value="base">🔵 Goku Azul (Base)</option>
+          <option value="dark">🌑 Vegeta (Modo Oscuro)</option>
+          <option value="saiyan">✨ Super Saiyan (Dorado)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN MULTIPÁGINA -->
+  <nav class="nav-tabs" aria-label="Navegación principal de módulos">
+    <a href="../index.html" class="nav-btn">🏠 Inicio</a>
+    <a href="selectores.html" class="nav-btn">🎯 1. Selectores</a>
+    <a href="box-model.html" class="nav-btn activo">📦 2. Box Model</a>
+    <a href="layout.html" class="nav-btn">📐 3. Layout (Flex & Grid)</a>
+    <a href="tipografia.html" class="nav-btn">🔤 4. Tipografía</a>
+    <a href="colores-fondos.html" class="nav-btn">🎨 5. Colores y Fondos</a>
+    <a href="interactividad.html" class="nav-btn">⚡ 6. Interactividad</a>
+    <a href="formularios.html" class="nav-btn">📋 7. Formularios</a>
+    <a href="componentes.html" class="nav-btn">🧩 8. Componentes</a>
+  </nav>
+
+  <!-- CONTENIDO CENTRAL -->
+  <main class="contenedor-central">
+
+    <div class="migas-pan">
+      <a href="../index.html">Inicio</a>
+      <span class="separador">/</span>
+      <span>Módulo 2: Box Model</span>
+    </div>
+
+    <!-- SECCIÓN 1: TEORÍA FUNDAMENTAL DE LAS CUATRO CAPAS -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>1. Las Cuatro Capas del Modelo de Caja</span>
+        <span class="badge-teoria">Concepto Vital</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 18px;">
+        En CSS, todo elemento en pantalla es concebido como una caja rectangular compuesta por <strong>cuatro áreas concéntricas</strong> que van desde el núcleo hasta el exterior:
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 22px;">
+        <div style="background: var(--color-tarjeta-secundaria); padding: 18px; border-radius: 8px; border-left: 4px solid var(--color-primario);">
+          <h4 style="color: var(--color-primario); margin-bottom: 6px;">1. Contenido (Content)</h4>
+          <p style="font-size: 0.88rem; color: var(--color-texto);">
+            El área central donde se renderizan textos, imágenes o elementos hijos. Definido por <code>width</code> y <code>height</code>.
+          </p>
+        </div>
+
+        <div style="background: var(--color-tarjeta-secundaria); padding: 18px; border-radius: 8px; border-left: 4px solid var(--color-verde);">
+          <h4 style="color: var(--color-verde); margin-bottom: 6px;">2. Relleno (Padding)</h4>
+          <p style="font-size: 0.88rem; color: var(--color-texto);">
+            Espacio <strong>interior</strong> entre el contenido y el borde. Adopta el color de fondo del elemento y <strong>es clicable</strong>.
+          </p>
+        </div>
+
+        <div style="background: var(--color-tarjeta-secundaria); padding: 18px; border-radius: 8px; border-left: 4px solid var(--color-acento);">
+          <h4 style="color: var(--color-acento); margin-bottom: 6px;">3. Borde (Border)</h4>
+          <p style="font-size: 0.88rem; color: var(--color-texto);">
+            Línea perimetral que envuelve el padding y el contenido. Admite grosor, estilo (solid, dashed, etc.) y <code>border-radius</code>.
+          </p>
+        </div>
+
+        <div style="background: var(--color-tarjeta-secundaria); padding: 18px; border-radius: 8px; border-left: 4px solid var(--color-dorado-oscuro);">
+          <h4 style="color: var(--color-dorado-oscuro); margin-bottom: 6px;">4. Margen (Margin)</h4>
+          <p style="font-size: 0.88rem; color: var(--color-texto);">
+            Espacio <strong>exterior</strong> que separa el elemento de sus vecinos. Es <strong>100% transparente</strong> y no captura clics.
+          </p>
+        </div>
+      </div>
+
+      <!-- TABLA COMPARATIVA PADDING VS MARGIN -->
+      <div class="tabla-responsive-wrap">
+        <table class="tabla-didactica">
+          <thead>
+            <tr>
+              <th>Criterio</th>
+              <th>Padding (Relleno Interno)</th>
+              <th>Margin (Margen Externo)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ubicación</strong></td>
+              <td>Dentro del borde, rodeando al contenido.</td>
+              <td>Fuera del borde, separando la caja de las demás.</td>
+            </tr>
+            <tr>
+              <td><strong>Color de fondo</strong></td>
+              <td>Hereda y muestra el <code>background-color</code> del elemento.</td>
+              <td>Completamente transparente (deja ver el fondo del padre).</td>
+            </tr>
+            <tr>
+              <td><strong>Interacción (Clics)</strong></td>
+              <td>Forma parte del elemento; amplía la zona táctil de botones y enlaces.</td>
+              <td>No forma parte del elemento; no recibe clics.</td>
+            </tr>
+            <tr>
+              <td><strong>Colapso de márgenes</strong></td>
+              <td>Nunca colapsa.</td>
+              <td>Los márgenes verticales adyacentes pueden colapsar.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: SIMULADOR VISUAL E INTERACTIVO MEJORADO -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>2. Laboratorio Interactivo del Box Model</span>
+        <span class="badge-teoria">Demostración en Vivo</span>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>🧭 Instrucciones del Laboratorio:</strong>
+        Mueve los controles deslizantes para alterar el <strong>Padding</strong>, <strong>Margin</strong> y <strong>Borde</strong> en tiempo real. 
+        Pulsa el botón de <strong>Cambiar Box-Sizing</strong> para comparar visualmente cómo <code>border-box</code> mantiene el ancho exacto mientras <code>content-box</code> desborda la caja.
+      </div>
+
+      <div class="box-model-demo">
+        <!-- CONTROLES -->
+        <div class="controles-box">
+          <div class="control-item">
+            <label for="input-padding">
+              <span>Padding (Verde Interior):</span>
+              <span id="val-padding" style="color: var(--color-verde); font-weight: 800;">20px</span>
+            </label>
+            <input type="range" id="input-padding" min="0" max="60" value="20" oninput="actualizarBoxModel()">
+          </div>
+
+          <div class="control-item">
+            <label for="input-margin">
+              <span>Margin (Naranja Exterior):</span>
+              <span id="val-margin" style="color: var(--color-dorado-oscuro); font-weight: 800;">25px</span>
+            </label>
+            <input type="range" id="input-margin" min="0" max="60" value="25" oninput="actualizarBoxModel()">
+          </div>
+
+          <div class="control-item">
+            <label for="input-border">
+              <span>Grosor de Borde (Azul):</span>
+              <span id="val-border" style="color: var(--color-acento); font-weight: 800;">4px</span>
+            </label>
+            <input type="range" id="input-border" min="1" max="15" value="4" oninput="actualizarBoxModel()">
+          </div>
+
+          <button class="btn-toggle-boxsizing" onclick="alternarBoxSizing()">
+            Alternar Box-Sizing: <span id="val-boxsizing">border-box</span>
+          </button>
+
+          <!-- FÓRMULA MATEMÁTICA Y EXPLICACIÓN EN VIVO -->
+          <div class="info-medidas" id="formula-medidas">
+            <!-- Rellenado por animaciones_flex_grid.js -->
+          </div>
+        </div>
+
+        <!-- ESCENARIO VISUAL EN CAPAS -->
+        <div class="box-visual-container">
+          <div class="capa-margin" id="render-margin">
+            <div class="capa-border" id="render-border">
+              <div class="capa-content" id="render-content">
+                CONTENIDO<br><small style="font-size: 0.75rem; opacity: 0.85;">(Área de Texto)</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <pre class="codigo-visor" id="visor-boxmodel-css"></pre>
+    </section>
+
+    <!-- SECCIÓN 3: BOX-SIZING Y EL RESET UNIVERSAL -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>3. `box-sizing`: content-box vs border-box</span>
+        <span class="badge-teoria">Regla de Oro</span>
+      </h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px;">
+        <div style="background: var(--color-tarjeta-secundaria); padding: 20px; border-radius: 10px; border: 1px solid var(--color-borde);">
+          <h4 style="color: var(--color-rojo); margin-bottom: 8px;">❌ content-box (Comportamiento Antiguo por Defecto)</h4>
+          <p style="font-size: 0.9rem; color: var(--color-texto); line-height: 1.6;">
+            Si defines <code>width: 200px</code>, añadir <code>padding: 20px</code> y <code>border: 5px</code> hace que el elemento mida <strong>250px en total</strong>. El ancho final crece sin control y rompe las columnas de la interfaz.
+          </p>
+        </div>
+
+        <div style="background: var(--color-tarjeta-secundaria); padding: 20px; border-radius: 10px; border: 2px solid var(--color-verde);">
+          <h4 style="color: var(--color-verde); margin-bottom: 8px;">✅ border-box (Estándar Moderno de la Industria)</h4>
+          <p style="font-size: 0.9rem; color: var(--color-texto); line-height: 1.6;">
+            Si defines <code>width: 200px</code>, el elemento medirá <strong>exactamente 200px en total</strong>. El padding y el border se restan hacia el interior, comprimiendo el contenido sin ensanchar la caja exterior.
+          </p>
+        </div>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Reset obligatorio que debe encabezar TODAS tus hojas de estilo */</span>
+*,
+*::before,
+*::after {
+  box-sizing: border-box; <span class="codigo-comentario">/* Todo padding y border se calcula hacia adentro */</span>
+  margin: 0;
+  padding: 0;
+}</pre>
+    </section>
+
+    <!-- SECCIÓN 4: COLAPSO DE MÁRGENES (MARGIN COLLAPSING) -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>4. El Fenómeno del Colapso de Márgenes (*Margin Collapsing*)</span>
+        <span class="badge-teoria">Comportamiento Peculiar</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        En el flujo normal de bloque, los márgenes verticales contiguos <strong>no se suman</strong>: se fusionan o colapsan en un único margen equivalente al mayor de ellos.
+      </p>
+
+      <div style="background: var(--color-tarjeta-secundaria); padding: 20px; border-radius: 10px; border: 1px solid var(--color-borde); margin-bottom: 20px;">
+        <h4 style="color: var(--color-primario); margin-bottom: 8px;">¿Cuándo ocurre el colapso?</h4>
+        <ul style="padding-left: 20px; font-size: 0.9rem; line-height: 1.7;">
+          <li><strong>Hermanos verticales adyacentes:</strong> Si el elemento superior tiene <code>margin-bottom: 30px</code> y el inferior tiene <code>margin-top: 20px</code>, la separación real entre ambos será de <strong>30px</strong> (no 50px).</li>
+          <li><strong>Padre e hijo sin separación:</strong> Si un padre no tiene padding ni borde superior, y su primer hijo tiene <code>margin-top: 20px</code>, el margen del hijo "escapa" y empuja al padre completo hacia abajo.</li>
+          <li><strong>¿Cuándo NO colapsa?</strong> En elementos con <code>display: flex</code>, <code>display: grid</code>, elementos posicionados con <code>position: absolute</code> o con <code>overflow: hidden</code>.</li>
+        </ul>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Soluciones profesionales contra el colapso no deseado de márgenes */</span>
+.contenedor-padre {
+  overflow: hidden;    <span class="codigo-comentario">/* Crea un nuevo contexto de formato de bloque (BFC) */</span>
+  /* O bien: */
+  padding-top: 1px;    <span class="codigo-comentario">/* Rompe la contigüidad física de márgenes entre padre e hijo */</span>
+}</pre>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA DOCENTE -->
+  <footer class="footer-principal">
+    <nav class="footer-nav">
+      <a href="../index.html">Inicio</a>
+      <a href="selectores.html">Selectores</a>
+      <a href="box-model.html">Box Model</a>
+      <a href="layout.html">Layout</a>
+      <a href="tipografia.html">Tipografía</a>
+      <a href="colores-fondos.html">Colores</a>
+      <a href="interactividad.html">Interactividad</a>
+      <a href="formularios.html">Formularios</a>
+      <a href="componentes.html">Componentes</a>
+    </nav>
+    <p>🥋 <strong>Laboratorio Educativo de CSS3</strong> — Inspirado en el ejercicio del CV de Son Goku.</p>
+  </footer>
+
+  <script src="../js/animaciones_flex_grid.js"></script>
+</body>
+</html>
+

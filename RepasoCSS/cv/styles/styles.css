@@ -1,0 +1,546 @@
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================================================== */
+
+:root {
+  /* Radios de borde */
+  --radio-tarjetas: 15px;
+  --radio-pildora: 50px;
+
+  /* Espaciados recurrentes */
+  --margen-seccion: 50px;
+  --gap-grid: 10px;
+
+  /* Colores Principales */
+  --color-azul-oscuro: #0d477a;
+  --color-azul-medio: #1972b9;
+  --color-azul-suave: #dce5ed;      
+  --color-fondo-lateral: #eaf4fb;
+  --color-blanco: #ffffff;
+
+  /* Colores de Texto */
+  --color-texto-secundario: #667789; 
+  --color-texto-suave: #b6c8d7;      
+
+  /* Estados de la tabla y etiquetas */
+  --color-rojo: #d32f2f;
+  --color-verde: #2e7d32;
+  --color-verde-fondo: #e8f8f0;
+  --color-naranja: #e65100;
+  --color-badge-fondo: #e8f1f8;
+}
+
+* {
+  font-family: sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h2 {
+  color: var(--color-azul-oscuro);
+}
+
+.horizontal {
+  border: none;
+  border-bottom: 1.5px solid var(--color-azul-suave);
+}
+
+
+/* ==========================================================================
+   2. CONTENEDOR PRINCIPAL / ESTRUCTURA GENERAL
+   ========================================================================== */
+
+.contenedor {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  border: 1px solid var(--color-azul-suave);
+  border-radius: var(--radio-tarjetas);
+  overflow: hidden; /* Recorta las esquinas redondeadas junto con los elementos hijos */
+}
+
+.parte-izquierda {
+  flex: 1;
+  text-align: left;
+  background-color: var(--color-fondo-lateral);
+  padding: 20px;
+}
+
+.parte-derecha {
+  flex: 3;
+  text-align: left;
+}
+
+
+/* ==========================================================================
+   3. COLUMNA IZQUIERDA (BARRA LATERAL)
+   ========================================================================== */
+
+/* --- Avatar --- */
+.avatar img {
+  width: 100%;
+  border-radius: var(--radio-tarjetas);
+  display: block;
+}
+
+/* --- Datos Personales --- */
+.datos-personales {
+  font-size: 16px;
+}
+
+.datos-personales-desglose {
+  margin-bottom: 10px;
+}
+
+.datos-personales-desglose h3 {
+  color: var(--color-texto-secundario);
+  font-size: 15px;
+  margin: 0;
+}
+
+.datos-personales-desglose p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* --- Competencias y Barras de Nivel --- */
+.competencia-desglose {
+  margin-bottom: 15px;
+}
+
+.competencia-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.competencia-info p {
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.competencia-info p:last-child {
+  color: var(--color-azul-oscuro);
+}
+
+.barra-fondo {
+  width: 100%;
+  height: 8px;
+  background-color: var(--color-azul-suave);
+  border-radius: var(--radio-tarjetas);
+  overflow: hidden;
+}
+
+.barra-progreso {
+  height: 100%;
+  background-color: var(--color-azul-oscuro);
+  border-radius: var(--radio-tarjetas);
+}
+
+.nivel-5 {
+  width: 100%;
+}
+
+.nivel-4 {
+  width: 80%;
+}
+
+/* --- Técnicas Clave (Píldoras de la barra lateral) --- */
+.tecnicas-clave-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-grid);
+}
+
+.tecnicas-clave-desglose {
+  border: 1px solid var(--color-azul-suave);
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-pildora);
+  font-weight: bold;
+  padding: 0 10px;
+  color: var(--color-azul-oscuro);
+}
+
+/* --- Idiomas --- */
+.idiomas-desglose {
+  display: flex;
+  justify-content: space-between;
+}
+
+.idiomas-desglose strong {
+  color: var(--color-azul-oscuro);
+  font-size: 17px;
+}
+
+/* --- Eslogan --- */
+.eslogan-desglose {
+  background-color: var(--color-azul-oscuro);
+  border-radius: var(--radio-tarjetas);
+  padding: 10px;
+}
+
+.eslogan-desglose p:first-child {
+  font-size: 19px;
+  color: var(--color-blanco);
+}
+
+.eslogan-desglose p:last-child {
+  color: var(--color-texto-suave);
+  font-size: 15px;
+}
+
+
+/* ==========================================================================
+   4. COLUMNA DERECHA - CABECERA SUPERIOR (BANNER Y PERFIL)
+   ========================================================================== */
+
+/* --- Banner de Presentación con imagen de fondo --- */
+.parte-arriba-derecha .presentacion {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.5)),
+    url(../images/mountain.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right top;
+  padding: 40px 60px;
+}
+
+.bloque1 > p {
+  color: var(--color-azul-medio);
+  font-weight: bold;
+}
+
+.bloque2 > p {
+  font-size: 70px;
+  color: var(--color-azul-medio);
+  margin: 0;
+}
+
+.bloque2 > p > strong {
+  color: var(--color-azul-oscuro);
+}
+
+.bloque3 > p {
+  font-weight: bold;
+  color: var(--color-texto-secundario);
+}
+
+.bloque4 {
+  display: flex;
+  color: var(--color-azul-oscuro);
+}
+
+/* --- Franja Azul: Perfil Profesional --- */
+.parte-arriba-derecha .descripcion {
+  background-color: var(--color-azul-oscuro);
+  padding: 1px;
+}
+
+.descripcion {
+  display: flex;
+}
+
+.descripcion-izquierda {
+  margin: var(--margen-seccion);
+  flex: 1;
+}
+
+.descripcion-derecha {
+  color: var(--color-texto-suave);
+  margin: var(--margen-seccion);
+  flex: 1;
+}
+
+.descripcion-t1 {
+  color: var(--color-texto-suave);
+}
+
+.descripcion-t2 {
+  color: var(--color-blanco);
+  font-size: 27px;
+}
+
+
+/* ==========================================================================
+   5. COLUMNA DERECHA - CONTENIDO PRINCIPAL INFERIOR
+   ========================================================================== */
+
+/* Contenedor general que da margen/padding a todas las secciones inferiores */
+.parte-abajo-derecha {
+  padding: 40px var(--margen-seccion);
+}
+
+/* --- Experiencia Profesional --- */
+.experiencia-profesional {
+  margin-left: var(--margen-seccion);
+  margin-top: var(--margen-seccion);
+}
+
+.experiencia-profesional-desglose {
+  border-left: 2px solid var(--color-azul-suave);
+  padding-left: 20px;
+}
+
+.exp {
+  margin-bottom: 30px;
+}
+
+.exp-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exp > h3 {
+  color: var(--color-azul-oscuro);
+  margin-bottom: 0;
+}
+
+.exp > h4 {
+  color: var(--color-texto-secundario);
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.exp > ul {
+  color: var(--color-texto-secundario);
+  margin-top: -5px;
+}
+
+/* Badges / Etiquetas de experiencia */
+.badge {
+  background-color: var(--color-badge-fondo);
+  color: var(--color-texto-secundario);
+  padding: 4px 12px;
+  border-radius: var(--radio-pildora);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badge-verde {
+  background-color: var(--color-verde-fondo);
+  color: var(--color-verde);
+  padding: 4px 12px;
+  border-radius: var(--radio-pildora);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* --- Formación y Entrenamiento --- */
+.formacion-y-entrenamiento {
+  margin-left: var(--margen-seccion);
+  margin-top: var(--margen-seccion);
+}
+
+.formacion-y-entrenamiento-display {
+  display: flex;
+  gap: var(--gap-grid);
+}
+
+.bloque-formacion {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-azul-suave);
+  border-radius: var(--radio-tarjetas);
+  background-color: var(--color-blanco);
+  flex: 1;
+  padding: 20px;
+}
+
+.bloque-formacion p:first-child {
+  color: var(--color-azul-medio);
+  font-weight: bold;
+  font-size: 15px;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.bloque-formacion h3 {
+  color: var(--color-azul-oscuro);
+  font-size: 18px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.bloque-formacion h4 {
+  color: var(--color-texto-secundario);
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.bloque-formacion p:last-child {
+  color: var(--color-texto-secundario);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+  margin-top: auto;
+  padding-top: 25px;
+}
+
+/* --- Logros Destacados y Técnicas / Transformaciones --- */
+.logros-tecnicas {
+  display: flex;
+  margin-left: var(--margen-seccion);
+  gap: 40px;
+}
+
+.logros-destacados,
+.tecnicas-y-transformaciones {
+  flex: 1;
+}
+
+.lista-logros li {
+  margin-bottom: 12px;
+  margin-left: -25px;
+  font-size: 19px;
+}
+
+.tecnicas-y-transformaciones-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-grid);
+}
+
+.tecnicas-y-transformaciones-desglose {
+  border: 1px solid var(--color-azul-suave);
+  border-radius: var(--radio-pildora);
+  font-weight: bold;
+  color: var(--color-azul-oscuro);
+  padding: 6px 16px;
+}
+
+.tecnicas-y-transformaciones-desglose p {
+  margin: 0;
+}
+
+/* --- Entrenamientos Destacados (Tabla de Combates) --- */
+.entrenamientos-destacados {
+  margin-left: var(--margen-seccion);
+}
+
+.tabla-resultados {
+  display: flex;
+  border: 2px solid var(--color-azul-suave);
+  border-radius: var(--radio-tarjetas);
+  overflow: hidden;
+}
+
+.tabla {
+  width: 100%;
+  flex: auto;
+  border-collapse: collapse;
+}
+
+.tabla th,
+.tabla td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-azul-suave);
+}
+
+.tabla th {
+  background-color: var(--color-azul-suave);
+  color: var(--color-texto-secundario);
+}
+
+.tabla tr:last-child td {
+  border-bottom: none;
+}
+
+/* Estados / Resultados de los combates */
+.derrota {
+  color: var(--color-rojo);
+}
+
+.victoria {
+  color: var(--color-verde);
+}
+
+.decisivo {
+  color: var(--color-naranja);
+}
+
+
+/* ==========================================================================
+   6. RESPONSIVE / MEDIA QUERIES (DISPOSITIVOS MÓVILES)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .contenedor {
+    flex-direction: column;
+    margin: 10px;
+    border-radius: var(--radio-tarjetas);
+  }
+
+  .parte-izquierda,
+  .parte-derecha {
+    width: 100%;
+    flex: none;
+  }
+  .parte-arriba-derecha .presentacion {
+    background-image: none;
+    background-color: var(--color-fondo-lateral);
+    padding: 30px 25px;
+  }
+
+  .bloque2 > p {
+    font-size: 50px;
+    color: var(--color-azul-oscuro);
+  }
+
+  .bloque2 > p > strong {
+    color: var(--color-azul-oscuro);
+  }
+
+  .bloque3 > p {
+    color: var(--color-azul-oscuro);
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .bloque4 {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .descripcion {
+    flex-direction: column;
+  }
+
+  .descripcion-izquierda,
+  .descripcion-derecha {
+    margin: 20px;
+  }
+
+  .parte-abajo-derecha {
+    padding: 25px 15px;
+  }
+
+  .experiencia-profesional,
+  .formacion-y-entrenamiento,
+  .logros-tecnicas,
+  .entrenamientos-destacados {
+    margin-left: 0;
+    margin-top: 30px;
+  }
+
+  .formacion-y-entrenamiento-display {
+    flex-direction: column;
+  }
+
+  
+  .logros-tecnicas {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  
+  .tabla-resultados {
+    overflow-x: auto;
+  }
+}

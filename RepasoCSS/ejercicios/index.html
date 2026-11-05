@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Ejercicios de Examen — Código y Explicación Paso a Paso</title>
+  <!-- Estilos separados en archivo .css externo -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="contenedor-portal">
+    <header class="cabecera-portal">
+      <h1>🚀 Catálogo de Ejercicios con Código y Explicación</h1>
+      <p>
+        Estudia aquí mismo el código fuente real comentado línea por línea y la explicación técnica de por qué se usa cada propiedad para aprobar el examen.
+      </p>
+      <a href="../INICIAR_REPASO_VISUAL.html" class="btn-volver-principal">⬅ Volver al Laboratorio Visual Principal</a>
+    </header>
+
+    <main class="lista-ejercicios-detallados">
+
+      <!-- ===================================================================
+           EJERCICIO 1: CALCULADORA ROTATORIA (CSS GRID)
+           =================================================================== -->
+      <article class="tarjeta-ejercicio-completo">
+        <div class="cabecera-ejercicio-item">
+          <div class="titulo-con-icono">
+            <span class="icono-ejercicio">📱</span>
+            <h2>1. Calculadora Rotatoria (CSS Grid)</h2>
+          </div>
+          <span class="badge-tecnologia">CSS Grid (2D) + Media Query</span>
+        </div>
+
+        <div class="panel-explicacion">
+          <strong>💡 ¿Por qué se utiliza CSS Grid en este ejercicio? (Explicación para examen):</strong>
+          <ul>
+            <li><strong>Cuadrícula bidimensional perfecta:</strong> La botonera de una calculadora requiere alinear filas y columnas de manera uniforme sin desajustes. Con <code>grid-template-columns: repeat(4, 1fr)</code> creamos 4 columnas idénticas en una sola línea.</li>
+            <li><strong>Expansión de celdas con <code>grid-column: span 2</code>:</strong> El botón del igual (<code>=</code>) ocupa dos columnas completas sin necesidad de usar anchos fijos en píxeles.</li>
+            <li><strong>Modo apaisado (landscape) adaptativo:</strong> Con <code>@media (orientation: landscape) and (min-width: 650px)</code> reordenamos el contenedor en dos columnas principales (pantalla LCD a la izquierda de 240px y botonera a la derecha con <code>1fr</code>), aprovechando todo el ancho de la pantalla tal y como exige el temario.</li>
+          </ul>
+        </div>
+
+        <!-- Visor con pestañas de Código -->
+        <div class="contenedor-visor-codigo">
+          <div class="tabs-codigo">
+            <button class="btn-tab activo" onclick="mostrarPestana(this, 'calc-css')">CSS Explicado Línea a Línea</button>
+            <button class="btn-tab" onclick="mostrarPestana(this, 'calc-html')">Estructura HTML5 Semántica</button>
+          </div>
+
+          <!-- Pestaña CSS -->
+          <pre class="bloque-codigo-pre" id="calc-css"><span class="comentario-css">/* 1. Contenedor de botones: Rejilla de 4 columnas iguales */</span>
+.calculadora-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); <span class="comentario-css">/* 4 columnas que se reparten 1 fracción equitativa */</span>
+  gap: 12px;                            <span class="comentario-css">/* Separación uniforme entre botones */</span>
+}
+
+<span class="comentario-css">/* 2. Botón del igual expandido horizontalmente */</span>
+.btn-igual {
+  grid-column: span 2;                  <span class="comentario-css">/* Ocupa 2 columnas de la cuadrícula */</span>
+  background-color: #10b981;            <span class="comentario-css">/* Color verde para diferenciarlo */</span>
+}
+
+<span class="comentario-css">/* 3. Reorganización en modo apaisado / landscape (Rotación) */</span>
+@media (orientation: landscape) and (min-width: 650px) {
+  .calculadora-card {
+    max-width: 680px;
+    display: grid;
+    grid-template-columns: 240px 1fr;   <span class="comentario-css">/* Pantalla LCD a la izq, botones a la derecha */</span>
+    gap: 20px;
+  }
+}</pre>
+
+          <!-- Pestaña HTML -->
+          <pre class="bloque-codigo-pre" id="calc-html" style="display: none;"><span class="comentario-css">&lt;!-- Estructura HTML de la Calculadora con CSS Grid --&gt;</span>
+&lt;main class="calculadora-card"&gt;
+  &lt;!-- Pantalla LCD --&gt;
+  &lt;div class="calculadora-display" id="display"&gt;0&lt;/div&gt;
+
+  &lt;!-- Botonera en Cuadrícula --&gt;
+  &lt;div class="calculadora-grid"&gt;
+    &lt;button class="btn-calc btn-borrar"&gt;C&lt;/button&gt;
+    &lt;button class="btn-calc btn-operador"&gt;/&lt;/button&gt;
+    &lt;button class="btn-calc btn-operador"&gt;*&lt;/button&gt;
+    &lt;button class="btn-calc btn-operador"&gt;-&lt;/button&gt;
+
+    &lt;button class="btn-calc"&gt;7&lt;/button&gt;
+    &lt;button class="btn-calc"&gt;8&lt;/button&gt;
+    &lt;button class="btn-calc"&gt;9&lt;/button&gt;
+    &lt;button class="btn-calc btn-operador"&gt;+&lt;/button&gt;
+
+    &lt;!-- Botón = expandido a 2 columnas --&gt;
+    &lt;button class="btn-calc btn-igual"&gt;=&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/main&gt;</pre>
+        </div>
+
+        <div class="acciones-ejercicio">
+          <a href="calculadora/index.html" class="btn-lanzar-app">
+            ▶ Abrir Calculadora Interactiva en Vivo ↗
+          </a>
+        </div>
+      </article>
+
+      <!-- ===================================================================
+           EJERCICIO 2: REPRODUCTOR DE MÚSICA ROTATORIO (FLEXBOX 50/50)
+           =================================================================== -->
+      <article class="tarjeta-ejercicio-completo">
+        <div class="cabecera-ejercicio-item">
+          <div class="titulo-con-icono">
+            <span class="icono-ejercicio">🎵</span>
+            <h2>2. Reproductor de Música Rotatorio (Flexbox 50/50)</h2>
+          </div>
+          <span class="badge-tecnologia">Flexbox (1D) + Media Queries</span>
+        </div>
+
+        <div class="panel-explicacion">
+          <strong>💡 ¿Por qué se utiliza Flexbox en este ejercicio? (Explicación para examen):</strong>
+          <ul>
+            <li><strong>Flujo Unidimensional en Columna:</strong> En modo vertical (portrait), todos los componentes se apilan de forma limpia con <code>display: flex; flex-direction: column; gap: 20px;</code>.</li>
+            <li><strong>Alineación central de controles:</strong> Los botones de reproducción (anterior, play/pause, siguiente) se centran fácilmente en el eje horizontal usando <code>display: flex; justify-content: center; align-items: center; gap: 25px;</code>.</li>
+            <li><strong>División al 50%-50% en horizontal (Landscape):</strong> Al rotar o detectar pantallas anchas, el contenedor pasa a <code>flex-direction: row;</code> y tanto la sección del disco como la de controles toman <code>flex: 1;</code>, repartiéndose exactamente la mitad de la pantalla cada una como indica la sección 1.2 del temario.</li>
+            <li><strong>Barras de progreso proporcionales:</strong> El carril gris tiene <code>width: 100%; border-radius: 10px; overflow: hidden;</code> y el relleno interno se define con <code>width: 25%;</code> (tiempo) y <code>width: 70%;</code> (volumen).</li>
+          </ul>
+        </div>
+
+        <!-- Visor con pestañas de Código -->
+        <div class="contenedor-visor-codigo">
+          <div class="tabs-codigo">
+            <button class="btn-tab activo" onclick="mostrarPestana(this, 'musica-css')">CSS Explicado Línea a Línea</button>
+            <button class="btn-tab" onclick="mostrarPestana(this, 'musica-html')">Estructura HTML5 Semántica</button>
+          </div>
+
+          <!-- Pestaña CSS -->
+          <pre class="bloque-codigo-pre" id="musica-css"><span class="comentario-css">/* 1. Contenedor vertical por defecto */</span>
+.reproductor-card {
+  display: flex;
+  flex-direction: column; <span class="comentario-css">/* Apilamiento vertical */</span>
+  gap: 20px;
+  max-width: 380px;
+}
+
+<span class="comentario-css">/* 2. Barra de tiempo fija al 25% requerida por la teoría */</span>
+.barra-tiempo-progreso {
+  width: 25%;             <span class="comentario-css">/* Marcada al 25% según especificación del examen */</span>
+  height: 100%;
+  background-color: #38bdf8;
+  border-radius: 10px;
+}
+
+<span class="comentario-css">/* 3. Botones centrados con Flexbox */</span>
+.botones-reproduccion {
+  display: flex;
+  justify-content: center;<span class="comentario-css">/* Centrados horizontalmente */</span>
+  align-items: center;    <span class="comentario-css">/* Centrados verticalmente */</span>
+  gap: 25px;              <span class="comentario-css">/* Separación uniforme */</span>
+}
+
+<span class="comentario-css">/* 4. División al 50%-50% en modo apaisado / landscape */</span>
+@media (orientation: landscape) and (min-width: 650px) {
+  .reproductor-card {
+    max-width: 750px;
+    flex-direction: row;  <span class="comentario-css">/* Pasa a dos columnas horizontales */</span>
+    gap: 30px;
+  }
+  .seccion-disco, .seccion-controles {
+    flex: 1;              <span class="comentario-css">/* Exactamente 50% para el disco y 50% para controles */</span>
+  }
+}</pre>
+
+          <!-- Pestaña HTML -->
+          <pre class="bloque-codigo-pre" id="musica-html" style="display: none;"><span class="comentario-css">&lt;!-- Estructura HTML del Reproductor de Música --&gt;</span>
+&lt;main class="reproductor-card"&gt;
+  &lt;!-- Lado 1: Disco / Carátula --&gt;
+  &lt;section class="seccion-disco"&gt;
+    &lt;div class="disco-img"&gt;&lt;div class="vinilo-centro"&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Lado 2: Controles y Barras --&gt;
+  &lt;section class="seccion-controles"&gt;
+    &lt;h2&gt;Cha-La Head-Cha-La&lt;/h2&gt;
+    &lt;h3&gt;Dragon Ball Z OST&lt;/h3&gt;
+
+    &lt;!-- Barra al 25% --&gt;
+    &lt;div class="barra-tiempo-pista"&gt;
+      &lt;div class="barra-tiempo-progreso"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Botones Flexbox --&gt;
+    &lt;div class="botones-reproduccion"&gt;
+      &lt;button class="btn-ctrl"&gt;⏮&lt;/button&gt;
+      &lt;button class="btn-ctrl btn-play-pause"&gt;▶&lt;/button&gt;
+      &lt;button class="btn-ctrl"&gt;⏭&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</pre>
+        </div>
+
+        <div class="acciones-ejercicio">
+          <a href="reproductor_musica/index.html" class="btn-lanzar-app">
+            ▶ Abrir Reproductor Interactivo en Vivo ↗
+          </a>
+        </div>
+      </article>
+
+      <!-- ===================================================================
+           EJERCICIO 3: NAVBAR RESPONSIVE & CATÁLOGO AUTO-FIT
+           =================================================================== -->
+      <article class="tarjeta-ejercicio-completo">
+        <div class="cabecera-ejercicio-item">
+          <div class="titulo-con-icono">
+            <span class="icono-ejercicio">⚡</span>
+            <h2>3. Barra de Navegación Responsive & Catálogo Grid</h2>
+          </div>
+          <span class="badge-tecnologia">Flexbox + CSS Grid Auto-fit</span>
+        </div>
+
+        <div class="panel-explicacion">
+          <strong>💡 Técnicas clave explicadas:</strong>
+          <ul>
+            <li><code>justify-content: space-between;</code> separa el logotipo a la izquierda y el menú a la derecha automáticamente.</li>
+            <li><code>grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));</code> genera tantas tarjetas de mínimo 240px como quepan en la pantalla sin necesidad de escribir media queries.</li>
+          </ul>
+        </div>
+
+        <!-- Visor con pestañas de Código -->
+        <div class="contenedor-visor-codigo">
+          <div class="tabs-codigo">
+            <button class="btn-tab activo" onclick="mostrarPestana(this, 'nav-css')">CSS Explicado</button>
+            <button class="btn-tab" onclick="mostrarPestana(this, 'nav-html')">HTML Semántico</button>
+          </div>
+
+          <pre class="bloque-codigo-pre" id="nav-css"><span class="comentario-css">/* Navbar con Flexbox */</span>
+.header-nav {
+  display: flex;
+  justify-content: space-between; <span class="comentario-css">/* Logo a la izq, enlaces a la der */</span>
+  align-items: center;
+  padding: 16px 30px;
+}
+
+<span class="comentario-css">/* Catálogo de tarjetas auto-adaptable con Grid */</span>
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); <span class="comentario-css">/* Auto-responsive */</span>
+  gap: 25px;
+}</pre>
+
+          <pre class="bloque-codigo-pre" id="nav-html" style="display: none;"><span class="comentario-css">&lt;!-- Estructura HTML --&gt;</span>
+&lt;header class="header-nav"&gt;
+  &lt;div class="logo"&gt;⚡ ACADEMIA&lt;/div&gt;
+  &lt;ul class="nav-enlaces"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Técnicas&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/header&gt;
+
+&lt;div class="catalogo-grid"&gt;
+  &lt;article class="tarjeta-curso"&gt;...&lt;/article&gt;
+&lt;/div&gt;</pre>
+        </div>
+
+        <div class="acciones-ejercicio">
+          <a href="navbar_responsive/index.html" class="btn-lanzar-app">
+            ▶ Abrir Navbar & Catálogo en Vivo ↗
+          </a>
+        </div>
+      </article>
+
+      <!-- ===================================================================
+           EJERCICIO 4: CV DE SON GOKU
+           =================================================================== -->
+      <article class="tarjeta-ejercicio-completo">
+        <div class="cabecera-ejercicio-item">
+          <div class="titulo-con-icono">
+            <span class="icono-ejercicio">🥋</span>
+            <h2>4. Currículum Vitae — Son Goku</h2>
+          </div>
+          <span class="badge-tecnologia">Flexbox 1:3 + Variables + Chips</span>
+        </div>
+
+        <div class="panel-explicacion">
+          <strong>💡 Resumen de la maqueta principal:</strong>
+          <ul>
+            <li><code>.contenedor { display: flex; }</code> con <code>.parte-izquierda { flex: 1; }</code> y <code>.parte-derecha { flex: 3; }</code>.</li>
+            <li>En móvil: <code>@media (max-width: 768px) { .contenedor { flex-direction: column; } }</code>.</li>
+            <li>Píldoras con <code>border-radius: var(--radio-pildora);</code> (50px).</li>
+          </ul>
+        </div>
+
+        <div class="acciones-ejercicio">
+          <a href="../cv/index.html" class="btn-lanzar-app">
+            ▶ Abrir CV de Son Goku en Pantalla Completa ↗
+          </a>
+        </div>
+      </article>
+
+    </main>
+  </div>
+
+  <script>
+    function mostrarPestana(btn, idPre) {
+      const contenedor = btn.closest('.contenedor-visor-codigo');
+      // Quitar clase activo de los botones de este contenedor
+      contenedor.querySelectorAll('.btn-tab').forEach(b => b.classList.remove('activo'));
+      btn.classList.add('activo');
+
+      // Ocultar todos los <pre> de este contenedor
+      contenedor.querySelectorAll('.bloque-codigo-pre').forEach(p => p.style.display = 'none');
+      // Mostrar el seleccionado
+      document.getElementById(idPre).style.display = 'block';
+    }
+  </script>
+</body>
+</html>

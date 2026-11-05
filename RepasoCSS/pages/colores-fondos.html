@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="base">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 5: Colores y Fondos en CSS — Laboratorio CSS3</title>
+  <link rel="stylesheet" href="../styles/repaso_visual.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL CON SELECTOR DE TEMA -->
+  <header class="header-principal">
+    <div class="header-contenedor">
+      <div class="header-branding">
+        <div class="header-logo-badge">🎨</div>
+        <div>
+          <h1>Módulo 5: Colores, Fondos y Gradientes</h1>
+          <p>Aprende la teoría del color, experimenta en vivo con el comportamiento de imágenes de fondo y genera gradientes dinámicos.</p>
+        </div>
+      </div>
+      <div class="theme-selector-box">
+        <label for="selector-tema-global">🎨 Tema:</label>
+        <select id="selector-tema-global" class="selector-tema-global">
+          <option value="base">🔵 Goku Azul (Base)</option>
+          <option value="dark">🌑 Vegeta (Modo Oscuro)</option>
+          <option value="saiyan">✨ Super Saiyan (Dorado)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN MULTIPÁGINA -->
+  <nav class="nav-tabs" aria-label="Navegación principal de módulos">
+    <a href="../index.html" class="nav-btn">🏠 Inicio</a>
+    <a href="selectores.html" class="nav-btn">🎯 1. Selectores</a>
+    <a href="box-model.html" class="nav-btn">📦 2. Box Model</a>
+    <a href="layout.html" class="nav-btn">📐 3. Layout (Flex & Grid)</a>
+    <a href="tipografia.html" class="nav-btn">🔤 4. Tipografía</a>
+    <a href="colores-fondos.html" class="nav-btn activo">🎨 5. Colores y Fondos</a>
+    <a href="interactividad.html" class="nav-btn">⚡ 6. Interactividad</a>
+    <a href="formularios.html" class="nav-btn">📋 7. Formularios</a>
+    <a href="componentes.html" class="nav-btn">🧩 8. Componentes</a>
+  </nav>
+
+  <!-- CONTENIDO CENTRAL -->
+  <main class="contenedor-central">
+
+    <div class="migas-pan">
+      <a href="../index.html">Inicio</a>
+      <span class="separador">/</span>
+      <span>Módulo 5: Colores y Fondos</span>
+    </div>
+
+    <!-- SECCIÓN 1: FORMATOS DE COLOR EN CSS -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>1. Formatos de Notación de Color en CSS</span>
+        <span class="badge-teoria">Modelos de Color</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 18px;">
+        CSS permite declarar colores a través de múltiples esquemas según la necesidad de precisión o transparencia:
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 22px;">
+        <div style="background: var(--color-tarjeta-secundaria); padding: 18px; border-radius: 8px; border: 1px solid var(--color-borde);">
+          <strong style="color: var(--color-primario);">Hexadecimal (HEX)</strong>
+          <p style="font-size: 0.88rem; color: var(--color-texto); margin-top: 5px;">
+            <code>#0d477a</code> o con canal alfa <code>#0d477acc</code>. Formato estándar más utilizado por diseñadores y herramientas de UI como Figma.
+          </p>
+        </div>
+
+        <div style="background: var(--color-tarjeta-secundaria); padding: 18px; border-radius: 8px; border: 1px solid var(--color-borde);">
+          <strong style="color: var(--color-primario);">RGB y RGBA</strong>
+          <p style="font-size: 0.88rem; color: var(--color-texto); margin-top: 5px;">
+            <code>rgba(13, 71, 122, 0.8)</code>. Canales Rojo, Verde y Azul de 0 a 255, más el canal Alfa de 0 a 1 que controla la opacidad del fondo.
+          </p>
+        </div>
+
+        <div style="background: var(--color-tarjeta-secundaria); padding: 18px; border-radius: 8px; border: 1px solid var(--color-borde);">
+          <strong style="color: var(--color-primario);">HSL y HSLA</strong>
+          <p style="font-size: 0.88rem; color: var(--color-texto); margin-top: 5px;">
+            <code>hsl(208, 81%, 26%)</code>. Tono (*Hue* en grados de 0 a 360), Saturación (%) y Luminosidad (%). Ideal para generar paletas coherentes y variantes claras/oscuras.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: EXPLORADOR INTERACTIVO DE IMÁGENES DE FONDO (NUEVA INTERACTIVIDAD) -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>2. Explorador Interactivo de Imágenes de Fondo</span>
+        <span class="badge-teoria">Laboratorio en Vivo</span>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>🎮 Experimenta con el comportamiento de las imágenes en tiempo real:</strong>
+        Cambia <code>background-size</code> (cover, contain, auto), <code>background-repeat</code> y <code>background-position</code>. Observa en vivo cómo se escala, recorta o repite la imagen y lee la explicación técnica detallada debajo del lienzo.
+      </div>
+
+      <!-- EXPLORADOR INTERACTIVO -->
+      <div class="background-explorer-wrapper">
+        <div class="bg-controls-grid">
+          <div>
+            <label for="sel-bg-size" style="font-size: 0.85rem; font-weight: 700; color: var(--color-primario);">background-size (Escalado):</label>
+            <select id="sel-bg-size" class="form-control" onchange="actualizarFondoInteractivo()" style="margin-top: 4px;">
+              <option value="cover" selected>cover (Cubre todo sin deformar)</option>
+              <option value="contain">contain (Cabe entera sin recortar)</option>
+              <option value="auto">auto (Tamaño original en px)</option>
+              <option value="100% 100%">100% 100% (Forzar a llenar — deforma)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="sel-bg-repeat" style="font-size: 0.85rem; font-weight: 700; color: var(--color-primario);">background-repeat (Repetición):</label>
+            <select id="sel-bg-repeat" class="form-control" onchange="actualizarFondoInteractivo()" style="margin-top: 4px;">
+              <option value="no-repeat" selected>no-repeat (Una sola vez)</option>
+              <option value="repeat">repeat (Mosaico en X e Y)</option>
+              <option value="repeat-x">repeat-x (Solo horizontal)</option>
+              <option value="repeat-y">repeat-y (Solo vertical)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="sel-bg-pos" style="font-size: 0.85rem; font-weight: 700; color: var(--color-primario);">background-position (Alineación):</label>
+            <select id="sel-bg-pos" class="form-control" onchange="actualizarFondoInteractivo()" style="margin-top: 4px;">
+              <option value="center center" selected>center center (Centrada)</option>
+              <option value="top left">top left (Arriba Izquierda)</option>
+              <option value="right top">right top (Arriba Derecha — Goku CV)</option>
+              <option value="bottom center">bottom center (Abajo Centro)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="sel-bg-image" style="font-size: 0.85rem; font-weight: 700; color: var(--color-primario);">Imagen de prueba:</label>
+            <select id="sel-bg-image" class="form-control" onchange="actualizarFondoInteractivo()" style="margin-top: 4px;">
+              <option value="mountain" selected>Paisaje Montañas (Goku CV)</option>
+              <option value="goku">Avatar Son Goku</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- LIENZO INTERACTIVO DE FONDO -->
+        <div class="bg-preview-canvas" id="bg-canvas-interactive" style="background-image: url('../cv/images/mountain.png'); background-size: cover; background-repeat: no-repeat; background-position: center center;">
+          <div class="bg-preview-overlay-card">
+            <h4 style="color: var(--color-primario); margin-bottom: 6px;">Lienzo de Demostración Visual</h4>
+            <p style="font-size: 0.85rem; color: var(--color-texto);">
+              Modifica los controles de arriba para ver cómo se transforma este fondo al instante.
+            </p>
+          </div>
+        </div>
+
+        <div class="info-medidas" id="bg-info-explicacion" style="text-align: left; margin: 15px 0;">
+          <strong>background-size: cover:</strong> Escala la imagen proporcionalmente para cubrir el 100% de la caja. Si las proporciones no coinciden, las partes sobrantes se recortan sin deformar la foto.
+        </div>
+
+        <pre class="codigo-visor" id="visor-css-background"></pre>
+      </div>
+
+      <!-- TÉCNICA DEL BANNER CV SON GOKU: CAPAS MÚLTIPLES -->
+      <h3 style="margin-top: 25px;">🥋 Caso de Estudio: El Velo Semitransparente del CV de Son Goku</h3>
+      <p style="color: var(--color-texto-muted); margin-bottom: 12px;">
+        En el ejercicio práctico, para que el texto sea perfectamente legible sobre una foto de montañas, se utiliza una <strong>doble capa de fondo</strong>: un <code>linear-gradient</code> blanco al 65% superpuesto a la imagen:
+      </p>
+
+      <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--color-borde); margin-bottom: 20px;">
+        <div style="background-image: linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)), url('../cv/images/mountain.png'); background-size: cover; background-position: right top; padding: 40px; color: var(--color-primario);">
+          <span class="badge-teoria badge-destacado">Doble Capa de Fondo</span>
+          <h3 style="font-size: 1.8rem; margin: 10px 0 6px 0; color: var(--color-primario);">SON GOKU — DEFENSOR DE LA TIERRA</h3>
+          <p style="max-width: 600px; font-weight: 600; color: #1e293b;">
+            El gradiente semitransparente actúa como filtro óptico, atenuando el ruido visual de las montañas para que las letras destaquen con nitidez.
+          </p>
+        </div>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Sintaxis de capas múltiples en background-image */</span>
+.banner-presentacion {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)), <span class="codigo-comentario">/* Capa 1: Velo */</span>
+    url('../images/mountain.png');                                         <span class="codigo-comentario">/* Capa 2: Foto */</span>
+  background-size: cover;
+  background-position: right top;
+}</pre>
+    </section>
+
+    <!-- SECCIÓN 3: ESTUDIO INTERACTIVO DE GRADIENTES -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>3. Estudio Interactivo de Gradientes (Linear y Radial)</span>
+        <span class="badge-teoria">Generador en Vivo</span>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>💡 Diseña gradientes en vivo:</strong>
+        Alterna entre gradiente lineal y radial, gira el ángulo con el control deslizante y cambia de paleta temática (Goku, Saiyan, Shenron o Vegeta).
+      </div>
+
+      <!-- ESTUDIO DE GRADIENTES -->
+      <div class="gradient-studio-wrapper">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; align-items: flex-end;">
+          <div>
+            <label for="sel-grad-tipo" style="font-size: 0.85rem; font-weight: 700; color: var(--color-primario);">Tipo de Gradiente:</label>
+            <select id="sel-grad-tipo" class="form-control" onchange="actualizarEstudioGradiente()" style="margin-top: 4px;">
+              <option value="linear" selected>linear-gradient (Lineal)</option>
+              <option value="radial">radial-gradient (Radial concéntrico)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="sel-grad-paleta" style="font-size: 0.85rem; font-weight: 700; color: var(--color-primario);">Paleta Temática:</label>
+            <select id="sel-grad-paleta" class="form-control" onchange="actualizarEstudioGradiente()" style="margin-top: 4px;">
+              <option value="goku" selected>🔵 Azul Goku (#0d477a ➔ #1972b9)</option>
+              <option value="saiyan">✨ Dorado Saiyan (#b45309 ➔ #f59e0b)</option>
+              <option value="shenron">🐉 Verde Shenron (#15803d ➔ #064e3b)</option>
+              <option value="vegeta">🌑 Azul Vegeta (#1e1b4b ➔ #4338ca)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="slider-grad-angulo" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--color-primario);">
+              <span>Ángulo del Gradiente:</span>
+              <span id="val-grad-angulo" style="color: var(--color-acento); font-weight: 800;">135°</span>
+            </label>
+            <input type="range" id="slider-grad-angulo" min="0" max="360" step="5" value="135" oninput="actualizarEstudioGradiente()" style="width: 100%; margin-top: 8px; accent-color: var(--color-acento);">
+          </div>
+        </div>
+
+        <!-- LIENZO DE GRADIENTE -->
+        <div class="gradient-preview-box" id="canvas-gradiente-estudio" style="background: linear-gradient(135deg, #0d477a, #1972b9);">
+          Muestra Dinámica de Gradiente
+        </div>
+
+        <pre class="codigo-visor" id="visor-css-gradiente"></pre>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: COMPARADOR OPACIDAD VS CANAL ALFA -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>4. La Diferencia Crítica: `opacity` vs Canal Alfa (`rgba`)</span>
+        <span class="badge-teoria">Trampa Típica de Examen</span>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>⚠️ Error muy frecuente en desarrolladores:</strong>
+        <br>• <code>opacity: 0.5</code> vuelve semitransparente al elemento <strong>Y A TODOS SUS HIJOS</strong> (el texto también se vuelve transparente e ilegible).
+        <br>• <code>background-color: rgba(...)</code> SOLO hace transparente el fondo. <strong>El texto interior permanece 100% nítido, opaco y accesible</strong>.
+      </div>
+
+      <!-- CONTROL SLIDER DE OPACIDAD -->
+      <div style="background: var(--color-tarjeta-secundaria); padding: 18px; border-radius: 10px; border: 1px solid var(--color-borde); margin-bottom: 20px;">
+        <label for="slider-opacidad" style="display: flex; justify-content: space-between; font-weight: 700; color: var(--color-primario);">
+          <span>Nivel de Transparencia de Prueba:</span>
+          <span id="val-slider-opacidad" style="font-size: 1.1rem; color: var(--color-acento);">0.5</span>
+        </label>
+        <input type="range" id="slider-opacidad" min="0.1" max="1" step="0.05" value="0.5" oninput="actualizarOpacidad()" style="width: 100%; margin-top: 8px; accent-color: var(--color-acento);">
+      </div>
+
+      <!-- ESCENARIO COMPARATIVO -->
+      <div class="grid-comparador-opacidad">
+        <!-- CASO OPACITY -->
+        <div class="caja-demo-opacidad">
+          <div class="caja-hija-opacidad" id="demo-box-opacity" style="opacity: 0.5;">
+            <h4>Caja con `opacity: 0.5`</h4>
+            <p style="font-size: 0.85rem; margin-top: 6px;">
+              ❌ ¡Atención! El texto interior se vuelve semitransparente e ilegible porque opacity afecta a toda la caja y sus descendientes.
+            </p>
+          </div>
+        </div>
+
+        <!-- CASO RGBA -->
+        <div class="caja-demo-opacidad">
+          <div class="caja-hija-opacidad" id="demo-box-rgba" style="background-color: rgba(13, 71, 122, 0.5);">
+            <h4>Caja con `rgba(13, 71, 122, 0.5)`</h4>
+            <p style="font-size: 0.85rem; margin-top: 6px;">
+              ✅ ¡Excelente! Solo el fondo es transparente. Las letras permanecen 100% blancas, nítidas y perfectamente legibles.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Comparación en código */</span>
+.tarjeta-mala {
+  opacity: 0.5; <span class="codigo-comentario">/* ¡Afecta a la tarjeta, texto, iconos y botones hijos! */</span>
+}
+
+.tarjeta-buena {
+  background-color: rgba(13, 71, 122, 0.5); <span class="codigo-comentario">/* Solo el fondo es transparente; texto nítido */</span>
+}</pre>
+    </section>
+
+    <!-- SECCIÓN 5: LABORATORIO DE SOMBRAS (box-shadow) Y FILTROS (filter) -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>5. Laboratorio de Sombras (box-shadow) y Filtros Visuales (filter)</span>
+        <span class="badge-teoria">Efectos Visuales Avanzados</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        CSS permite crear efectos de profundidad y postprocesado gráfico de nivel profesional. Es crucial entender la diferencia fundamental entre sombrear la caja rectangular de un elemento y proyectar sombras orgánicas sobre imágenes transparentes:
+      </p>
+
+      <div class="nota-didactica">
+        <strong>💡 ¿`box-shadow` vs `filter: drop-shadow()`?</strong><br>
+        • <strong>`box-shadow: [inset] X Y blur spread color;`</strong> Proyecta una sombra en base a los límites rectangulares del elemento (su bounding box). Si se aplica a un PNG transparente, generará un marco cuadrado rígido alrededor.<br>
+        • <strong>`filter: drop-shadow(X Y blur color);`</strong> Interpreta el canal alfa (transparencia) del contenido. La sombra se amolda a la silueta física del PNG o SVG.<br>
+        • <strong>Filtros adicionales:</strong> <code>blur()</code> (desenfoque gaussiano), <code>hue-rotate()</code> (rotación del círculo cromático de color) y <code>brightness()</code> (intensidad de brillo luminoso).
+      </div>
+
+      <!-- ESCENARIO DEL LABORATORIO -->
+      <div class="lab-sombras-grid">
+        <!-- COLUMNA DE CONTROLES INTERACTIVOS -->
+        <div class="lab-controles-card">
+          <h4 style="color: var(--color-primario); margin: 0 0 4px 0;">🎛️ Controles de `box-shadow` (Caja Rectangular):</h4>
+
+          <div>
+            <label for="shadow-x" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+              <span>Desplazamiento X (Horizontal):</span>
+              <span id="val-shadow-x" style="color: var(--color-acento);">0px</span>
+            </label>
+            <input type="range" id="shadow-x" min="-30" max="30" value="0" oninput="actualizarSombrasFiltros()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <div>
+            <label for="shadow-y" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+              <span>Desplazamiento Y (Vertical):</span>
+              <span id="val-shadow-y" style="color: var(--color-acento);">10px</span>
+            </label>
+            <input type="range" id="shadow-y" min="-30" max="30" value="10" oninput="actualizarSombrasFiltros()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <div>
+            <label for="shadow-blur" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+              <span>Desenfoque (Blur):</span>
+              <span id="val-shadow-blur" style="color: var(--color-acento);">25px</span>
+            </label>
+            <input type="range" id="shadow-blur" min="0" max="50" value="25" oninput="actualizarSombrasFiltros()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <div>
+            <label for="shadow-spread" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+              <span>Expansión (Spread):</span>
+              <span id="val-shadow-spread" style="color: var(--color-acento);">0px</span>
+            </label>
+            <input type="range" id="shadow-spread" min="-10" max="30" value="0" oninput="actualizarSombrasFiltros()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <label style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.88rem; cursor: pointer; color: var(--color-primario);">
+            <input type="checkbox" id="shadow-inset" onchange="actualizarSombrasFiltros()">
+            <span>Activar sombra interior (`inset`)</span>
+          </label>
+
+          <hr style="border: none; border-bottom: 1px solid var(--color-borde); margin: 6px 0;">
+
+          <h4 style="color: var(--color-primario); margin: 0 0 4px 0;">✨ Controles de `filter` (Silueta y Efectos):</h4>
+
+          <div>
+            <label for="filter-drop-blur" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+              <span>Difuminado drop-shadow:</span>
+              <span id="val-filter-drop-blur" style="color: var(--color-acento);">10px</span>
+            </label>
+            <input type="range" id="filter-drop-blur" min="0" max="30" value="10" oninput="actualizarSombrasFiltros()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <div>
+            <label for="filter-blur-slider" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+              <span>Filtro Desenfoque (`blur`):</span>
+              <span id="val-filter-blur" style="color: var(--color-acento);">0px</span>
+            </label>
+            <input type="range" id="filter-blur-slider" min="0" max="15" value="0" oninput="actualizarSombrasFiltros()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <div>
+            <label for="filter-hue-slider" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+              <span>Rotación de Tonalidad (`hue-rotate`):</span>
+              <span id="val-filter-hue" style="color: var(--color-acento);">0deg</span>
+            </label>
+            <input type="range" id="filter-hue-slider" min="0" max="360" value="0" oninput="actualizarSombrasFiltros()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <div>
+            <label for="filter-bright-slider" style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+              <span>Brillo Luminoso (`brightness`):</span>
+              <span id="val-filter-bright" style="color: var(--color-acento);">100%</span>
+            </label>
+            <input type="range" id="filter-bright-slider" min="50" max="200" value="100" oninput="actualizarSombrasFiltros()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+        </div>
+
+        <!-- COLUMNA DE PREVISUALIZACIÓN -->
+        <div class="lab-preview-card">
+          <!-- 1. CAJA CON BOX-SHADOW -->
+          <div id="muestra-caja-shadow" class="muestra-box-shadow">
+            <h4 style="margin: 0 0 6px 0; color: var(--color-primario);">Tarjeta UI</h4>
+            <p style="font-size: 0.82rem; margin: 0; color: var(--color-texto-muted);">
+              Sombra de caja con `box-shadow`
+            </p>
+          </div>
+
+          <!-- 2. SILUETA PNG CON FILTER -->
+          <div style="text-align: center;">
+            <img id="muestra-filtro-img" src="../cv/images/goku-face.png" alt="Silueta Son Goku" class="muestra-filter-silhouette" onerror="this.src='../cv/images/goku.png'">
+            <p style="font-size: 0.82rem; color: var(--color-texto-muted); margin-top: 8px; font-weight: 600;">
+              Silueta PNG con `filter: drop-shadow()` y efectos
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VISOR DE CÓDIGO EN VIVO -->
+      <pre class="codigo-visor" id="visor-css-sombras"></pre>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA DOCENTE -->
+  <footer class="footer-principal">
+    <nav class="footer-nav">
+      <a href="../index.html">Inicio</a>
+      <a href="selectores.html">Selectores</a>
+      <a href="box-model.html">Box Model</a>
+      <a href="layout.html">Layout</a>
+      <a href="tipografia.html">Tipografía</a>
+      <a href="colores-fondos.html">Colores</a>
+      <a href="interactividad.html">Interactividad</a>
+      <a href="formularios.html">Formularios</a>
+      <a href="componentes.html">Componentes</a>
+    </nav>
+    <p>🥋 <strong>Laboratorio Educativo de CSS3</strong> — Inspirado en el ejercicio del CV de Son Goku.</p>
+  </footer>
+
+  <script src="../js/animaciones_flex_grid.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo de Estudio: Margin vs Padding y Box Model</title>
+  <!-- Estilos separados -->
+  <link rel="stylesheet" href="styles/modulo_boxmodel.css">
+</head>
+<body>
+
+  <header class="cabecera-modulo">
+    <div>
+      <h1 style="color: #0d477a;">📦 Guía de Estudio Rápida: Margin vs Padding</h1>
+      <p style="color: #64748b;">Compara el código con el comportamiento visual del espacio interior y exterior.</p>
+    </div>
+    <a href="../INICIAR_REPASO_VISUAL.html" class="btn-volver">⬅ Volver al Laboratorio</a>
+  </header>
+
+  <main class="layout-doble">
+
+    <!-- CASO 1: PADDING -->
+    <section class="panel-estudio">
+      <h2>1. Padding (Relleno Interior): Espacio dentro del borde</h2>
+      <p>El color de fondo se extiende por toda la zona del padding. Amplía la superficie de pulsación en botones.</p>
+      
+      <div class="grid-comparativo">
+        <div class="bloque-codigo"><span class="comentario">/* CSS */</span>
+.boton-o-caja {
+  background-color: #c8e6c9;
+  border: 3px solid #2e7d32;
+  padding: 25px; <span class="comentario">/* 25px de espacio hacia ADENTRO */</span>
+}</div>
+
+        <div class="bloque-resultado">
+          <div class="caja-demo-padding">
+            Texto con 25px de Padding<br>
+            <small>(El fondo verde llena todo el espacio interno)</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASO 2: MARGIN -->
+    <section class="panel-estudio">
+      <h2>2. Margin (Margen Exterior): Separación entre elementos</h2>
+      <p>El margen es 100% transparente y empuja a las cajas adyacentes para que no se peguen.</p>
+      
+      <div class="grid-comparativo">
+        <div class="bloque-codigo"><span class="comentario">/* CSS */</span>
+.caja-superior {
+  margin-bottom: 25px; <span class="comentario">/* Separa 25px de la caja inferior */</span>
+}
+.caja-inferior {
+  <span class="comentario">/* El espacio intermedio es transparente */</span>
+}</div>
+
+        <div class="bloque-resultado">
+          <div class="caja-demo-margin-1">Caja Superior (margin-bottom: 25px)</div>
+          <div class="caja-demo-margin-2">Caja Inferior (Empujada hacia abajo)</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
+

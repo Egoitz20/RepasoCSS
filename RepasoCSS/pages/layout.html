@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="base">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3: Diseño y Layout (Flexbox & Grid) — Laboratorio CSS3</title>
+  <link rel="stylesheet" href="../styles/repaso_visual.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL CON SELECTOR DE TEMA -->
+  <header class="header-principal">
+    <div class="header-contenedor">
+      <div class="header-branding">
+        <div class="header-logo-badge">📐</div>
+        <div>
+          <h1>Módulo 3: Diseño y Layout Moderno</h1>
+          <p>Domina Flexbox, CSS Grid, sistemas de coordenadas de posicionamiento, display y overflow.</p>
+        </div>
+      </div>
+      <div class="theme-selector-box">
+        <label for="selector-tema-global">🎨 Tema:</label>
+        <select id="selector-tema-global" class="selector-tema-global">
+          <option value="base">🔵 Goku Azul (Base)</option>
+          <option value="dark">🌑 Vegeta (Modo Oscuro)</option>
+          <option value="saiyan">✨ Super Saiyan (Dorado)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN MULTIPÁGINA -->
+  <nav class="nav-tabs" aria-label="Navegación principal de módulos">
+    <a href="../index.html" class="nav-btn">🏠 Inicio</a>
+    <a href="selectores.html" class="nav-btn">🎯 1. Selectores</a>
+    <a href="box-model.html" class="nav-btn">📦 2. Box Model</a>
+    <a href="layout.html" class="nav-btn activo">📐 3. Layout (Flex & Grid)</a>
+    <a href="tipografia.html" class="nav-btn">🔤 4. Tipografía</a>
+    <a href="colores-fondos.html" class="nav-btn">🎨 5. Colores y Fondos</a>
+    <a href="interactividad.html" class="nav-btn">⚡ 6. Interactividad</a>
+    <a href="formularios.html" class="nav-btn">📋 7. Formularios</a>
+    <a href="componentes.html" class="nav-btn">🧩 8. Componentes</a>
+  </nav>
+
+  <!-- CONTENIDO CENTRAL -->
+  <main class="contenedor-central">
+
+    <div class="migas-pan">
+      <a href="../index.html">Inicio</a>
+      <span class="separador">/</span>
+      <span>Módulo 3: Layout</span>
+    </div>
+
+    <!-- SECCIÓN 1: DISPLAY Y FLUJO DEL DOCUMENTO -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>1. La Propiedad `display` y el Flujo Normal</span>
+        <span class="badge-teoria">Base Estructural</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        La propiedad <code>display</code> determina cómo se comporta visualmente una caja respecto a sus vecinos y qué capacidades de dimensionamiento posee:
+      </p>
+
+      <div class="tabla-responsive-wrap">
+        <table class="tabla-didactica">
+          <thead>
+            <tr>
+              <th>Valor de Display</th>
+              <th>Comportamiento en Flujo</th>
+              <th>¿Admite `width` y `height`?</th>
+              <th>Etiquetas Habituales</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>block</code></td>
+              <td>Ocupa el 100% del ancho disponible; provoca salto de línea antes y después.</td>
+              <td><strong>SÍ</strong></td>
+              <td><code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;-&lt;h6&gt;</code>, <code>&lt;section&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>inline</code></td>
+              <td>Fluye en la misma línea como texto; solo ocupa el ancho indispensable.</td>
+              <td><strong>NO</strong> (ignora width/height)</td>
+              <td><code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>inline-block</code></td>
+              <td>Fluye en la misma línea sin saltos, pero respeta dimensiones de caja completas.</td>
+              <td><strong>SÍ</strong></td>
+              <td><code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;img&gt;</code></td>
+            </tr>
+            <tr>
+              <td><code>none</code></td>
+              <td>Elimina el elemento del árbol de renderizado (no ocupa espacio en pantalla).</td>
+              <td>No aplica</td>
+              <td>Menús desplegables ocultos, modales cerrados</td>
+            </tr>
+            <tr>
+              <td><code>flex</code></td>
+              <td>Activa el contexto de maquetación unidimensional (1D: fila o columna).</td>
+              <td><strong>SÍ</strong></td>
+              <td>Navbars, barras laterales, tarjetas</td>
+            </tr>
+            <tr>
+              <td><code>grid</code></td>
+              <td>Activa el contexto de maquetación bidimensional (2D: filas y columnas simultáneas).</td>
+              <td><strong>SÍ</strong></td>
+              <td>Galerías, plantillas de página completas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: FLEXBOX ANIMADO CON TÉCNICA FLIP -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>2. Flexbox: Maquetación Unidimensional (1D)</span>
+        <span class="badge-teoria">Animado con FLIP</span>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>💡 ¿Cómo funciona Flexbox?</strong>
+        <br>• Opera sobre dos ejes: el <strong>Eje Principal (Main Axis)</strong> definido por <code>flex-direction</code>, y el <strong>Eje Secundario (Cross Axis)</strong> perpendicular a él.
+        <br>• <code>justify-content</code> alinea sobre el Eje Principal; <code>align-items</code> alinea sobre el Eje Secundario.
+        <br>• <strong>¡Prueba los selectores inferiores!</strong> Observa la animación cinemática fluida y la flecha indicadora de dirección.
+      </div>
+
+      <!-- INDICADOR VISUAL DEL EJE -->
+      <div class="barra-direccion-eje">
+        <span class="indicador-flecha">
+          <span class="flecha-icono" id="icono-flecha-eje">➡️</span>
+          <span id="lbl-eje-direccion">Eje Principal: X Horizontal (Izquierda ➔ Derecha)</span>
+        </span>
+        <span style="font-size: 0.8rem; opacity: 0.85;">Eje Secundario: Perpendicular</span>
+      </div>
+
+      <!-- PANEL DE CONTROL DE FLEXBOX -->
+      <div class="flex-panel-control">
+        <div class="flex-grupo">
+          <label for="select-flex-direction">flex-direction (Eje Principal):</label>
+          <select id="select-flex-direction" onchange="actualizarFlexboxAnimado()">
+            <option value="row" selected>row (Fila horizontal normal)</option>
+            <option value="row-reverse">row-reverse (Fila invertida)</option>
+            <option value="column">column (Columna vertical)</option>
+            <option value="column-reverse">column-reverse (Columna invertida)</option>
+          </select>
+        </div>
+
+        <div class="flex-grupo">
+          <label for="select-justify">justify-content (Eje Principal):</label>
+          <select id="select-justify" onchange="actualizarFlexboxAnimado()">
+            <option value="flex-start">flex-start (Al inicio)</option>
+            <option value="center">center (Centrado)</option>
+            <option value="flex-end">flex-end (Al final)</option>
+            <option value="space-between" selected>space-between (Reparto a extremos)</option>
+            <option value="space-around">space-around (Espacio alrededor)</option>
+            <option value="space-evenly">space-evenly (Espacio equidistante)</option>
+          </select>
+        </div>
+
+        <div class="flex-grupo">
+          <label for="select-align">align-items (Eje Secundario):</label>
+          <select id="select-align" onchange="actualizarFlexboxAnimado()">
+            <option value="center" selected>center (Centrado vertical)</option>
+            <option value="stretch">stretch (Estirado)</option>
+            <option value="flex-start">flex-start (Arriba)</option>
+            <option value="flex-end">flex-end (Abajo)</option>
+          </select>
+        </div>
+
+        <div class="flex-grupo">
+          <label for="select-wrap">flex-wrap (Salto de línea):</label>
+          <select id="select-wrap" onchange="actualizarFlexboxAnimado()">
+            <option value="nowrap">nowrap (Obligados en una fila)</option>
+            <option value="wrap" selected>wrap (Bajan de fila si no caben)</option>
+          </select>
+        </div>
+
+        <div class="flex-grupo">
+          <label for="select-gap">gap (Separación uniforme):</label>
+          <select id="select-gap" onchange="actualizarFlexboxAnimado()">
+            <option value="10px">10px</option>
+            <option value="20px" selected>20px</option>
+            <option value="35px">35px</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ESCENARIO DINÁMICO DE FLEXBOX -->
+      <div class="flex-escenario" id="escenario-flex">
+        <div class="flex-caja">Kamehameha <span>flex hijo 1</span></div>
+        <div class="flex-caja">Genkidama <span>flex hijo 2</span></div>
+        <div class="flex-caja">Kaio-ken <span>flex hijo 3</span></div>
+        <div class="flex-caja">Ultra Instinct <span>flex hijo 4</span></div>
+      </div>
+
+      <pre class="codigo-visor" id="visor-css-flex"></pre>
+
+      <h3 style="margin-top: 25px;">Propiedades de los Hijos Flexibles (*Flex Items*)</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 10px;">
+        <div style="background: var(--color-tarjeta-secundaria); padding: 15px; border-radius: 8px; border: 1px solid var(--color-borde);">
+          <strong style="color: var(--color-primario);">flex: 1 (Atajo grow + shrink + basis)</strong>
+          <p style="font-size: 0.85rem; color: var(--color-texto); margin-top: 4px;">Permite que una columna crezca proporcionalmente para rellenar todo el espacio restante disponible.</p>
+        </div>
+        <div style="background: var(--color-tarjeta-secundaria); padding: 15px; border-radius: 8px; border: 1px solid var(--color-borde);">
+          <strong style="color: var(--color-primario);">align-self</strong>
+          <p style="font-size: 0.85rem; color: var(--color-texto); margin-top: 4px;">Sobrescribe la alineación del padre <code>align-items</code> únicamente para ese hijo en concreto.</p>
+        </div>
+        <div style="background: var(--color-tarjeta-secundaria); padding: 15px; border-radius: 8px; border: 1px solid var(--color-borde);">
+          <strong style="color: var(--color-primario);">order</strong>
+          <p style="font-size: 0.85rem; color: var(--color-texto); margin-top: 4px;">Modifica el orden de renderizado visual sin alterar la secuencia en el archivo HTML.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: CSS GRID ANIMADO -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>3. CSS Grid: Maquetación Bidimensional (2D)</span>
+        <span class="badge-teoria">Potencia Total</span>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>💡 ¿Cuándo usar Grid en vez de Flexbox?</strong>
+        Usa <strong>Flexbox</strong> cuando necesites alinear elementos en una sola dimensión (una fila o una columna). 
+        Usa <strong>CSS Grid</strong> cuando necesites gobernar filas y columnas a la vez (rejillas, galerías, layouts de página completos con áreas nombradas).
+      </div>
+
+      <!-- BOTONES DE PRESETS INTERACTIVOS -->
+      <div class="grid-panel-control">
+        <button class="btn-grid-preset activo" onclick="cambiarGridPresetAnimado('auto-fit', this)">
+          Magia Auto-fit: repeat(auto-fit, minmax(200px, 1fr))
+        </button>
+        <button class="btn-grid-preset" onclick="cambiarGridPresetAnimado('3-cols', this)">
+          3 Columnas Iguales: repeat(3, 1fr)
+        </button>
+        <button class="btn-grid-preset" onclick="cambiarGridPresetAnimado('asimetrico', this)">
+          Asimétrico: 250px 1fr 120px
+        </button>
+        <button class="btn-grid-preset" onclick="cambiarGridPresetAnimado('areas', this)">
+          Zonas Semánticas: grid-template-areas
+        </button>
+      </div>
+
+      <!-- ESCENARIO DINÁMICO DE GRID -->
+      <div class="grid-escenario" id="escenario-grid">
+        <div class="grid-caja" id="gc-1">Entrenamiento 01<br><small>Maestro Roshi</small></div>
+        <div class="grid-caja" id="gc-2">Entrenamiento 02<br><small>Torre de Korin</small></div>
+        <div class="grid-caja" id="gc-3">Entrenamiento 03<br><small>Kaio del Norte</small></div>
+        <div class="grid-caja" id="gc-4">Entrenamiento 04<br><small>Whis (Divino)</small></div>
+      </div>
+
+      <pre class="codigo-visor" id="visor-css-grid"></pre>
+    </section>
+
+    <!-- SECCIÓN 4: POSICIONAMIENTO EN CSS CON PLAYGROUND INTERACTIVO -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>4. Posicionamiento en CSS (`position`) en Vivo</span>
+        <span class="badge-teoria">Laboratorio Interactivo</span>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>🎮 Prueba los diferentes tipos de posicionamiento en directo:</strong>
+        Pulsa cada botón para ver exactamente cómo se comporta la caja dorada. Mueve los sliders de coordenadas <code>top</code> y <code>left</code> para ver qué posiciones responden y cuáles ignoran las coordenadas.
+      </div>
+
+      <!-- PLAYGROUND INTERACTIVO DE POSITION -->
+      <div class="position-playground-wrapper">
+        <div class="position-btn-group">
+          <button class="btn-position-mode" data-pos-btn="static" onclick="cambiarPositionModo('static', this)">
+            1. static (Defecto)
+          </button>
+          <button class="btn-position-mode activo" data-pos-btn="relative" onclick="cambiarPositionModo('relative', this)">
+            2. relative (Desplazado con hueco)
+          </button>
+          <button class="btn-position-mode" data-pos-btn="absolute" onclick="cambiarPositionModo('absolute', this)">
+            3. absolute (Sale del flujo)
+          </button>
+          <button class="btn-position-mode" data-pos-btn="fixed" onclick="cambiarPositionModo('fixed', this)">
+            4. fixed (Fijo en pantalla)
+          </button>
+          <button class="btn-position-mode" data-pos-btn="sticky" onclick="cambiarPositionModo('sticky', this)">
+            5. sticky (Pegajoso con scroll)
+          </button>
+        </div>
+
+        <!-- CONTROLES DE COORDENADAS -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 15px;">
+          <div>
+            <label for="pos-coord-top" style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem; color: var(--color-primario);">
+              <span>Coordenada top:</span>
+              <span id="val-pos-top">20px</span>
+            </label>
+            <input type="range" id="pos-coord-top" min="-20" max="100" value="20" oninput="actualizarPosicionCoordenadas()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+          <div>
+            <label for="pos-coord-left" style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem; color: var(--color-primario);">
+              <span>Coordenada left:</span>
+              <span id="val-pos-left">30px</span>
+            </label>
+            <input type="range" id="pos-coord-left" min="0" max="250" value="30" oninput="actualizarPosicionCoordenadas()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+        </div>
+
+        <!-- ESCENARIO DE PRUEBA DE POSICIONAMIENTO -->
+        <div class="position-stage-container" id="position-stage" style="height: 240px; overflow-y: auto;">
+          <div class="position-sibling-box">Hermano Anterior (Bloque normal en el flujo)</div>
+          
+          <!-- ELEMENTO OBJETIVO POSICIONADO -->
+          <div class="position-box-demo" id="box-position-target" style="position: relative; top: 20px; left: 30px;">
+            🥋 Caja Posicionada (position: relative)
+          </div>
+
+          <div class="position-sibling-box" style="margin-top: 15px;">
+            Hermano Posterior (Observa si sube o mantiene su hueco cuando la caja es absolute o relative)
+          </div>
+          <div class="position-sibling-box" style="opacity: 0.5;">
+            Bloque de relleno para probar scroll en modo sticky...
+          </div>
+          <div class="position-sibling-box" style="opacity: 0.3;">
+            Fin del contenedor de prueba.
+          </div>
+        </div>
+
+        <div class="info-medidas" id="explicacion-position" style="text-align: left; margin: 15px 0;">
+          <strong>position: relative:</strong> El elemento se desplaza respecto a su hueco natural sin perderlo. Conserva su espacio en el documento.
+        </div>
+
+        <pre class="codigo-visor" id="visor-css-position"></pre>
+      </div>
+
+      <!-- EL PATRÓN DE ORO: PADRE RELATIVE + HIJO ABSOLUTE -->
+      <h3 style="margin-top: 25px;">⭐ El Patrón de Oro: Padre `relative` + Hijo `absolute`</h3>
+      <p style="font-size: 0.9rem; color: var(--color-texto-muted); margin-bottom: 12px;">
+        Esta técnica permite fijar medallas, insignias o avatares en la esquina exacta de una tarjeta:
+      </p>
+
+      <div style="display: flex; justify-content: center; margin: 20px 0;">
+        <div style="position: relative; width: 340px; background: var(--color-tarjeta-bg); border: 2px solid var(--color-acento); border-radius: 12px; padding: 25px; box-shadow: var(--sombra-elevada);">
+          <span style="position: absolute; top: -12px; right: 15px; background: var(--color-dorado); color: #451a03; font-weight: 800; font-size: 0.75rem; padding: 4px 12px; border-radius: var(--radio-pildora); box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+            KI: 9000+
+          </span>
+          <h4 style="color: var(--color-primario); margin-bottom: 6px;">Tarjeta de Guerrero Saiyan</h4>
+          <p style="font-size: 0.88rem; color: var(--color-texto-muted); line-height: 1.5;">
+            El padre tiene <code>position: relative</code> para ser el marco de anclaje. La insignia tiene <code>position: absolute; top: -12px; right: 15px;</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: OVERFLOW -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>5. La Propiedad `overflow` y el Control de Desbordamientos</span>
+        <span class="badge-teoria">Buenas Prácticas</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        Determina qué hace el navegador cuando el contenido de un elemento excede las dimensiones físicas de su caja:
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-bottom: 20px;">
+        <div style="background: var(--color-tarjeta-secundaria); padding: 16px; border-radius: 8px; border: 1px solid var(--color-borde);">
+          <strong style="color: var(--color-primario);">overflow: hidden</strong>
+          <p style="font-size: 0.85rem; color: var(--color-texto); margin-top: 4px;">Recorta cualquier elemento que sobresalga. <strong>Crucial para respetar esquinas redondeadas</strong> (<code>border-radius</code>) en tarjetas con imágenes o cabeceras hijas.</p>
+        </div>
+
+        <div style="background: var(--color-tarjeta-secundaria); padding: 16px; border-radius: 8px; border: 1px solid var(--color-borde);">
+          <strong style="color: var(--color-primario);">overflow: auto</strong>
+          <p style="font-size: 0.85rem; color: var(--color-texto); margin-top: 4px;">Muestra barras de scroll únicamente si el contenido lo requiere (estándar para tablas responsive anchas).</p>
+        </div>
+
+        <div style="background: var(--color-tarjeta-secundaria); padding: 16px; border-radius: 8px; border: 1px solid var(--color-borde);">
+          <strong style="color: var(--color-primario);">Truncado en una línea con elipsis</strong>
+          <p style="font-size: 0.85rem; color: var(--color-texto); margin-top: 4px;">Corta un texto demasiado largo añadiendo tres puntos (<code>...</code>) elegantes al final.</p>
+        </div>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Truncado tipográfico estándar de la industria */</span>
+.texto-truncado-elegante {
+  white-space: nowrap;        <span class="codigo-comentario">/* Impide que el texto salte de línea */</span>
+  overflow: hidden;           <span class="codigo-comentario">/* Oculta lo que se salga */</span>
+  text-overflow: ellipsis;    <span class="codigo-comentario">/* Añade los tres puntos (...) */</span>
+}</pre>
+    </section>
+
+    <!-- SECCIÓN 6: SIMULADOR RESPONSIVE ESTILO CV SON GOKU (COMPLETAMENTE ESTILIZADO) -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>6. Media Queries y Adaptación Responsive (CV Son Goku)</span>
+        <span class="badge-teoria">Ejemplo Práctico</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        En el proyecto de referencia del CV de Son Goku, la distribución pasa de dos columnas en escritorio a un flujo vertical apilado en dispositivos móviles mediante una regla <code>@media (max-width: 768px)</code>.
+      </p>
+
+      <div class="responsive-tester-wrapper" id="tester-wrapper">
+        <div>
+          <button id="btn-modo-desktop" class="btn-simular-pantalla activo" onclick="simularPantalla('desktop')">💻 Simular Escritorio (&gt; 768px)</button>
+          <button id="btn-modo-movil" class="btn-simular-pantalla" onclick="simularPantalla('mobile')">📱 Simular Móvil (≤ 768px)</button>
+        </div>
+
+        <div class="viewport-frame">
+          <div class="viewport-header">
+            <span>Resolución simulada: <strong id="lbl-resolucion">1200px (Escritorio — flex-direction: row)</strong></span>
+            <span>@media (max-width: 768px)</span>
+          </div>
+
+          <div class="mini-cv-contenedor">
+            <div class="mini-cv-sidebar">
+              <h4 style="color: var(--color-primario); font-size: 1.05rem; margin-bottom: 6px;">SON GOKU (flex: 1)</h4>
+              <p style="font-size: 0.8rem; color: var(--color-texto-muted); margin-bottom: 10px;">Barra Lateral</p>
+              
+              <div class="demo-competencia">
+                <div class="demo-competencia-info"><span>Control del Ki</span><span>5/5</span></div>
+                <div class="demo-barra-fondo"><div class="demo-barra-progreso" style="width: 100%;"></div></div>
+              </div>
+
+              <div class="chips-flex">
+                <span class="chip-item">Kamehameha</span>
+                <span class="chip-item">Genkidama</span>
+                <span class="chip-item">Kaio-ken</span>
+              </div>
+            </div>
+
+            <div class="mini-cv-main">
+              <h4 style="color: var(--color-primario); margin-bottom: 6px;">DEFENSOR DE LA TIERRA (flex: 3)</h4>
+              <p style="font-size: 0.85rem; color: var(--color-texto-muted); margin-bottom: 12px;">Área Principal de Contenido</p>
+              <table class="mini-tabla">
+                <thead>
+                  <tr><th>RIVAL</th><th>RESULTADO</th><th>EVENTO</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Jackie Chun</td><td class="derrota">Derrota</td><td>21.º Budokai</td></tr>
+                  <tr><td>Piccolo Jr.</td><td class="victoria">Victoria</td><td>23.º Budokai</td></tr>
+                  <tr><td>Vegeta</td><td class="decisivo">Decisivo</td><td>Saga Saiyan</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 7: LA GUÍA DEFINITIVA DE CENTRADO EN CSS -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>7. La Guía Definitiva de Centrado en CSS</span>
+        <span class="badge-teoria">Los 4 Métodos</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        Centrar elementos en CSS ha sido históricamente uno de los desafíos más comentados del desarrollo web. Hoy en día disponemos de técnicas modernas extremadamente potentes y concisas. Conoce las 4 soluciones fundamentales y pruébalas en directo:
+      </p>
+
+      <!-- BOTONES DE MODO DE CENTRADO -->
+      <div class="controles-centrado-grid">
+        <button class="btn-centrado-modo activo" data-metodo="flex" onclick="cambiarMetodoCentrado('flex', this)">
+          ⚡ 1. Flexbox (justify + align)
+        </button>
+        <button class="btn-centrado-modo" data-metodo="grid" onclick="cambiarMetodoCentrado('grid', this)">
+          📐 2. CSS Grid (place-items: center)
+        </button>
+        <button class="btn-centrado-modo" data-metodo="margin-auto" onclick="cambiarMetodoCentrado('margin-auto', this)">
+          📦 3. Margen Automático (margin: 0 auto)
+        </button>
+        <button class="btn-centrado-modo" data-metodo="absolute-transform" onclick="cambiarMetodoCentrado('absolute-transform', this)">
+          🎯 4. Posición Absoluta + Transform
+        </button>
+      </div>
+
+      <!-- ESCENARIO INTERACTIVO CON GUÍAS DE CENTRO -->
+      <div id="escenario-centrado" class="escenario-centrado-demo" style="display: flex; justify-content: center; align-items: center;">
+        <div id="caja-centrada" class="caja-centrada-elemento">
+          <span style="font-size: 1.4rem;">🥋</span>
+          <span>Son Goku</span>
+          <small style="opacity: 0.85; font-size: 0.72rem;">Elemento Centrado</small>
+        </div>
+      </div>
+
+      <!-- VISOR DE CÓDIGO GENERADO -->
+      <pre class="codigo-visor" id="visor-css-centrado"></pre>
+
+      <!-- EXPLICACIÓN PEDAGÓGICA DINÁMICA -->
+      <div id="explicacion-centrado" class="nota-didactica" style="margin-bottom: 22px;">
+        <!-- Inyectado por JS -->
+      </div>
+
+      <!-- TABLA COMPARATIVA COMPLETA DE MÉTODOS -->
+      <h4 style="color: var(--color-primario); margin: 25px 0 10px 0;">📊 Tabla Comparativa de Técnicas de Centrado</h4>
+      <div class="tabla-responsive-wrap">
+        <table class="tabla-didactica">
+          <thead>
+            <tr>
+              <th>Método</th>
+              <th>Sintaxis Clave</th>
+              <th>Ejes que Centra</th>
+              <th>¿Requiere Ancho Fijo?</th>
+              <th>Caso de Uso Recomendado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Flexbox</strong></td>
+              <td><code>display: flex; justify-content: center; align-items: center;</code></td>
+              <td>Ambos (Horizontal y Vertical)</td>
+              <td>No (Adaptable al contenido)</td>
+              <td>Estándar universal para componentes, botones, barras de navegación y tarjetas.</td>
+            </tr>
+            <tr>
+              <td><strong>2. CSS Grid</strong></td>
+              <td><code>display: grid; place-items: center;</code></td>
+              <td>Ambos (Horizontal y Vertical)</td>
+              <td>No (Adaptable)</td>
+              <td>Centrado rápido en solo 2 líneas de código (loaders, héroes y pantallas de acceso).</td>
+            </tr>
+            <tr>
+              <td><strong>3. Margen Auto</strong></td>
+              <td><code>width: 150px; margin: 0 auto;</code></td>
+              <td>Solo Horizontal (X)</td>
+              <td><strong>Sí (Obligatorio en bloque)</strong></td>
+              <td>Contenedores estructurales de página centrados (ej. <code>.container</code> principal).</td>
+            </tr>
+            <tr>
+              <td><strong>4. Absolute + Transform</strong></td>
+              <td><code>position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);</code></td>
+              <td>Ambos (Horizontal y Vertical)</td>
+              <td>No (Usa su propio 50%)</td>
+              <td>Ventanas modales emergentes (popups), tooltips flotantes o insignias superpuestas.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA DOCENTE -->
+  <footer class="footer-principal">
+    <nav class="footer-nav">
+      <a href="../index.html">Inicio</a>
+      <a href="selectores.html">Selectores</a>
+      <a href="box-model.html">Box Model</a>
+      <a href="layout.html">Layout</a>
+      <a href="tipografia.html">Tipografía</a>
+      <a href="colores-fondos.html">Colores</a>
+      <a href="interactividad.html">Interactividad</a>
+      <a href="formularios.html">Formularios</a>
+      <a href="componentes.html">Componentes</a>
+    </nav>
+    <p>🥋 <strong>Laboratorio Educativo de CSS3</strong> — Inspirado en el ejercicio del CV de Son Goku.</p>
+  </footer>
+
+  <script src="../js/animaciones_flex_grid.js"></script>
+</body>
+</html>
+

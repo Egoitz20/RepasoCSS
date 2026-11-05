@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="base">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio y Guía Maestra de CSS3 — Inicio</title>
+  <!-- Estilos globales y temas -->
+  <link rel="stylesheet" href="styles/repaso_visual.css">
+  <!-- Carga inmediata de tema para evitar parpadeos -->
+  <script src="js/theme.js"></script>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL CON SELECTOR DE TEMA -->
+  <header class="header-principal">
+    <div class="header-contenedor">
+      <div class="header-branding">
+        <div class="header-logo-badge">🥋</div>
+        <div>
+          <h1>Laboratorio y Guía Maestra de CSS3</h1>
+          <p>Recurso formativo interactivo, visual y estructurado para el dominio completo de maquetación web y CSS moderno.</p>
+        </div>
+      </div>
+      <div class="theme-selector-box">
+        <label for="selector-tema-global">🎨 Tema:</label>
+        <select id="selector-tema-global" class="selector-tema-global">
+          <option value="base">🔵 Goku Azul (Base)</option>
+          <option value="dark">🌑 Vegeta (Modo Oscuro)</option>
+          <option value="saiyan">✨ Super Saiyan (Dorado)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN MULTIPÁGINA -->
+  <nav class="nav-tabs" aria-label="Navegación principal de módulos">
+    <a href="index.html" class="nav-btn activo">🏠 Inicio</a>
+    <a href="pages/selectores.html" class="nav-btn">🎯 1. Selectores</a>
+    <a href="pages/box-model.html" class="nav-btn">📦 2. Box Model</a>
+    <a href="pages/layout.html" class="nav-btn">📐 3. Layout (Flex & Grid)</a>
+    <a href="pages/tipografia.html" class="nav-btn">🔤 4. Tipografía</a>
+    <a href="pages/colores-fondos.html" class="nav-btn">🎨 5. Colores y Fondos</a>
+    <a href="pages/interactividad.html" class="nav-btn">⚡ 6. Interactividad</a>
+    <a href="pages/formularios.html" class="nav-btn">📋 7. Formularios</a>
+    <a href="pages/componentes.html" class="nav-btn">🧩 8. Componentes</a>
+  </nav>
+
+  <!-- CONTENIDO CENTRAL -->
+  <main class="contenedor-central">
+
+    <!-- HERO / PRESENTACIÓN CURRICULAR ESTILO CV SON GOKU -->
+    <section class="cv-hero-card" aria-label="Presentación del Curso">
+      <div class="cv-hero-lateral">
+        <div class="cv-hero-avatar-wrap">
+          <img src="cv/images/goku-avatar.jpg" alt="Son Goku Avatar Front-End" onerror="this.src='cv/images/goku.png'">
+        </div>
+        <div>
+          <h3 style="color: var(--color-primario); font-size: 1.1rem; margin-bottom: 4px;">Son Goku</h3>
+          <p style="color: var(--color-texto-muted); font-size: 0.85rem;">Maestro de Maquetación & CSS3</p>
+        </div>
+        <hr style="border: none; border-bottom: 1px solid var(--color-borde);">
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; color: var(--color-primario);">
+            <span>Nivel de Dominio CSS</span>
+            <span>100%</span>
+          </div>
+          <div class="barra-fondo">
+            <div class="barra-progreso" style="width: 100%;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; color: var(--color-primario);">
+            <span>Arquitectura Responsive</span>
+            <span>95%</span>
+          </div>
+          <div class="barra-fondo">
+            <div class="barra-progreso" style="width: 95%;"></div>
+          </div>
+        </div>
+        <div class="chips-grid">
+          <span class="chip-item">⚡ Flexbox</span>
+          <span class="chip-item">📐 CSS Grid</span>
+          <span class="chip-item">📦 Box Model</span>
+          <span class="chip-item">📱 Mobile-First</span>
+        </div>
+      </div>
+
+      <div class="cv-hero-contenido">
+        <span class="badge-teoria badge-destacado">Manual Formativo Profesional</span>
+        <h2 class="cv-titulo-puesto" style="border: none; padding: 0; margin-top: 10px;">Aprende CSS con Enfoque Práctico y Visual</h2>
+        <p class="cv-subtitulo-puesto">Estructurado en páginas temáticas independientes dentro de la carpeta /pages para un orden óptimo.</p>
+        
+        <p style="margin-bottom: 16px; color: var(--color-texto);">
+          Bienvenido al centro de aprendizaje definitivo de <strong>CSS3</strong>. Este recurso ha sido diseñado siguiendo los principios de arquitectura limpia, jerarquía visual y buenas prácticas demostradas en el proyecto práctico del <strong>Currículum Vitae de Son Goku</strong>.
+        </p>
+
+        <div class="nota-didactica" style="margin-bottom: 0;">
+          <strong>💡 Organización por Módulos en Carpeta /pages:</strong>
+          Cada área técnica dispone de su propia página dedicada, con demostraciones interactivas, controles en tiempo real, código comentado y casos reales de uso.
+        </div>
+      </div>
+    </section>
+
+    <!-- PILARES FUNDAMENTALES DE CSS -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>🏛️ Los 3 Pilares del Motor de CSS</span>
+        <span class="badge-teoria">Concepto Clave</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 18px;">
+        Antes de profundizar en propiedades individuales, todo desarrollador Front-End senior debe dominar las tres reglas fundamentales que rigen cómo el navegador interpreta las hojas de estilo:
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        <div style="background: var(--color-tarjeta-secundaria); padding: 20px; border-radius: 10px; border: 1px solid var(--color-borde);">
+          <h3 style="margin-top: 0; color: var(--color-primario);">1. La Cascada (Cascade)</h3>
+          <p style="font-size: 0.9rem; color: var(--color-texto);">
+            Cuando existen dos o más reglas con la misma especificidad que apuntan al mismo elemento, el navegador aplica <strong>la última declarada en el código</strong> (orden de aparición).
+          </p>
+        </div>
+
+        <div style="background: var(--color-tarjeta-secundaria); padding: 20px; border-radius: 10px; border: 1px solid var(--color-borde);">
+          <h3 style="margin-top: 0; color: var(--color-primario);">2. La Especificidad</h3>
+          <p style="font-size: 0.9rem; color: var(--color-texto);">
+            El sistema de puntuación que decide qué selector tiene mayor peso: <code>!important</code> &gt; Estilos en línea &gt; ID (<code>#id</code>) &gt; Clase/Pseudoclase (<code>.clase</code>) &gt; Etiqueta (<code>div</code>).
+          </p>
+        </div>
+
+        <div style="background: var(--color-tarjeta-secundaria); padding: 20px; border-radius: 10px; border: 1px solid var(--color-borde);">
+          <h3 style="margin-top: 0; color: var(--color-primario);">3. La Herencia (Inheritance)</h3>
+          <p style="font-size: 0.9rem; color: var(--color-texto);">
+            Las propiedades tipográficas (<code>color</code>, <code>font-family</code>, etc.) se transmiten automáticamente de padres a hijos. Las propiedades de caja (<code>margin</code>, <code>padding</code>, <code>border</code>) <strong>nunca se heredan</strong>.
+          </p>
+        </div>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Reset Universal Obligatorio en Todo Proyecto Moderno */</span>
+*, *::before, *::after {
+  box-sizing: border-box; <span class="codigo-comentario">/* Garantiza medidas predecibles sin desbordamientos */</span>
+  margin: 0;
+  padding: 0;
+}</pre>
+    </section>
+
+    <!-- MAPA DE RUTA / ACCESO A MÓDULOS TEMÁTICOS -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>🗺️ Mapa de Módulos Formativos (Carpeta /pages)</span>
+        <span class="badge-teoria">8 Módulos Temáticos</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 20px;">
+        Selecciona cualquier módulo para acceder a su página de contenido especializado con ejemplos en vivo:
+      </p>
+
+      <div class="grid-modulos-hub">
+
+        <!-- Módulo 1 -->
+        <a href="pages/selectores.html" class="card-modulo-link">
+          <div>
+            <div class="card-modulo-icono">🎯</div>
+            <h3>1. Selectores en CSS</h3>
+            <p>Básicos, clases, IDs, combinadores (hijos, descendientes, adyacentes), pseudoclases dinámicas con botones y pseudoelementos.</p>
+          </div>
+          <span class="card-modulo-btn">Explorar Selectores ➔</span>
+        </a>
+
+        <!-- Módulo 2 -->
+        <a href="pages/box-model.html" class="card-modulo-link">
+          <div>
+            <div class="card-modulo-icono">📦</div>
+            <h3>2. Modelo de Caja</h3>
+            <p>Content, Padding, Border y Margin. Colapso de márgenes y simulador interactivo de box-sizing con sliders.</p>
+          </div>
+          <span class="card-modulo-btn">Explorar Box Model ➔</span>
+        </a>
+
+        <!-- Módulo 3 -->
+        <a href="pages/layout.html" class="card-modulo-link">
+          <div>
+            <div class="card-modulo-icono">📐</div>
+            <h3>3. Diseño y Layout</h3>
+            <p>Flexbox y CSS Grid animados con técnica FLIP, playground interactivo de position en vivo, overflow y simulador responsive.</p>
+          </div>
+          <span class="card-modulo-btn">Explorar Layout ➔</span>
+        </a>
+
+        <!-- Módulo 4 -->
+        <a href="pages/tipografia.html" class="card-modulo-link">
+          <div>
+            <div class="card-modulo-icono">🔤</div>
+            <h3>4. Tipografía y Texto</h3>
+            <p>Font-family, font-size (unidades relativas y clamp fluido), font-weight, line-height y probador en tiempo real.</p>
+          </div>
+          <span class="card-modulo-btn">Explorar Tipografía ➔</span>
+        </a>
+
+        <!-- Módulo 5 -->
+        <a href="pages/colores-fondos.html" class="card-modulo-link">
+          <div>
+            <div class="card-modulo-icono">🎨</div>
+            <h3>5. Colores y Fondos</h3>
+            <p>Explorador interactivo de imágenes de fondo (cover, contain, repeat), estudio de gradientes en tiempo real y opacidad vs alfa.</p>
+          </div>
+          <span class="card-modulo-btn">Explorar Colores ➔</span>
+        </a>
+
+        <!-- Módulo 6 -->
+        <a href="pages/interactividad.html" class="card-modulo-link">
+          <div>
+            <div class="card-modulo-icono">⚡</div>
+            <h3>6. Interactividad</h3>
+            <p>Estados :hover, :focus, :active, transiciones suaves, laboratorio de transformaciones 2D y animaciones @keyframes.</p>
+          </div>
+          <span class="card-modulo-btn">Explorar Interactividad ➔</span>
+        </a>
+
+        <!-- Módulo 7 -->
+        <a href="pages/formularios.html" class="card-modulo-link">
+          <div>
+            <div class="card-modulo-icono">📋</div>
+            <h3>7. Formularios</h3>
+            <p>Inputs de todo tipo, asociación estricta label for/id, validación nativa :valid/:invalid, foco accesible y layout.</p>
+          </div>
+          <span class="card-modulo-btn">Explorar Formularios ➔</span>
+        </a>
+
+        <!-- Módulo 8 -->
+        <a href="pages/componentes.html" class="card-modulo-link">
+          <div>
+            <div class="card-modulo-icono">🧩</div>
+            <h3>8. Componentes UI Reutilizables</h3>
+            <p>Barras de Ki interactivas, chips de técnicas marciales, tablas redondeadas, tarjetas con insignias flotantes y barras de navegación responsive.</p>
+          </div>
+          <span class="card-modulo-btn">Explorar Componentes ➔</span>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA DOCENTE -->
+  <footer class="footer-principal">
+    <nav class="footer-nav">
+      <a href="index.html">Inicio</a>
+      <a href="pages/selectores.html">Selectores</a>
+      <a href="pages/box-model.html">Box Model</a>
+      <a href="pages/layout.html">Layout</a>
+      <a href="pages/tipografia.html">Tipografía</a>
+      <a href="pages/colores-fondos.html">Colores</a>
+      <a href="pages/interactividad.html">Interactividad</a>
+      <a href="pages/formularios.html">Formularios</a>
+      <a href="pages/componentes.html">Componentes</a>
+    </nav>
+    <p>🥋 <strong>Laboratorio Educativo de CSS3</strong> — Inspirado en el ejercicio del CV de Son Goku.</p>
+    <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 6px;">Diseñado con HTML5 semántico, CSS moderno con Custom Properties y buenas prácticas de accesibilidad.</p>
+  </footer>
+
+  <script src="js/animaciones_flex_grid.js"></script>
+</body>
+</html>

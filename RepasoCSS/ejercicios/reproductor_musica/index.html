@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 1.2: Aplicación de Música Rotatoria (Flexbox 50/50)</title>
+  <!-- Estilos separados en archivo .css externo -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="cabecera-ejercicio">
+    <h1>🎵 Reproductor de Música Rotatorio (Flexbox)</h1>
+    <p>Ejercicio 1.2 de <em>teoria.pdf</em>: Barras al 25% y 70%, botón Play/Pause interactivo y división al 50% en pantalla apaisada.</p>
+    <a href="../index.html" class="btn-volver-hub">⬅ Volver al Menú de Ejercicios</a>
+    
+    <!-- Botón simulador de rotación manual -->
+    <div style="margin-top: 15px;">
+      <button onclick="alternarModoApaisado()" style="background: #0d477a; color: white; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; cursor: pointer;">
+        🔄 Simular Rotación (Vertical / Apaisado 50%-50%)
+      </button>
+    </div>
+  </header>
+
+  <!-- Tarjeta del Reproductor -->
+  <main class="reproductor-card" id="player-card">
+    
+    <!-- Lado 1: Disco / Carátula -->
+    <section class="seccion-disco">
+      <div class="disco-img">
+        <div class="vinilo-centro"></div>
+        <p style="margin-top: 15px; font-weight: bold; font-size: 0.9rem; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">DRAGON BALL OST</p>
+      </div>
+    </section>
+
+    <!-- Lado 2: Controles y datos -->
+    <section class="seccion-controles">
+      
+      <!-- Título de canción y grupo -->
+      <div class="info-cancion">
+        <h2>Cha-La Head-Cha-La</h2>
+        <h3>Hironobu Kageyama · Dragon Ball Z</h3>
+      </div>
+
+      <!-- Barra deslizadora de tiempo (25% según especificación) -->
+      <div class="barra-tiempo-contenedor">
+        <div class="barra-tiempo-pista">
+          <div class="barra-tiempo-progreso"></div>
+        </div>
+        <div class="tiempos-texto">
+          <span>0:52 (25%)</span>
+          <span>-2:36</span>
+        </div>
+      </div>
+
+      <!-- Botones de reproducción -->
+      <div class="botones-reproduccion">
+        <button class="btn-ctrl" title="Canción anterior">⏮</button>
+        <button class="btn-ctrl btn-play-pause" id="btn-play" onclick="alternarReproduccion()" title="Play / Pausa">
+          ▶
+        </button>
+        <button class="btn-ctrl" title="Canción siguiente">⏭</button>
+      </div>
+
+      <!-- Barra deslizadora de volumen (70% con icono) -->
+      <div class="control-volumen">
+        <span class="icono-volumen">🔊</span>
+        <div class="barra-volumen-pista">
+          <div class="barra-volumen-progreso"></div>
+        </div>
+        <span style="font-size: 0.8rem; color: #94a3b8; font-family: monospace;">70%</span>
+      </div>
+
+      <!-- Botones adicionales: compartir, letra, lista -->
+      <div class="botones-secundarios">
+        <button class="btn-secundario" onclick="alert('Enlace copiado al portapapeles')">
+          📤 Compartir
+        </button>
+        <button class="btn-secundario" onclick="alert('Letra: Cha-la head-cha-la! No importa lo que suceda...')">
+          📝 Letra
+        </button>
+        <button class="btn-secundario" onclick="alert('Lista de reproducción: 1. Cha-La Head-Cha-La\n2. Dan Dan Kokoro Hikareteku\n3. We Gotta Power')">
+          📑 Lista
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    let reproduciendo = false;
+    const btnPlay = document.getElementById("btn-play");
+
+    function alternarReproduccion() {
+      reproduciendo = !reproduciendo;
+      if (reproduciendo) {
+        btnPlay.textContent = "⏸";
+        btnPlay.style.backgroundColor = "#10b981"; // Verde activo
+      } else {
+        btnPlay.textContent = "▶";
+        btnPlay.style.backgroundColor = "var(--color-primario)";
+      }
+    }
+
+    function alternarModoApaisado() {
+      document.getElementById("player-card").classList.toggle("modo-apaisado");
+    }
+  </script>
+</body>
+</html>
+

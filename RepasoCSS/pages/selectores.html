@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="base">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1: Selectores en CSS — Laboratorio CSS3</title>
+  <link rel="stylesheet" href="../styles/repaso_visual.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL CON SELECTOR DE TEMA -->
+  <header class="header-principal">
+    <div class="header-contenedor">
+      <div class="header-branding">
+        <div class="header-logo-badge">🎯</div>
+        <div>
+          <h1>Módulo 1: Selectores, Combinadores y Pseudoclases</h1>
+          <p>Domina cómo apuntar con precisión quirúrgica a cualquier nodo del DOM sin ensuciar tu HTML.</p>
+        </div>
+      </div>
+      <div class="theme-selector-box">
+        <label for="selector-tema-global">🎨 Tema:</label>
+        <select id="selector-tema-global" class="selector-tema-global">
+          <option value="base">🔵 Goku Azul (Base)</option>
+          <option value="dark">🌑 Vegeta (Modo Oscuro)</option>
+          <option value="saiyan">✨ Super Saiyan (Dorado)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN MULTIPÁGINA -->
+  <nav class="nav-tabs" aria-label="Navegación principal de módulos">
+    <a href="../index.html" class="nav-btn">🏠 Inicio</a>
+    <a href="selectores.html" class="nav-btn activo">🎯 1. Selectores</a>
+    <a href="box-model.html" class="nav-btn">📦 2. Box Model</a>
+    <a href="layout.html" class="nav-btn">📐 3. Layout (Flex & Grid)</a>
+    <a href="tipografia.html" class="nav-btn">🔤 4. Tipografía</a>
+    <a href="colores-fondos.html" class="nav-btn">🎨 5. Colores y Fondos</a>
+    <a href="interactividad.html" class="nav-btn">⚡ 6. Interactividad</a>
+    <a href="formularios.html" class="nav-btn">📋 7. Formularios</a>
+    <a href="componentes.html" class="nav-btn">🧩 8. Componentes</a>
+  </nav>
+
+  <!-- CONTENIDO CENTRAL -->
+  <main class="contenedor-central">
+
+    <div class="migas-pan">
+      <a href="../index.html">Inicio</a>
+      <span class="separador">/</span>
+      <span>Módulo 1: Selectores</span>
+    </div>
+
+    <!-- SECCIÓN 1: SELECTORES BÁSICOS -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>1. Selectores Básicos</span>
+        <span class="badge-teoria">Fundamentos</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 18px;">
+        Los selectores básicos son las herramientas primordiales para seleccionar elementos HTML en función de su nombre de etiqueta, clase o identificador único:
+      </p>
+
+      <div class="tabla-responsive-wrap">
+        <table class="tabla-didactica">
+          <thead>
+            <tr>
+              <th>Selector</th>
+              <th>Sintaxis</th>
+              <th>Especificidad</th>
+              <th>Cuándo Utilizarlo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Universal</strong></td>
+              <td><code>*</code></td>
+              <td>(0, 0, 0)</td>
+              <td>Para el reset global de márgenes, paddings y <code>box-sizing: border-box</code>.</td>
+            </tr>
+            <tr>
+              <td><strong>Tipo / Etiqueta</strong></td>
+              <td><code>h1</code>, <code>p</code>, <code>button</code></td>
+              <td>(0, 0, 1)</td>
+              <td>Estilos base semánticos compartidos por todas las instancias de un elemento.</td>
+            </tr>
+            <tr>
+              <td><strong>Clase</strong></td>
+              <td><code>.tarjeta</code>, <code>.chip-item</code></td>
+              <td>(0, 1, 0)</td>
+              <td><strong>El estándar de oro en CSS moderno</strong>. Reutilizable, modular y escalable.</td>
+            </tr>
+            <tr>
+              <td><strong>Identificador (ID)</strong></td>
+              <td><code>#header-principal</code></td>
+              <td>(1, 0, 0)</td>
+              <td>Elementos estrictamente únicos en toda la página. <em>Evitar en estilos comunes debido a su alta especificidad destructiva.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Ejemplo de buenas prácticas con selectores básicos */</span>
+* {
+  box-sizing: border-box;
+}
+
+h2 {
+  color: var(--color-primario);
+}
+
+.tarjeta-entrenamiento {
+  background: white;
+  border-radius: var(--radio-tarjeta);
+  border: 1px solid var(--color-borde);
+}</pre>
+    </section>
+
+    <!-- SECCIÓN 2: SELECTORES COMBINADOS Y JERARQUÍA DOM -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>2. Selectores Combinados (Relaciones Padre-Hijo)</span>
+        <span class="badge-teoria">Estructura DOM</span>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>💡 Clave didáctica para maquetación:</strong>
+        Comprender la diferencia exacta entre un <strong>descendiente</strong> (cualquier nivel) y un <strong>hijo directo</strong> (primer nivel) es lo que distingue a un desarrollador junior de uno senior.
+      </div>
+
+      <div class="tabla-responsive-wrap">
+        <table class="tabla-didactica">
+          <thead>
+            <tr>
+              <th>Combinador</th>
+              <th>Símbolo</th>
+              <th>Ejemplo</th>
+              <th>Alcance de Selección</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Descendiente</strong></td>
+              <td><em>(Espacio)</em></td>
+              <td><code>.padre p</code></td>
+              <td>Cualquier <code>&lt;p&gt;</code> que esté dentro de <code>.padre</code> (hijos, nietos, bisnietos...).</td>
+            </tr>
+            <tr>
+              <td><strong>Hijo Directo</strong></td>
+              <td><code>&gt;</code></td>
+              <td><code>.padre &gt; p</code></td>
+              <td><strong>Únicamente</strong> los <code>&lt;p&gt;</code> de primer nivel que son hijos inmediatos. Ignora nietos.</td>
+            </tr>
+            <tr>
+              <td><strong>Hermano Adyacente</strong></td>
+              <td><code>+</code></td>
+              <td><code>h2 + p</code></td>
+              <td>El primer hermano <code>&lt;p&gt;</code> que viene <strong>inmediatamente después</strong> del <code>&lt;h2&gt;</code>.</td>
+            </tr>
+            <tr>
+              <td><strong>Hermanos Generales</strong></td>
+              <td><code>~</code></td>
+              <td><code>h2 ~ p</code></td>
+              <td><strong>Todos</strong> los párrafos hermanos que comparten el mismo padre y aparecen después del <code>&lt;h2&gt;</code>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- DEMOSTRACIÓN VISUAL DEL ÁRBOL DOM ANIDADO -->
+      <h3 style="margin-top: 25px;">🌳 Demostración Visual de la Jerarquía DOM</h3>
+      <div style="background: var(--color-fondo); border: 2px solid var(--color-borde-fuerte); padding: 20px; border-radius: 12px; margin: 15px 0;">
+        <strong style="color: var(--color-primario); font-size: 1rem;">.contenedor-abuelo (Contenedor Raíz)</strong>
+        <p style="font-size: 0.85rem; color: var(--color-texto-muted); margin-bottom: 12px;">Transmite propiedades tipográficas a todos sus descendientes mediante herencia.</p>
+
+        <div style="background: var(--color-tarjeta-secundaria); border: 2px solid var(--color-acento); padding: 18px; border-radius: 8px; margin-bottom: 10px;">
+          <strong style="color: var(--color-acento); font-size: 0.95rem;">.caja-padre (Hijo directo del abuelo)</strong>
+          <p style="font-size: 0.85rem; color: var(--color-texto-muted);">Marco de anclaje (útil para <code>position: relative</code>).</p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 12px;">
+            <div style="background: var(--color-tarjeta-bg); border: 2px solid var(--color-verde); padding: 14px; border-radius: 6px;">
+              <strong style="color: var(--color-verde); font-size: 0.9rem;">.hijo-1 (Primer hermano)</strong>
+              <div style="background: #f1f5f9; border: 1px dashed #64748b; padding: 8px; border-radius: 4px; margin-top: 8px; font-size: 0.8rem; color: #334155;">
+                .nieto (Descendiente profundo)
+              </div>
+            </div>
+
+            <div style="background: var(--color-tarjeta-bg); border: 2px solid var(--color-dorado-oscuro); padding: 14px; border-radius: 6px;">
+              <strong style="color: var(--color-dorado-oscuro); font-size: 0.9rem;">.hijo-2 (Hermano adyacente del hijo-1)</strong>
+              <p style="font-size: 0.8rem; color: var(--color-texto-muted); margin-top: 8px;">
+                Seleccionable con <code>.hijo-1 + .hijo-2</code>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: PSEUDOCLASES INTERACTIVAS -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>3. Pseudoclases: Estados Dinámicos y Lógica Interactiva</span>
+        <span class="badge-teoria">Demostración con Botones</span>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>🎮 Demostración Visual Interactiva:</strong>
+        Pulsa los botones de abajo para ver en vivo cómo las pseudoclases estructurales seleccionan elementos exactos en una lista o cuadrícula de guerreros sin añadirles ninguna clase individual en el HTML:
+      </div>
+
+      <!-- BOTONES DE PRUEBA DE PSEUDOCLASES -->
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+        <button class="btn-position-mode btn-selector-test" onclick="probarPseudoclase('first-child', this)">
+          :first-child (Primer Hijo)
+        </button>
+        <button class="btn-position-mode btn-selector-test" onclick="probarPseudoclase('last-child', this)">
+          :last-child (Último Hijo)
+        </button>
+        <button class="btn-position-mode btn-selector-test" onclick="probarPseudoclase('nth-child-even', this)">
+          :nth-child(even) (Filas Pares / Cebra)
+        </button>
+        <button class="btn-position-mode btn-selector-test" onclick="probarPseudoclase('nth-child-odd', this)">
+          :nth-child(odd) (Filas Impares)
+        </button>
+        <button class="btn-position-mode btn-selector-test" onclick="probarPseudoclase('nth-child-3', this)">
+          :nth-child(3) (Tercer Hijo Exacto)
+        </button>
+      </div>
+
+      <!-- CUADRÍCULA DE ELEMENTOS HIJOS -->
+      <div class="selector-tester-grid" id="grid-selector-demo">
+        <div class="selector-item-card">1. Goku<br><small>Hijo 1</small></div>
+        <div class="selector-item-card">2. Vegeta<br><small>Hijo 2</small></div>
+        <div class="selector-item-card">3. Gohan<br><small>Hijo 3</small></div>
+        <div class="selector-item-card">4. Piccolo<br><small>Hijo 4</small></div>
+        <div class="selector-item-card">5. Krilin<br><small>Hijo 5</small></div>
+        <div class="selector-item-card">6. Trunks<br><small>Hijo 6</small></div>
+      </div>
+
+      <div class="info-medidas" id="explicacion-selectores-demo" style="text-align: left; margin: 15px 0;">
+        Haz clic en cualquiera de los botones de arriba para activar la pseudoclase y ver cómo se iluminan los elementos coincidentes.
+      </div>
+
+      <pre class="codigo-visor" id="visor-css-selectores-demo"><span class="codigo-comentario">/* Selecciona una pseudoclase de arriba para ver el código generado */</span></pre>
+
+      <!-- DEMOSTRACIÓN DE ESTADOS DINÁMICOS: HOVER, FOCUS, ACTIVE -->
+      <h3 style="margin-top: 25px;">⚡ Estados de Acción del Usuario (:hover, :focus, :active)</h3>
+      <p style="font-size: 0.88rem; color: var(--color-texto-muted); margin-bottom: 12px;">
+        Pasa el cursor, haz clic con el ratón o tabula con el teclado para observar cómo reacciona cada estado:
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 15px 0;">
+        <button class="btn-interactivo btn-hover-elevate">
+          <span>:hover (Pasa el cursor)</span>
+        </button>
+        <input type="text" class="form-control" placeholder=":focus (Haz clic aquí para ver el contorno de foco)" style="max-width: 380px;">
+        <button class="btn-interactivo btn-hover-glow">
+          <span>:active (Mantén presionado)</span>
+        </button>
+      </div>
+
+      <!-- EJEMPLO INTERACTIVO DE :has() EN VIVO -->
+      <h3 style="margin-top: 25px;">🔀 El Condicional "If" de CSS: `:has()`</h3>
+      <p style="font-size: 0.9rem; color: var(--color-texto-muted); margin-bottom: 12px;">
+        Activa la casilla para comprobar cómo CSS estiliza dinámicamente al contenedor padre cuando detecta un hijo marcado:
+      </p>
+
+      <div class="caja-condicional-has" style="border: 2px solid var(--color-borde); padding: 18px; border-radius: 8px;">
+        <h4 style="color: var(--color-primario); margin-bottom: 6px;">Transformación Saiyan en Vivo</h4>
+        <label style="display: flex; align-items: center; gap: 10px; font-weight: 700; cursor: pointer;">
+          <input type="checkbox" id="chk-demo-has">
+          <span>Activar Ki de Super Saiyan (<code>input:checked</code>)</span>
+        </label>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Regla CSS pura con :has() */</span>
+.caja-condicional-has:has(input:checked) {
+  background-color: var(--color-verde-fondo);
+  border-color: var(--color-verde);
+  box-shadow: 0 4px 15px rgba(46, 125, 50, 0.25);
+}</pre>
+    </section>
+
+    <!-- SECCIÓN 4: PSEUDOELEMENTOS INTERACTIVOS -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>4. Pseudoelementos: Generación de Contenido Cosmético</span>
+        <span class="badge-teoria">Demostración en Vivo</span>
+      </h2>
+
+      <div class="nota-didactica">
+        <strong>💡 ¿Cómo funcionan `::before` y `::after`?</strong>
+        Insertan contenido virtual antes o después del texto del elemento sin tocar el HTML. <strong>La propiedad <code>content: ""</code> es obligatoria</strong>; sin ella, el navegador no renderiza nada.
+      </div>
+
+      <!-- BOTONES DE CONTROL DE PSEUDOELEMENTOS -->
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+        <button class="btn-position-mode" onclick="togglePseudoelemento('before')">
+          Alternar ::before (Inyectar Icono 🥋)
+        </button>
+        <button class="btn-position-mode" onclick="togglePseudoelemento('after')">
+          Alternar ::after (Inyectar Insignia [NIVEL SAIYAN])
+        </button>
+      </div>
+
+      <!-- TARJETA DEMO -->
+      <div style="background: var(--color-tarjeta-secundaria); border: 2px solid var(--color-borde); border-radius: 10px; padding: 25px; margin: 15px 0;">
+        <h4 id="tarjeta-pseudoelemento-demo" style="color: var(--color-primario); font-size: 1.2rem; margin: 0;">
+          Son Goku — Defensor del Planeta
+        </h4>
+        <p style="font-size: 0.88rem; color: var(--color-texto-muted); margin-top: 8px;">
+          Pulsa los botones de arriba para comprobar cómo se inyectan elementos visuales cosméticos sin modificar el contenido HTML de este titular.
+        </p>
+      </div>
+
+      <pre class="codigo-visor" id="visor-css-pseudoelementos"><span class="codigo-comentario">/* Pulsa los botones superiores para generar las reglas ::before y ::after */</span></pre>
+    </section>
+
+    <!-- SECCIÓN 5: CALCULADORA Y COMPARADOR VISUAL DE ESPECIFICIDAD -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>5. Calculadora y Comparador Visual de Especificidad</span>
+        <span class="badge-teoria">Batalla de Reglas</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        La <strong>Especificidad</strong> es el algoritmo que emplea el motor de renderizado del navegador para decidir qué declaración CSS gana cuando dos o más reglas compiten por dar estilo al mismo elemento HTML.
+      </p>
+
+      <div class="nota-didactica">
+        <strong>⚖️ Las 4 Columnas de Puntuación [Inline, ID, Clase, Elemento]:</strong><br>
+        • <strong>[a] Estilo en línea (Inline):</strong> <code>&lt;div style="..."&gt;</code> otorga <strong>1-0-0-0</strong>. Máxima prioridad sobre selectores normales.<br>
+        • <strong>[b] Identificadores únicos (ID):</strong> Cada <code>#id</code> suma <strong>0-1-0-0</strong>. ¡Un solo ID vence a 10.000 clases acumuladas!<br>
+        • <strong>[c] Clases, pseudoclases y atributos:</strong> Cada <code>.clase</code>, <code>:hover</code> o <code>[type]</code> suma <strong>0-0-1-0</strong>.<br>
+        • <strong>[d] Etiquetas y pseudoelementos:</strong> Cada <code>div</code>, <code>p</code> o <code>::before</code> suma <strong>0-0-0-1</strong>.<br>
+        • <em>Regla de Desempate:</em> Si la tupla [a, b, c, d] es idéntica, prevalece <strong>La Cascada (orden en el código)</strong>.
+      </div>
+
+      <!-- BOTONES DE ENFRENTAMIENTOS PREDEFINIDOS -->
+      <h4 style="color: var(--color-primario); margin: 20px 0 8px 0;">⚔️ Enfrentamientos Clásicos Predefinidos:</h4>
+      <div class="selector-presets-grid">
+        <button class="btn-preset-selector" onclick="batallaSelectores('#goku', '.guerrero.saiyan.entrenado')">
+          🔥 1 ID vs 3 Clases (#goku vs .guerrero.saiyan.entrenado)
+        </button>
+        <button class="btn-preset-selector" onclick="batallaSelectores('.boton:hover', '.boton')">
+          ⚡ Pseudoclase + Clase vs Clase (.boton:hover vs .boton)
+        </button>
+        <button class="btn-preset-selector" onclick="batallaSelectores('header nav ul li a', '.nav-enlace')">
+          🏷️ 5 Elementos vs 1 Clase (header nav ul li a vs .nav-enlace)
+        </button>
+        <button class="btn-preset-selector" onclick="batallaSelectores('style=&quot;color: gold;&quot;', '#goku')">
+          👑 Inline vs 1 ID (style=&quot;...&quot; vs #goku)
+        </button>
+        <button class="btn-preset-selector" onclick="batallaSelectores('main article h2.titulo', '#seccion-principal h2')">
+          🥋 ID + Etiqueta vs 2 Etiquetas + Clase
+        </button>
+        <button class="btn-preset-selector" onclick="batallaSelectores('.tarjeta.activa', '.tarjeta.destacada')">
+          ⚖️ Empate Técnico (Decide la Cascada)
+        </button>
+      </div>
+
+      <!-- ENTRADAS MANUALES DE SELECTORES -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 15px;">
+        <div>
+          <label for="input-selector-a" style="font-weight: 700; font-size: 0.88rem; color: var(--color-primario);">
+            Selector A (Escribe cualquier selector CSS):
+          </label>
+          <input type="text" id="input-selector-a" class="form-control" value="#goku" oninput="batallaSelectores()" style="width: 100%; margin-top: 6px; font-family: monospace;">
+        </div>
+        <div>
+          <label for="input-selector-b" style="font-weight: 700; font-size: 0.88rem; color: var(--color-primario);">
+            Selector B (Escribe cualquier selector CSS):
+          </label>
+          <input type="text" id="input-selector-b" class="form-control" value=".guerrero.saiyan.entrenado" oninput="batallaSelectores()" style="width: 100%; margin-top: 6px; font-family: monospace;">
+        </div>
+      </div>
+
+      <!-- ESCENARIO DE BATALLA -->
+      <div class="batalla-especificidad-grid">
+        <!-- TARJETA SELECTOR A -->
+        <div id="card-batalla-a" class="card-batalla-selector">
+          <span class="badge-ganador-flotante">🏆 ¡REGLA GANADORA!</span>
+          <h4 style="color: var(--color-primario); margin: 0 0 10px 0; font-size: 1.1rem;">Selector A</h4>
+          
+          <div class="especificidad-badges-row">
+            <div class="badge-especificidad badge-esp-inline">
+              <span class="badge-esp-titulo">Inline</span>
+              <span class="badge-esp-valor" id="esp-a-inline">0</span>
+            </div>
+            <div class="badge-especificidad badge-esp-id">
+              <span class="badge-esp-titulo">ID (#)</span>
+              <span class="badge-esp-valor" id="esp-a-id">1</span>
+            </div>
+            <div class="badge-especificidad badge-esp-class">
+              <span class="badge-esp-titulo">Clase / :</span>
+              <span class="badge-esp-valor" id="esp-a-class">0</span>
+            </div>
+            <div class="badge-especificidad badge-esp-element">
+              <span class="badge-esp-titulo">Etiqueta</span>
+              <span class="badge-esp-valor" id="esp-a-element">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- INSIGNIA CENTRAL VS -->
+        <div class="batalla-vs-badge">VS</div>
+
+        <!-- TARJETA SELECTOR B -->
+        <div id="card-batalla-b" class="card-batalla-selector">
+          <span class="badge-ganador-flotante">🏆 ¡REGLA GANADORA!</span>
+          <h4 style="color: var(--color-primario); margin: 0 0 10px 0; font-size: 1.1rem;">Selector B</h4>
+          
+          <div class="especificidad-badges-row">
+            <div class="badge-especificidad badge-esp-inline">
+              <span class="badge-esp-titulo">Inline</span>
+              <span class="badge-esp-valor" id="esp-b-inline">0</span>
+            </div>
+            <div class="badge-especificidad badge-esp-id">
+              <span class="badge-esp-titulo">ID (#)</span>
+              <span class="badge-esp-valor" id="esp-b-id">0</span>
+            </div>
+            <div class="badge-especificidad badge-esp-class">
+              <span class="badge-esp-titulo">Clase / :</span>
+              <span class="badge-esp-valor" id="esp-b-class">3</span>
+            </div>
+            <div class="badge-especificidad badge-esp-element">
+              <span class="badge-esp-titulo">Etiqueta</span>
+              <span class="badge-esp-valor" id="esp-b-element">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL DE RESULTADOS Y VEREDICTO DOCENTE -->
+      <div id="panel-resultado-batalla" class="resultado-batalla-panel">
+        <!-- Generado dinámicamente por animaciones_flex_grid.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA DOCENTE -->
+  <footer class="footer-principal">
+    <nav class="footer-nav">
+      <a href="../index.html">Inicio</a>
+      <a href="selectores.html">Selectores</a>
+      <a href="box-model.html">Box Model</a>
+      <a href="layout.html">Layout</a>
+      <a href="tipografia.html">Tipografía</a>
+      <a href="colores-fondos.html">Colores</a>
+      <a href="interactividad.html">Interactividad</a>
+      <a href="formularios.html">Formularios</a>
+      <a href="componentes.html">Componentes</a>
+    </nav>
+    <p>🥋 <strong>Laboratorio Educativo de CSS3</strong> — Inspirado en el ejercicio del CV de Son Goku.</p>
+  </footer>
+
+  <script src="../js/animaciones_flex_grid.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="base">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 8: Componentes UI Reutilizables — Laboratorio CSS3</title>
+  <link rel="stylesheet" href="../styles/repaso_visual.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL CON SELECTOR DE TEMA -->
+  <header class="header-principal">
+    <div class="header-contenedor">
+      <div class="header-branding">
+        <div class="header-logo-badge">🧩</div>
+        <div>
+          <h1>Módulo 8: Biblioteca de Componentes UI Reutilizables</h1>
+          <p>Patrones de diseño listos para producción inspirados en la estética y maquetación de Son Goku.</p>
+        </div>
+      </div>
+      <div class="theme-selector-box">
+        <label for="selector-tema-global">🎨 Tema:</label>
+        <select id="selector-tema-global" class="selector-tema-global">
+          <option value="base">🔵 Goku Azul (Base)</option>
+          <option value="dark">🌑 Vegeta (Modo Oscuro)</option>
+          <option value="saiyan">✨ Super Saiyan (Dorado)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN MULTIPÁGINA -->
+  <nav class="nav-tabs" aria-label="Navegación principal de módulos">
+    <a href="../index.html" class="nav-btn">🏠 Inicio</a>
+    <a href="selectores.html" class="nav-btn">🎯 1. Selectores</a>
+    <a href="box-model.html" class="nav-btn">📦 2. Box Model</a>
+    <a href="layout.html" class="nav-btn">📐 3. Layout (Flex & Grid)</a>
+    <a href="tipografia.html" class="nav-btn">🔤 4. Tipografía</a>
+    <a href="colores-fondos.html" class="nav-btn">🎨 5. Colores y Fondos</a>
+    <a href="interactividad.html" class="nav-btn">⚡ 6. Interactividad</a>
+    <a href="formularios.html" class="nav-btn">📋 7. Formularios</a>
+    <a href="componentes.html" class="nav-btn activo">🧩 8. Componentes</a>
+  </nav>
+
+  <!-- CONTENIDO CENTRAL -->
+  <main class="contenedor-central">
+
+    <div class="migas-pan">
+      <a href="../index.html">Inicio</a>
+      <span class="separador">/</span>
+      <span>Módulo 8: Componentes UI Reutilizables</span>
+    </div>
+
+    <!-- SECCIÓN 1: BARRA DE PROGRESO DE KI DINÁMICA -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>1. Barra de Nivel de Ki Interactiva</span>
+        <span class="badge-teoria">Componente UI</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        Las barras de progreso son componentes esenciales en dashboards, videojuegos y perfiles curriculares. Este componente combina bordes redondeados tipo píldora, animaciones con gradientes lineales y control de porcentaje dinámico:
+      </p>
+
+      <!-- CONTROL SLIDER EN VIVO -->
+      <div style="background: var(--color-tarjeta-secundaria); padding: 18px 22px; border-radius: 10px; border: 1px solid var(--color-borde); margin-bottom: 20px;">
+        <label for="slider-ki-demo" style="display: flex; justify-content: space-between; font-weight: 700; color: var(--color-primario); margin-bottom: 8px;">
+          <span>Ajustar Nivel de Energía / Ki:</span>
+          <span id="val-ki-porcentaje" style="font-size: 1.15rem; color: var(--color-acento); font-weight: 800;">85%</span>
+        </label>
+        <input type="range" id="slider-ki-demo" min="5" max="100" value="85" oninput="actualizarKiBarraDemo()" style="width: 100%; accent-color: var(--color-acento);">
+      </div>
+
+      <!-- MUESTRA EN VIVO DEL COMPONENTE -->
+      <div class="ki-bar-wrapper">
+        <div class="ki-bar-header">
+          <span id="lbl-ki-estado" style="color: var(--color-primario);">Super Saiyan 2 — Aura Dorada</span>
+          <span style="font-size: 0.82rem; color: var(--color-texto-muted);">Potencia Máxima</span>
+        </div>
+        <div class="ki-bar-track">
+          <div id="ki-fill-demo" class="ki-bar-fill" style="width: 85%;"></div>
+        </div>
+      </div>
+
+      <!-- VISOR DINÁMICO DE CSS -->
+      <pre class="codigo-visor" id="visor-css-kibar"></pre>
+
+      <div class="bloque-codigo-header">
+        <span>Código HTML & CSS Reutilizable</span>
+        <button class="btn-copiar-codigo" onclick="copiarCodigo('codigo-kibar-snippet', this)">Copiar Código</button>
+      </div>
+      <pre class="codigo-visor" id="codigo-kibar-snippet"><span class="codigo-comentario">&lt;!-- HTML --&gt;</span>
+&lt;div class="ki-bar-wrapper"&gt;
+  &lt;div class="ki-bar-header"&gt;
+    &lt;span&gt;Nivel de Ki&lt;/span&gt;
+    &lt;span&gt;85%&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="ki-bar-track"&gt;
+    &lt;div class="ki-bar-fill" style="width: 85%;"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+<span class="codigo-comentario">/* CSS */</span>
+.ki-bar-track {
+  width: 100%;
+  height: 22px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: var(--radio-pildora); <span class="codigo-comentario">/* 50px */</span>
+  padding: 3px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.ki-bar-fill {
+  height: 100%;
+  border-radius: var(--radio-pildora);
+  background: linear-gradient(90deg, #fbbf24, #f59e0b, #d97706);
+  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.7);
+}</pre>
+    </section>
+
+    <!-- SECCIÓN 2: PÍLDORAS Y CHIPS DE TÉCNICAS MARCIALES -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>2. Píldoras y Chips de Técnicas Marciales</span>
+        <span class="badge-teoria">Microcomponente</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        Los chips o píldoras (badges interactivos) se emplean para etiquetas, tags de habilidades o filtros. Usan <code>border-radius: var(--radio-pildora)</code> y microinteracciones de elevación al pasar el cursor (hover):
+      </p>
+
+      <!-- DEMOSTRACIÓN DE CHIPS EN VIVO -->
+      <div class="tecnicas-chips-flex">
+        <span class="chip-tecnica ki">⚡ Kamehameha</span>
+        <span class="chip-tecnica saiyan">✨ Kaio-ken x20</span>
+        <span class="chip-tecnica ki">🌌 Genkidama</span>
+        <span class="chip-tecnica dios">🔥 Puño del Dragón</span>
+        <span class="chip-tecnica saiyan">💥 Super Saiyan God</span>
+        <span class="chip-tecnica dios">🌀 Doctrina Egoísta (Ultra Instinto)</span>
+        <span class="chip-tecnica">🥋 Teletransportación Shunkan Ido</span>
+      </div>
+
+      <div class="bloque-codigo-header">
+        <span>Código HTML & CSS Reutilizable</span>
+        <button class="btn-copiar-codigo" onclick="copiarCodigo('codigo-chips-snippet', this)">Copiar Código</button>
+      </div>
+      <pre class="codigo-visor" id="codigo-chips-snippet"><span class="codigo-comentario">&lt;!-- HTML --&gt;</span>
+&lt;span class="chip-tecnica ki"&gt;⚡ Kamehameha&lt;/span&gt;
+&lt;span class="chip-tecnica saiyan"&gt;✨ Kaio-ken&lt;/span&gt;
+&lt;span class="chip-tecnica dios"&gt;🔥 Ultra Instinto&lt;/span&gt;
+
+<span class="codigo-comentario">/* CSS */</span>
+.chip-tecnica {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--radio-pildora); <span class="codigo-comentario">/* 50px */</span>
+  font-size: 0.86rem;
+  font-weight: 700;
+  border: 1px solid var(--color-borde);
+  background: var(--color-tarjeta-bg);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chip-tecnica:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}</pre>
+    </section>
+
+    <!-- SECCIÓN 3: TABLA DE COMBATES CON BORDES REDONDEADOS -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>3. Tabla de Resultados de Combates del Torneo</span>
+        <span class="badge-teoria">Estructura Tabular</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        Crear tablas elegantes con bordes redondeados en CSS requiere envolver la etiqueta <code>&lt;table&gt;</code> en un contenedor exterior con <code>overflow: hidden</code> y <code>border-radius</code>, evitando que el colapso de bordes corte las esquinas:
+      </p>
+
+      <!-- TABLA EN VIVO -->
+      <div class="tabla-torneo-wrap">
+        <table class="tabla-torneo">
+          <thead>
+            <tr>
+              <th>Rival / Oponente</th>
+              <th>Edición / Saga</th>
+              <th>Técnica Final</th>
+              <th>Resultado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Jackie Chun</strong></td>
+              <td>21.º Torneo Tenkaichi Budokai</td>
+              <td>Doble Patada Voladora</td>
+              <td><span class="derrota">✗ Derrota Honorable</span></td>
+            </tr>
+            <tr>
+              <td><strong>Piccolo Daimaō</strong></td>
+              <td>Saga Rey Demonio Piccolo</td>
+              <td>Golpe del Ozaru Penetrómetro</td>
+              <td><span class="victoria">✓ Victoria Decisiva</span></td>
+            </tr>
+            <tr>
+              <td><strong>Piccolo Jr.</strong></td>
+              <td>23.º Torneo Tenkaichi Budokai</td>
+              <td>Meteoro Gigante de Cabeza</td>
+              <td><span class="victoria">✓ Campeón del Mundo</span></td>
+            </tr>
+            <tr>
+              <td><strong>Vegeta</strong></td>
+              <td>Saga de los Saiyans</td>
+              <td>Choque Kaio-ken x4 + Genkidama</td>
+              <td><span class="decisivo">⚡ Empate Estratégico</span></td>
+            </tr>
+            <tr>
+              <td><strong>Freezer</strong></td>
+              <td>Saga del Planeta Namek</td>
+              <td>Super Saiyan Despertado</td>
+              <td><span class="victoria">✓ Victoria Histórica</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bloque-codigo-header">
+        <span>Código HTML & CSS Reutilizable</span>
+        <button class="btn-copiar-codigo" onclick="copiarCodigo('codigo-tabla-snippet', this)">Copiar Código</button>
+      </div>
+      <pre class="codigo-visor" id="codigo-tabla-snippet"><span class="codigo-comentario">&lt;!-- Contenedor obligatorio para esquinas redondeadas limpias --&gt;</span>
+&lt;div class="tabla-torneo-wrap"&gt;
+  &lt;table class="tabla-torneo"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Rival&lt;/th&gt;
+        &lt;th&gt;Saga&lt;/th&gt;
+        &lt;th&gt;Resultado&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;Piccolo&lt;/td&gt;
+        &lt;td&gt;23.º Torneo&lt;/td&gt;
+        &lt;td&gt;&lt;span class="victoria"&gt;✓ Victoria&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+
+<span class="codigo-comentario">/* CSS */</span>
+.tabla-torneo-wrap {
+  border-radius: 12px;
+  overflow: hidden; <span class="codigo-comentario">/* Recorta las esquinas de thead y tbody */</span>
+  border: 1px solid var(--color-borde);
+  box-shadow: var(--sombra-suave);
+}
+
+.tabla-torneo {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.victoria { color: var(--color-verde); font-weight: 700; }
+.derrota { color: var(--color-rojo); font-weight: 700; }
+.decisivo { color: var(--color-dorado-oscuro); font-weight: 700; }</pre>
+    </section>
+
+    <!-- SECCIÓN 4: TARJETA DE GUERRERO CON INSIGNIA FLOTANTE -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>4. Tarjeta de Guerrero con Insignia Flotante (relative + absolute)</span>
+        <span class="badge-teoria">Patrón de Maquetación</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        El patrón maestro de diseño en tarjetas: el contenedor principal tiene <code>position: relative</code> y <code>overflow: hidden</code>, mientras que la medalla o insignia se posiciona con <code>position: absolute; top: 14px; right: 14px;</code>:
+      </p>
+
+      <!-- MUESTRA DE TARJETA EN VIVO -->
+      <div style="display: flex; justify-content: center; margin: 25px 0;">
+        <article class="card-guerrero-componente">
+          <div class="card-guerrero-img-header">
+            <img src="../cv/images/goku-avatar.jpg" alt="Son Goku Front-End" onerror="this.src='../cv/images/goku.png'">
+            <span class="card-guerrero-insignia">★ Rango Maestro ★</span>
+          </div>
+
+          <div class="card-guerrero-cuerpo">
+            <h3 class="card-guerrero-nombre">Son Goku</h3>
+            <p class="card-guerrero-rol">Defensor del Planeta & Maestro Front-End</p>
+            <p style="font-size: 0.88rem; color: var(--color-texto); margin-bottom: 15px;">
+              Especialista en arquitectura visual robusta, selectores limpios y layouts con Flexbox y CSS Grid.
+            </p>
+
+            <div class="tecnicas-chips-flex" style="margin-bottom: 18px;">
+              <span class="chip-tecnica ki">Kamehameha</span>
+              <span class="chip-tecnica saiyan">Super Saiyan</span>
+            </div>
+
+            <button class="btn-interactivo btn-hover-elevate" style="width: 100%; justify-content: center;">
+              Ver Ficha de Guerrero ➔
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <div class="bloque-codigo-header">
+        <span>Código HTML & CSS Reutilizable</span>
+        <button class="btn-copiar-codigo" onclick="copiarCodigo('codigo-card-snippet', this)">Copiar Código</button>
+      </div>
+      <pre class="codigo-visor" id="codigo-card-snippet"><span class="codigo-comentario">&lt;!-- HTML --&gt;</span>
+&lt;article class="card-guerrero"&gt;
+  &lt;div class="card-header-img"&gt;
+    &lt;img src="goku.jpg" alt="Son Goku"&gt;
+    &lt;span class="badge-flotante"&gt;★ Rango Maestro ★&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h3&gt;Son Goku&lt;/h3&gt;
+    &lt;p&gt;Defensor de la Tierra&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+<span class="codigo-comentario">/* CSS: Patrón Maestro Relative + Absolute */</span>
+.card-guerrero {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.card-header-img {
+  position: relative;
+  height: 180px;
+}
+
+.badge-flotante {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #f59e0b;
+  color: #451a03;
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}</pre>
+    </section>
+
+    <!-- SECCIÓN 5: BARRA DE NAVEGACIÓN RESPONSIVE LIMPIA -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>5. Barra de Navegación Responsive Limpia</span>
+        <span class="badge-teoria">Layout de Encabezado</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        Un header de navegación profesional que distribuye el logotipo, los enlaces centrales y el botón de acción en los extremos opuestos con <code>display: flex; justify-content: space-between; align-items: center;</code>:
+      </p>
+
+      <!-- BARRA DE NAVEGACIÓN EN VIVO -->
+      <nav class="navbar-componente" aria-label="Demostración de Navegación">
+        <div class="navbar-componente-brand">
+          <span style="font-size: 1.5rem;">🥋</span>
+          <span>Dojo Capsule Corp</span>
+        </div>
+
+        <ul class="navbar-componente-links">
+          <li><a href="#!">Técnicas</a></li>
+          <li><a href="#!">Torneos</a></li>
+          <li><a href="#!">Clasificación</a></li>
+          <li><a href="#!">Contacto</a></li>
+        </ul>
+
+        <button class="navbar-componente-cta">
+          Entrenar ⚡
+        </button>
+      </nav>
+
+      <div class="bloque-codigo-header">
+        <span>Código HTML & CSS Reutilizable</span>
+        <button class="btn-copiar-codigo" onclick="copiarCodigo('codigo-navbar-snippet', this)">Copiar Código</button>
+      </div>
+      <pre class="codigo-visor" id="codigo-navbar-snippet"><span class="codigo-comentario">&lt;!-- HTML --&gt;</span>
+&lt;nav class="navbar"&gt;
+  &lt;div class="navbar-brand"&gt;🥋 Capsule Corp&lt;/div&gt;
+  &lt;ul class="navbar-links"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Técnicas&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Torneos&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;button class="navbar-cta"&gt;Entrenar ⚡&lt;/button&gt;
+&lt;/nav&gt;
+
+<span class="codigo-comentario">/* CSS */</span>
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+}</pre>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA DOCENTE -->
+  <footer class="footer-principal">
+    <nav class="footer-nav">
+      <a href="../index.html">Inicio</a>
+      <a href="selectores.html">Selectores</a>
+      <a href="box-model.html">Box Model</a>
+      <a href="layout.html">Layout</a>
+      <a href="tipografia.html">Tipografía</a>
+      <a href="colores-fondos.html">Colores</a>
+      <a href="interactividad.html">Interactividad</a>
+      <a href="formularios.html">Formularios</a>
+      <a href="componentes.html">Componentes</a>
+    </nav>
+    <p>🥋 <strong>Laboratorio Educativo de CSS3</strong> — Inspirado en el ejercicio del CV de Son Goku.</p>
+  </footer>
+
+  <script src="../js/animaciones_flex_grid.js"></script>
+</body>
+</html>
+

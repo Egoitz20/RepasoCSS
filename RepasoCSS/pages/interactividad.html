@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="base">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 6: Interactividad y Animaciones en CSS — Laboratorio CSS3</title>
+  <link rel="stylesheet" href="../styles/repaso_visual.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL CON SELECTOR DE TEMA -->
+  <header class="header-principal">
+    <div class="header-contenedor">
+      <div class="header-branding">
+        <div class="header-logo-badge">⚡</div>
+        <div>
+          <h1>Módulo 6: Interactividad, Transiciones y Animaciones</h1>
+          <p>Aprende a dotar de vida a tus interfaces con estados interactivos, transformaciones 2D y animaciones fluidas con @keyframes.</p>
+        </div>
+      </div>
+      <div class="theme-selector-box">
+        <label for="selector-tema-global">🎨 Tema:</label>
+        <select id="selector-tema-global" class="selector-tema-global">
+          <option value="base">🔵 Goku Azul (Base)</option>
+          <option value="dark">🌑 Vegeta (Modo Oscuro)</option>
+          <option value="saiyan">✨ Super Saiyan (Dorado)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE NAVEGACIÓN MULTIPÁGINA -->
+  <nav class="nav-tabs" aria-label="Navegación principal de módulos">
+    <a href="../index.html" class="nav-btn">🏠 Inicio</a>
+    <a href="selectores.html" class="nav-btn">🎯 1. Selectores</a>
+    <a href="box-model.html" class="nav-btn">📦 2. Box Model</a>
+    <a href="layout.html" class="nav-btn">📐 3. Layout (Flex & Grid)</a>
+    <a href="tipografia.html" class="nav-btn">🔤 4. Tipografía</a>
+    <a href="colores-fondos.html" class="nav-btn">🎨 5. Colores y Fondos</a>
+    <a href="interactividad.html" class="nav-btn activo">⚡ 6. Interactividad</a>
+    <a href="formularios.html" class="nav-btn">📋 7. Formularios</a>
+    <a href="componentes.html" class="nav-btn">🧩 8. Componentes</a>
+  </nav>
+
+  <!-- CONTENIDO CENTRAL -->
+  <main class="contenedor-central">
+
+    <div class="migas-pan">
+      <a href="../index.html">Inicio</a>
+      <span class="separador">/</span>
+      <span>Módulo 6: Interactividad</span>
+    </div>
+
+    <!-- SECCIÓN 1: PSEUDOCLASES INTERACTIVAS -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>1. Estados Dinámicos de Interacción</span>
+        <span class="badge-teoria">Feedback de Usuario</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 18px;">
+        Las pseudoclases de acción permiten informar visualmente al usuario de que la interfaz responde a sus acciones:
+      </p>
+
+      <div class="tabla-responsive-wrap">
+        <table class="tabla-didactica">
+          <thead>
+            <tr>
+              <th>Pseudoclase</th>
+              <th>Disparador</th>
+              <th>Efecto Visual Recomendado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>:hover</code></td>
+              <td>El cursor del ratón entra en el área del elemento.</td>
+              <td>Leve cambio de color de fondo, elevación con sombra o escala suave.</td>
+            </tr>
+            <tr>
+              <td><code>:focus</code> / <code>:focus-visible</code></td>
+              <td>El elemento recibe foco mediante teclado (Tab) o clic.</td>
+              <td>Anillo de contorno contrastado (<code>box-shadow: 0 0 0 3px ...</code>).</td>
+            </tr>
+            <tr>
+              <td><code>:active</code></td>
+              <td>El usuario presiona y mantiene pulsado el botón del ratón o pantalla táctil.</td>
+              <td>Sensación de pulsación física: reducción ligera de escala o traslación hacia abajo.</td>
+            </tr>
+            <tr>
+              <td><code>:visited</code></td>
+              <td>El enlace apunta a una URL que ya figura en el historial del navegador.</td>
+              <td>Tono de color más apagado para evitar clics redundantes.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="galeria-botones-interactivos">
+        <button class="btn-interactivo btn-hover-elevate">
+          <span>🚀 Botón con Elevación (:hover + :active)</span>
+        </button>
+
+        <button class="btn-interactivo btn-hover-glow">
+          <span>✨ Botón con Resplandor Dorado</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: TRANSICIONES SUAVES (TRANSITION) -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>2. Transiciones en CSS (`transition`)</span>
+        <span class="badge-teoria">Suavidad Cinemática</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        Una transición interpola gradualmente el cambio entre dos valores CSS a lo largo del tiempo:
+      </p>
+
+      <div style="background: var(--color-tarjeta-secundaria); padding: 18px; border-radius: 10px; border: 1px solid var(--color-borde); margin-bottom: 18px;">
+        <h4 style="color: var(--color-primario); margin-bottom: 6px;">Sintaxis Abreviada:</h4>
+        <p style="font-size: 0.95rem; font-family: monospace; color: var(--color-acento);">
+          transition: [propiedad] [duración] [función-aceleración] [retardo];
+        </p>
+        <p style="font-size: 0.88rem; color: var(--color-texto-muted); margin-top: 6px;">
+          Ejemplo: <code>transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;</code>
+        </p>
+      </div>
+
+      <div class="nota-didactica">
+        <strong>💡 Consejo de Rendimiento Front-End Senior:</strong>
+        Evita usar <code>transition: all</code> en elementos complejos. Anima preferentemente propiedades que aprovechan la aceleración por GPU (<code>transform</code> y <code>opacity</code>) sin forzar repintados continuos del DOM (*reflow*).
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: TRANSFORMACIONES 2D (TRANSFORM) -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>3. Transformaciones 2D (`transform`)</span>
+        <span class="badge-teoria">Laboratorio Interactivo</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 16px;">
+        Mueve, escala, gira o inclina elementos visualmente <strong>sin alterar las dimensiones ni la posición física de sus elementos vecinos</strong>:
+      </p>
+
+      <div style="display: grid; grid-template-columns: 320px 1fr; gap: 25px; background: var(--color-tarjeta-secundaria); padding: 22px; border-radius: 12px; border: 1px solid var(--color-borde);">
+        <!-- CONTROLES -->
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <label for="trans-x" style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; color: var(--color-primario);">
+              <span>translateX:</span>
+              <span id="val-trans-x">0px</span>
+            </label>
+            <input type="range" id="trans-x" min="-100" max="100" value="0" oninput="actualizarTransformacion()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <div>
+            <label for="trans-y" style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; color: var(--color-primario);">
+              <span>translateY:</span>
+              <span id="val-trans-y">0px</span>
+            </label>
+            <input type="range" id="trans-y" min="-60" max="60" value="0" oninput="actualizarTransformacion()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <div>
+            <label for="trans-scale" style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; color: var(--color-primario);">
+              <span>scale (Escala):</span>
+              <span id="val-trans-scale">1x</span>
+            </label>
+            <input type="range" id="trans-scale" min="0.5" max="1.6" step="0.05" value="1" oninput="actualizarTransformacion()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <div>
+            <label for="trans-rotate" style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; color: var(--color-primario);">
+              <span>rotate (Giro):</span>
+              <span id="val-trans-rotate">0°</span>
+            </label>
+            <input type="range" id="trans-rotate" min="-180" max="180" value="0" oninput="actualizarTransformacion()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <div>
+            <label for="trans-skew" style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; color: var(--color-primario);">
+              <span>skew (Inclinación):</span>
+              <span id="val-trans-skew">0°</span>
+            </label>
+            <input type="range" id="trans-skew" min="-30" max="30" value="0" oninput="actualizarTransformacion()" style="width: 100%; accent-color: var(--color-acento);">
+          </div>
+
+          <button onclick="resetearTransformacion()" class="btn-toggle-boxsizing" style="padding: 8px; font-size: 0.85rem; margin-top: 5px;">
+            Resetear Transformación
+          </button>
+        </div>
+
+        <!-- ESCENARIO DE TRANSFORMACIÓN -->
+        <div style="background: var(--color-tarjeta-bg); border: 1.5px dashed var(--color-borde-fuerte); border-radius: 10px; display: flex; align-items: center; justify-content: center; min-height: 250px; overflow: hidden;">
+          <div id="caja-transform-demo" style="background: linear-gradient(135deg, var(--color-primario), var(--color-acento)); color: white; padding: 25px 35px; border-radius: 12px; font-weight: 800; text-align: center; box-shadow: var(--sombra-elevada); transition: transform 0.2s ease;">
+            🥋 Son Goku<br><small style="font-weight: normal; opacity: 0.85;">Transform 2D</small>
+          </div>
+        </div>
+      </div>
+
+      <pre class="codigo-visor" id="visor-css-transform"></pre>
+    </section>
+
+    <!-- SECCIÓN 4: ANIMACIONES CON @KEYFRAMES -->
+    <section class="tarjeta-seccion">
+      <h2>
+        <span>4. Animaciones Complejas con `@keyframes`</span>
+        <span class="badge-teoria">Ciclos Continuos</span>
+      </h2>
+
+      <p style="color: var(--color-texto-muted); margin-bottom: 18px;">
+        Cuando necesitas que un elemento se mueva de forma cíclica o pase por más de dos estados intermedios, define una secuencia de fotogramas clave con <code>@keyframes</code>:
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px;">
+        <!-- DEMO 1: AURA DE KI -->
+        <div style="background: var(--color-tarjeta-secundaria); padding: 25px; border-radius: 12px; border: 1px solid var(--color-borde); display: flex; flex-direction: column; align-items: center; text-align: center;">
+          <div class="animacion-aura-ki" style="width: 70px; height: 70px; background: var(--color-dorado); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 15px;">
+            ⚡
+          </div>
+          <h4 style="color: var(--color-primario);">Aura de Ki Saiyan</h4>
+          <p style="font-size: 0.85rem; color: var(--color-texto-muted); margin-top: 6px;">
+            Animación infinita de <code>box-shadow</code> expandiéndose hacia afuera.
+          </p>
+        </div>
+
+        <!-- DEMO 2: SPINNER CIRCULAR DE CARGA -->
+        <div style="background: var(--color-tarjeta-secundaria); padding: 25px; border-radius: 12px; border: 1px solid var(--color-borde); display: flex; flex-direction: column; align-items: center; text-align: center;">
+          <div class="spinner-rotatorio" style="margin-bottom: 25px; margin-top: 10px;"></div>
+          <h4 style="color: var(--color-primario);">Spinner de Carga</h4>
+          <p style="font-size: 0.85rem; color: var(--color-texto-muted); margin-top: 6px;">
+            Giro continuo 360° con <code>animation: girar 1s linear infinite;</code>.
+          </p>
+        </div>
+      </div>
+
+      <pre class="codigo-visor"><span class="codigo-comentario">/* Definición de la animación de pulso de Ki */</span>
+@keyframes pulsoKi {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(245, 158, 11, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+
+.guerrero-aura {
+  animation: pulsoKi 2s infinite ease-in-out;
+}</pre>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA DOCENTE -->
+  <footer class="footer-principal">
+    <nav class="footer-nav">
+      <a href="../index.html">Inicio</a>
+      <a href="selectores.html">Selectores</a>
+      <a href="box-model.html">Box Model</a>
+      <a href="layout.html">Layout</a>
+      <a href="tipografia.html">Tipografía</a>
+      <a href="colores-fondos.html">Colores</a>
+      <a href="interactividad.html">Interactividad</a>
+      <a href="formularios.html">Formularios</a>
+      <a href="componentes.html">Componentes</a>
+    </nav>
+    <p>🥋 <strong>Laboratorio Educativo de CSS3</strong> — Inspirado en el ejercicio del CV de Son Goku.</p>
+  </footer>
+
+  <script src="../js/animaciones_flex_grid.js"></script>
+</body>
+</html>
+

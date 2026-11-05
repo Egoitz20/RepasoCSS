@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo de Estudio: Variables CSS y Condicionales (If / Else)</title>
+  <link rel="stylesheet" href="styles/modulo_variables_condicionales.css">
+</head>
+<body>
+
+  <header class="cabecera-modulo">
+    <div>
+      <h1 style="color: #0d477a;">🎨 Variables CSS y "Condicionales" (If / Else)</h1>
+      <p style="color: #64748b;">Descubre cómo cambiar paletas completas con :root y cómo usar :has(), :not() y @media como condicionales lógicos.</p>
+    </div>
+    <a href="../INICIAR_REPASO_VISUAL.html" class="btn-volver">⬅ Volver al Laboratorio</a>
+  </header>
+
+  <main class="layout-doble">
+
+    <!-- CASO 1: VARIABLES CSS Y SISTEMA DE TEMAS -->
+    <section class="panel-estudio">
+      <h2>1. Variables CSS (Custom Properties) y Conmutación de Temas</h2>
+      <p>
+        Pulsa los botones para ver cómo la caja inferior cambia instantáneamente de colores sin reescribir propiedades individuales, solo cambiando el valor de las variables.
+      </p>
+      
+      <div style="margin-bottom: 15px;">
+        <button class="btn-tema" onclick="cambiarTema('')">🔵 Tema Goku (Azul)</button>
+        <button class="btn-tema" style="background: #0f172a;" onclick="cambiarTema('tema-oscuro')">🌑 Tema Oscuro (Vegeta)</button>
+        <button class="btn-tema" style="background: #b45309;" onclick="cambiarTema('tema-saiyan')">✨ Modo Saiyan Dorado</button>
+      </div>
+
+      <div class="grid-comparativo">
+        <div class="bloque-codigo"><span class="comentario">/* 1. Definición en :root */</span>
+:root {
+  --color-primario: #0d477a;
+  --color-fondo: #ffffff;
+  --color-texto: #1e293b;
+}
+
+<span class="comentario">/* 2. Reasignación condicional en tema oscuro */</span>
+.tema-oscuro {
+  --color-primario: #38bdf8;
+  --color-fondo: #1e293b;
+  --color-texto: #f8fafc;
+}
+
+<span class="comentario">/* 3. Los elementos consumen la variable */</span>
+.tarjeta {
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  border: 2px solid var(--color-primario);
+}</div>
+
+        <div class="bloque-resultado">
+          <div class="caja-demo-tema" id="caja-tema">
+            <h3 style="margin-bottom: 6px; color: var(--color-tema-primario);">Tarjeta Dinámica con Variables</h3>
+            <p style="font-size: 0.9rem;">
+              El fondo, el borde y el texto de esta caja responden directamente a <code>var(--color-tema-...)</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASO 2: EL IF/ELSE DE CSS: :has() -->
+    <section class="panel-estudio">
+      <h2>2. El Condicional "If" de CSS: <code>:has()</code></h2>
+      <p>
+        <code>:has()</code> permite evaluar una condición: <em>"Si este contenedor contiene a un elemento con estado X, cámbiale el diseño"</em>.
+        <strong>¡Marca el checkbox de abajo para ver la condición cumplirse en vivo!</strong>
+      </p>
+      
+      <div class="grid-comparativo">
+        <div class="bloque-codigo"><span class="comentario">/* CONDICIONAL IF:
+   "Si .tarjeta contiene un input marcado (:checked)..." */</span>
+.tarjeta:has(input:checked) {
+  background-color: #dcfce7; <span class="comentario">/* Fondo verde */</span>
+  border-color: #16a34a;     <span class="comentario">/* Borde verde */</span>
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
+}
+
+.tarjeta:has(input:checked) h4 {
+  color: #15803d;
+}</div>
+
+        <div class="bloque-resultado">
+          <div class="tarjeta-has-demo">
+            <h4>Tarea de Entrenamiento</h4>
+            <label style="display: flex; align-items: center; gap: 8px; margin-top: 10px; cursor: pointer; font-weight: bold;">
+              <input type="checkbox"> Marcar como completada
+            </label>
+            <p style="font-size: 0.8rem; color: #64748b; margin-top: 6px;">
+              CSS puro detecta si el checkbox está marcado usando <code>:has(input:checked)</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASO 3: EL CONDICIONAL NOT: :not() -->
+    <section class="panel-estudio">
+      <h2>3. La Negación Lógica: <code>:not()</code></h2>
+      <p>
+        Aplica un estilo a todos los elementos que <strong>no</strong> cumplan una condición (ej: separar todos los elementos excepto el último).
+      </p>
+      
+      <div class="grid-comparativo">
+        <div class="bloque-codigo"><span class="comentario">/* Aplica borde inferior a todos MENOS al último */</span>
+li:not(:last-child) {
+  border-bottom: 1px dashed #cbd5e1;
+}</div>
+
+        <div class="bloque-resultado">
+          <ul class="lista-not-demo">
+            <li>Primer ítem (con borde inferior)</li>
+            <li>Segundo ítem (con borde inferior)</li>
+            <li>Último ítem (:last-child no lleva borde)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function cambiarTema(clase) {
+      const caja = document.getElementById("caja-tema");
+      caja.className = "caja-demo-tema " + clase;
+    }
+  </script>
+</body>
+</html>
+
