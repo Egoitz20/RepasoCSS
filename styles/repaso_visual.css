@@ -1,59 +1,144 @@
 /* ==========================================================================
-   1. VARIABLES CSS GLOBALES (:root)
-   Centralizamos la paleta de colores corporativa y radios para consistencia.
+   GUÍA MAESTRA Y LABORATORIO EDUCATIVO DE CSS3
+   Inspirado en la estructura y maquetación del CV de Son Goku.
    ========================================================================== */
-:root {
-  --color-primario: #0d477a;       /* Azul oscuro Goku */
-  --color-acento: #1972b9;         /* Azul medio brillante */
-  --color-fondo: #f4f8fb;          /* Fondo general suave */
-  --color-tarjeta-bg: #ffffff;
-  --color-blanco: #ffffff;
-  --color-texto: #1e293b;          /* Texto oscuro legible */
-  --color-texto-muted: #64748b;    /* Texto secundario gris */
-  
-  /* Colores semánticos para el Modelo de Caja */
-  --color-margin: #ffe0b2;         /* Naranja suave para margin externo */
-  --color-border: #90caf9;         /* Azul para bordes */
-  --color-padding: #c8e6c9;        /* Verde suave para relleno interno */
-  --color-content: #bbdefb;        /* Azul claro para contenido central */
-
-  /* Estados */
-  --color-verde: #2e7d32;
-  --color-rojo: #d32f2f;
-  --color-naranja: #e65100;
-  
-  --radio-tarjeta: 12px;
-  --radio-pildora: 50px;
-  --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.08);
-  --sombra-elevada: 0 10px 25px rgba(13, 71, 122, 0.18);
-}
 
 /* ==========================================================================
-   TEMA DINÁMICO REASIGNANDO VARIABLES EN EL CONTENEDOR (DEMO DE VARIABLES)
+   1. VARIABLES GLOBALES Y SISTEMA DE TEMAS MULTI-PALETA
    ========================================================================== */
-.tema-demo-oscuro {
+
+:root,
+[data-theme="base"] {
+  /* Paleta Base — Azul Son Goku & Acento Saiyan */
+  --color-primario: #0d477a;           /* Azul oscuro intenso */
+  --color-acento: #1972b9;             /* Azul medio brillante */
+  --color-acento-hover: #125791;
+  --color-fondo: #f4f8fb;              /* Fondo de página fresco */
+  --color-tarjeta-bg: #ffffff;         /* Fondo blanco tarjetas */
+  --color-tarjeta-secundaria: #eaf4fb; /* Fondo lateral suave Goku */
+  --color-borde: #dce5ed;              /* Borde suave azulado */
+  --color-borde-fuerte: #90caf9;
+  
+  --color-texto: #1e293b;              /* Texto oscuro principal */
+  --color-texto-muted: #64748b;        /* Texto gris secundario */
+  --color-blanco: #ffffff;
+
+  /* Colores Semánticos del Modelo de Caja */
+  --color-margin: #ffe0b2;             /* Naranja suave */
+  --color-border: #90caf9;             /* Azul */
+  --color-padding: #c8e6c9;            /* Verde suave */
+  --color-content: #e1f5fe;            /* Azul pastel */
+
+  /* Estados y Acentos */
+  --color-dorado: #f59e0b;
+  --color-dorado-oscuro: #b45309;
+  --color-verde: #2e7d32;
+  --color-verde-fondo: #e8f8f0;
+  --color-rojo: #d32f2f;
+  --color-rojo-fondo: #fde8e8;
+
+  /* Componentes y Medidas */
+  --radio-tarjeta: 14px;
+  --radio-pildora: 50px;
+  --sombra-suave: 0 4px 15px rgba(13, 71, 122, 0.08);
+  --sombra-elevada: 0 12px 28px rgba(13, 71, 122, 0.16);
+  --sombra-hover: 0 8px 20px rgba(25, 114, 185, 0.2);
+  
+  /* Visor de Código */
+  --codigo-bg: #0f172a;
+  --codigo-texto: #38bdf8;
+  --codigo-comentario: #94a3b8;
+  --codigo-keyword: #f472b6;
+  --codigo-prop: #67e8f9;
+  --codigo-valor: #fde047;
+}
+
+/* Modo Oscuro — Vegeta Blue / Espacio */
+[data-theme="dark"] {
   --color-primario: #38bdf8;
-  --color-acento: #0284c7;
+  --color-acento: #0ea5e9;
+  --color-acento-hover: #0284c7;
+  --color-fondo: #0b1120;
   --color-tarjeta-bg: #1e293b;
+  --color-tarjeta-secundaria: #152238;
+  --color-borde: #334155;
+  --color-borde-fuerte: #475569;
+  
   --color-texto: #f8fafc;
   --color-texto-muted: #94a3b8;
+  --color-blanco: #ffffff;
+
+  --color-margin: #7c2d12;
+  --color-border: #1e3a8a;
+  --color-padding: #064e3b;
+  --color-content: #0c4a6e;
+
+  --color-dorado: #fbbf24;
+  --color-dorado-oscuro: #d97706;
+  --color-verde: #4ade80;
+  --color-verde-fondo: #064e3b;
+  --color-rojo: #f87171;
+  --color-rojo-fondo: #7f1d1d;
+
+  --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.4);
+  --sombra-elevada: 0 12px 30px rgba(0, 0, 0, 0.6);
+  --sombra-hover: 0 8px 20px rgba(56, 189, 248, 0.25);
+
+  --codigo-bg: #030712;
+  --codigo-texto: #7dd3fc;
+  --codigo-comentario: #64748b;
 }
 
-.tema-demo-saiyan {
+/* Modo Super Saiyan — Aura Dorada */
+[data-theme="saiyan"] {
   --color-primario: #b45309;
-  --color-acento: #f59e0b;
-  --color-tarjeta-bg: #fffbeb;
-  --color-texto: #78350f;
-  --color-texto-muted: #92400e;
+  --color-acento: #d97706;
+  --color-acento-hover: #92400e;
+  --color-fondo: #fefce8;
+  --color-tarjeta-bg: #ffffff;
+  --color-tarjeta-secundaria: #fffbeb;
+  --color-borde: #fde68a;
+  --color-borde-fuerte: #f59e0b;
+  
+  --color-texto: #451a03;
+  --color-texto-muted: #78350f;
+  --color-blanco: #ffffff;
+
+  --color-margin: #fed7aa;
+  --color-border: #fde047;
+  --color-padding: #d9f99d;
+  --color-content: #fef08a;
+
+  --color-dorado: #f59e0b;
+  --color-dorado-oscuro: #b45309;
+  --color-verde: #15803d;
+  --color-verde-fondo: #ecfdf5;
+  --color-rojo: #b91c1c;
+  --color-rojo-fondo: #fef2f2;
+
+  --sombra-suave: 0 4px 15px rgba(180, 83, 9, 0.08);
+  --sombra-elevada: 0 12px 28px rgba(217, 119, 6, 0.2);
+  --sombra-hover: 0 8px 20px rgba(245, 158, 11, 0.25);
+
+  --codigo-bg: #1c1917;
+  --codigo-texto: #fef08a;
+  --codigo-comentario: #a8a29e;
 }
 
 /* ==========================================================================
-   2. RESET Y ESTILOS BASE
+   2. RESET UNIVERSAL Y ESTILOS BASE
    ========================================================================== */
-*, *::before, *::after {
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -61,187 +146,572 @@ body {
   background-color: var(--color-fondo);
   color: var(--color-texto);
   line-height: 1.6;
-  padding-bottom: 80px;
+  padding-bottom: 70px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Cabecera Principal */
+/* Enlaces */
+a {
+  color: var(--color-acento);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: var(--color-primario);
+}
+
+/* ==========================================================================
+   3. CABECERA PRINCIPAL Y HEADER DE PÁGINAS
+   ========================================================================== */
+
 .header-principal {
   background: linear-gradient(135deg, var(--color-primario), var(--color-acento));
   color: var(--color-blanco);
-  padding: 35px 20px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  padding: 30px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
 }
 
-.header-principal h1 {
-  font-size: 2.2rem;
-  margin-bottom: 8px;
-}
-
-.header-principal p {
-  font-size: 1.1rem;
-  opacity: 0.95;
-  max-width: 850px;
+.header-contenedor {
+  max-width: 1240px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-/* Barra de Navegación Rápida con Flexbox */
-.nav-tabs {
+.header-branding {
   display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-logo-badge {
+  font-size: 2.2rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 14px;
+  border-radius: var(--radio-pildora);
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  background: #093155;
-  padding: 12px 15px;
+}
+
+.header-branding h1 {
+  font-size: 1.7rem;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.header-branding p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  max-width: 650px;
+}
+
+/* Selector de Tema en Header */
+.theme-selector-box {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 8px 14px;
+  border-radius: var(--radio-pildora);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-selector-box label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.selector-tema-global {
+  background: var(--color-tarjeta-bg);
+  color: var(--color-texto);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-pildora);
+  padding: 5px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.selector-tema-global:focus {
+  border-color: var(--color-dorado);
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.4);
+}
+
+/* ==========================================================================
+   4. BARRA DE NAVEGACIÓN MULTIPÁGINA
+   ========================================================================== */
+
+.nav-tabs {
+  background: #092540;
+  padding: 10px 15px;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+[data-theme="dark"] .nav-tabs {
+  background: #030712;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+[data-theme="saiyan"] .nav-tabs {
+  background: #451a03;
 }
 
 .nav-btn {
   background-color: transparent;
   color: #e2e8f0;
-  border: 1px solid rgba(255,255,255,0.2);
-  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 7px 14px;
   border-radius: var(--radio-pildora);
   cursor: pointer;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   font-weight: 600;
   transition: all 0.2s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
-.nav-btn:hover, .nav-btn.activo {
+.nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.nav-btn.activo {
   background-color: var(--color-blanco);
   color: var(--color-primario);
   border-color: var(--color-blanco);
-  transform: translateY(-2px);
+  font-weight: 700;
   box-shadow: 0 2px 8px rgba(255,255,255,0.3);
 }
 
-.nav-btn.destacado {
-  background-color: #f59e0b;
-  color: #0f172a;
-  border-color: #f59e0b;
-  font-weight: bold;
-}
-.nav-btn.destacado:hover {
-  background-color: #fbbf24;
+[data-theme="dark"] .nav-btn.activo {
+  background-color: var(--color-primario);
+  color: #030712;
+  border-color: var(--color-primario);
 }
 
-/* Contenedor central de contenidos */
+[data-theme="saiyan"] .nav-btn.activo {
+  background-color: var(--color-dorado);
+  color: #451a03;
+  border-color: var(--color-dorado);
+}
+
+/* ==========================================================================
+   5. CONTENEDOR PRINCIPAL Y TARJETAS SECCIÓN
+   ========================================================================== */
+
 .contenedor-central {
-  max-width: 1200px;
+  max-width: 1240px;
+  width: 100%;
   margin: 30px auto;
   padding: 0 20px;
+  flex: 1;
 }
 
-/* Tarjetas de Sección */
+/* Migas de pan / Breadcrumb */
+.migas-pan {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--color-texto-muted);
+  margin-bottom: 20px;
+  padding: 8px 14px;
+  background: var(--color-tarjeta-bg);
+  border-radius: var(--radio-pildora);
+  border: 1px solid var(--color-borde);
+  width: fit-content;
+}
+
+.migas-pan a {
+  font-weight: 600;
+}
+
+.migas-pan span.separador {
+  opacity: 0.5;
+}
+
+/* Tarjeta Principal */
 .tarjeta-seccion {
   background: var(--color-tarjeta-bg);
   border-radius: var(--radio-tarjeta);
   padding: 30px;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
   box-shadow: var(--sombra-suave);
-  border: 1px solid #e2e8f0;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border: 1px solid var(--color-borde);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.tarjeta-seccion:hover {
+  box-shadow: var(--sombra-hover);
 }
 
 .tarjeta-seccion h2 {
   color: var(--color-primario);
-  font-size: 1.8rem;
-  border-bottom: 3px solid var(--color-acento);
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+  font-size: 1.6rem;
+  border-bottom: 2.5px solid var(--color-acento);
+  padding-bottom: 12px;
+  margin-bottom: 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+}
+
+.tarjeta-seccion h3 {
+  color: var(--color-primario);
+  font-size: 1.25rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .badge-teoria {
-  background-color: #e0f2fe;
-  color: #0369a1;
-  font-size: 0.8rem;
-  padding: 4px 10px;
+  background-color: var(--color-tarjeta-secundaria);
+  color: var(--color-acento);
+  border: 1px solid var(--color-borde);
+  font-size: 0.75rem;
+  padding: 4px 12px;
   border-radius: var(--radio-pildora);
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-.btn-ver-modulo {
-  font-size: 0.85rem;
-  background-color: #f1f5f9;
-  color: var(--color-acento);
-  border: 1px solid #cbd5e1;
-  padding: 5px 12px;
-  border-radius: var(--radio-pildora);
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-.btn-ver-modulo:hover {
-  background-color: var(--color-acento);
-  color: white;
-  border-color: var(--color-acento);
+.badge-destacado {
+  background-color: var(--color-dorado);
+  color: #451a03;
+  font-weight: 800;
 }
 
 .nota-didactica {
-  background: #eff6ff;
+  background: var(--color-tarjeta-secundaria);
   border-left: 4px solid var(--color-acento);
-  padding: 14px 18px;
-  margin-bottom: 20px;
-  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  margin-bottom: 22px;
+  border-radius: 0 10px 10px 0;
   font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-texto);
+}
+
+.nota-didactica strong {
+  color: var(--color-primario);
 }
 
 /* ==========================================================================
-   MÓDULO 1: SIMULADOR DE BOX MODEL (MARGIN VS PADDING)
+   6. VISOR DE CÓDIGO CON SINTAXIS Y TERMINAL STYLE
    ========================================================================== */
+
+.codigo-visor {
+  background: var(--codigo-bg);
+  color: var(--codigo-texto);
+  padding: 18px 22px;
+  border-radius: 10px;
+  font-family: "Consolas", "Courier New", Courier, monospace;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 18px 0;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid var(--color-acento);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.codigo-comentario {
+  color: var(--codigo-comentario);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   7. ESTILOS CV SON GOKU: CHIPS, BARRAS DE PROGRESO Y TABLAS
+   ========================================================================== */
+
+.cv-hero-card {
+  display: flex;
+  background: var(--color-tarjeta-bg);
+  border-radius: var(--radio-tarjeta);
+  border: 1px solid var(--color-borde);
+  overflow: hidden;
+  box-shadow: var(--sombra-elevada);
+  margin-bottom: 35px;
+}
+
+.cv-hero-lateral {
+  flex: 1;
+  background: var(--color-tarjeta-secundaria);
+  padding: 25px;
+  border-right: 1px solid var(--color-borde);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cv-hero-avatar-wrap {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border: 2px solid var(--color-blanco);
+}
+
+.cv-hero-avatar-wrap img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.cv-hero-contenido {
+  flex: 2.5;
+  padding: 30px;
+}
+
+.cv-titulo-puesto {
+  font-size: 1.8rem;
+  color: var(--color-primario);
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.cv-subtitulo-puesto {
+  font-size: 1.05rem;
+  color: var(--color-acento);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.barra-fondo {
+  width: 100%;
+  height: 9px;
+  background-color: var(--color-borde);
+  border-radius: var(--radio-pildora);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.barra-progreso {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-acento), var(--color-primario));
+  border-radius: var(--radio-pildora);
+  transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chip-item {
+  background-color: var(--color-tarjeta-bg);
+  border: 1px solid var(--color-borde);
+  color: var(--color-primario);
+  padding: 5px 12px;
+  border-radius: var(--radio-pildora);
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Tablas con Bordes Redondeados y Estilo Profesional */
+.tabla-responsive-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid var(--color-borde);
+  margin: 18px 0;
+}
+
+.tabla-didactica {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+.tabla-didactica th {
+  background-color: var(--color-tarjeta-secundaria);
+  color: var(--color-primario);
+  font-weight: 700;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--color-borde);
+}
+
+.tabla-didactica td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-borde);
+  color: var(--color-texto);
+}
+
+.tabla-didactica tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla-didactica tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+[data-theme="dark"] .tabla-didactica tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* ==========================================================================
+   8. HUB DE NAVEGACIÓN Y CARDS DE MÓDULOS (INDEX)
+   ========================================================================== */
+
+.grid-modulos-hub {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  margin-top: 25px;
+}
+
+.card-modulo-link {
+  background: var(--color-tarjeta-bg);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--sombra-suave);
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-modulo-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primario), var(--color-acento));
+}
+
+.card-modulo-link:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-hover);
+  border-color: var(--color-acento);
+}
+
+.card-modulo-icono {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.card-modulo-link h3 {
+  font-size: 1.25rem;
+  color: var(--color-primario);
+  margin-bottom: 8px;
+}
+
+.card-modulo-link p {
+  font-size: 0.9rem;
+  color: var(--color-texto-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.card-modulo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-acento);
+}
+
+.card-modulo-link:hover .card-modulo-btn {
+  color: var(--color-primario);
+}
+
+/* ==========================================================================
+   9. BOX MODEL: SIMULADOR VISUAL EN CAPAS CONCÉNTRICAS
+   ========================================================================== */
+
 .box-model-demo {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 25px;
+  gap: 30px;
   align-items: center;
+  margin: 20px 0;
 }
 
 .controles-box {
-  background: #f8fafc;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  background: var(--color-tarjeta-secundaria);
+  padding: 22px;
+  border-radius: 10px;
+  border: 1px solid var(--color-borde);
 }
 
 .control-item {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .control-item label {
   display: flex;
   justify-content: space-between;
-  font-weight: 600;
-  margin-bottom: 5px;
+  font-weight: 700;
+  margin-bottom: 6px;
   font-size: 0.9rem;
 }
 
 .control-item input[type="range"] {
   width: 100%;
   accent-color: var(--color-acento);
+  cursor: pointer;
 }
 
 .btn-toggle-boxsizing {
   background: var(--color-primario);
-  color: white;
+  color: var(--color-blanco);
   border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
+  padding: 12px 18px;
+  border-radius: var(--radio-pildora);
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 700;
   width: 100%;
   margin-top: 10px;
   transition: background 0.2s, transform 0.1s;
@@ -249,46 +719,44 @@ body {
 
 .btn-toggle-boxsizing:hover {
   background: var(--color-acento);
-}
-.btn-toggle-boxsizing:active {
-  transform: scale(0.98);
+  transform: translateY(-1px);
 }
 
 .box-visual-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f1f5f9;
-  border: 1px dashed #cbd5e1;
-  padding: 20px;
-  border-radius: 8px;
-  min-height: 330px;
+  background: var(--color-fondo);
+  border: 1.5px dashed var(--color-borde-fuerte);
+  padding: 25px;
+  border-radius: 12px;
+  min-height: 350px;
   overflow: hidden;
 }
 
 .capa-margin {
   background-color: var(--color-margin);
-  border: 2px dashed #f57c00;
-  border-radius: 6px;
+  border: 2px dashed var(--color-dorado-oscuro);
+  border-radius: 8px;
   padding: 25px;
   transition: padding 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 }
 
 .capa-margin::before {
-  content: "MARGIN (Espacio Exterior - Transparente)";
+  content: "MARGIN (Margen Exterior — Transparente)";
   font-size: 0.75rem;
-  font-weight: bold;
-  color: #b26a00;
+  font-weight: 800;
+  color: var(--color-dorado-oscuro);
   margin-bottom: 6px;
+  text-transform: uppercase;
 }
 
 .capa-border {
   background-color: var(--color-border);
-  border: 4px solid #1972b9;
+  border: 4px solid var(--color-acento);
   border-radius: 6px;
   padding: 20px;
   transition: padding 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-width 0.3s ease;
@@ -298,107 +766,69 @@ body {
 }
 
 .capa-border::before {
-  content: "PADDING (Relleno Interno)";
+  content: "BORDER (Borde de la Caja)";
   font-size: 0.75rem;
-  font-weight: bold;
-  color: #0d477a;
+  font-weight: 800;
+  color: var(--color-primario);
   margin-bottom: 6px;
+  text-transform: uppercase;
 }
 
 .capa-content {
-  background-color: #ffffff;
-  color: #0d477a;
-  border: 2px solid #0d477a;
+  background-color: var(--color-tarjeta-bg);
+  color: var(--color-primario);
+  border: 2px solid var(--color-primario);
   padding: 15px 20px;
   text-align: center;
-  font-weight: bold;
+  font-weight: 800;
   border-radius: 4px;
   width: 160px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .info-medidas {
   margin-top: 15px;
-  padding: 12px;
-  background: #e2e8f0;
-  border-radius: 6px;
-  font-family: monospace;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-/* ==========================================================================
-   MÓDULO: ANIDAMIENTO JERÁRQUICO (DIV DENTRO DE DIV)
-   ========================================================================== */
-.arbol-anidado-demo {
-  background-color: #e0f2fe;
-  border: 3px solid #0284c7;
-  padding: 20px;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  margin-top: 15px;
-}
-
-.caja-padre-demo {
-  background-color: #fef3c7;
-  border: 3px solid #f59e0b;
-  padding: 16px;
-  border-radius: 8px;
-  margin-top: 10px;
-}
-
-.caja-hijo-demo {
-  background-color: #dcfce7;
-  border: 3px solid #16a34a;
   padding: 14px;
-  border-radius: 6px;
-  margin-top: 10px;
-}
-
-.caja-nieto-demo {
-  background-color: #ffffff;
-  border: 2px dashed #0d477a;
-  padding: 10px;
-  border-radius: 4px;
-  margin-top: 8px;
-  font-weight: bold;
-  color: #0d477a;
-}
-
-/* ==========================================================================
-   MÓDULO: CONDICIONALES EN CSS (:has, :not, temas)
-   ========================================================================== */
-.caja-condicional-has {
-  background: #ffffff;
-  border: 2px solid #cbd5e1;
+  background: var(--color-tarjeta-bg);
+  border: 1px solid var(--color-borde);
   border-radius: 8px;
-  padding: 20px;
-  transition: all 0.3s ease;
-  margin-top: 10px;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
-/* CONDICIONAL PURO EN CSS */
-.caja-condicional-has:has(input:checked) {
-  background-color: #dcfce7;
-  border-color: #16a34a;
-  box-shadow: 0 4px 15px rgba(22, 163, 74, 0.25);
+.badge-modo {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
 
-.caja-condicional-has:has(input:checked) h3 {
-  color: #15803d;
+.badge-borderbox {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-contentbox {
+  background: #fee2e2;
+  color: #991b1b;
 }
 
 /* ==========================================================================
-   MÓDULO 2: SIMULADOR VISUAL DE FLEXBOX CON ANIMACIÓN FLUIDA
+   10. FLEXBOX & GRID: SIMULADORES ANIMADOS
    ========================================================================== */
+
 .flex-panel-control {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  background: #f8fafc;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #e2e8f0;
+  background: var(--color-tarjeta-secundaria);
+  padding: 18px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  border: 1px solid var(--color-borde);
 }
 
 .flex-grupo {
@@ -411,23 +841,24 @@ body {
 
 .flex-grupo label {
   font-size: 0.85rem;
-  font-weight: bold;
+  font-weight: 700;
   color: var(--color-primario);
 }
 
 .flex-grupo select {
   padding: 8px 12px;
   border-radius: 6px;
-  border: 1px solid #cbd5e1;
-  background: white;
+  border: 1px solid var(--color-borde);
+  background: var(--color-tarjeta-bg);
+  color: var(--color-texto);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
+  outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .flex-grupo select:focus {
-  outline: none;
   border-color: var(--color-acento);
   box-shadow: 0 0 0 3px rgba(25, 114, 185, 0.2);
 }
@@ -436,25 +867,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #e0f2fe;
-  color: #0369a1;
+  background: var(--color-tarjeta-secundaria);
+  color: var(--color-primario);
   padding: 10px 18px;
   border-radius: 8px;
   margin-bottom: 15px;
-  font-weight: bold;
-  font-size: 0.9rem;
+  font-weight: 700;
+  font-size: 0.88rem;
+  border: 1px solid var(--color-borde);
 }
 
 .indicador-flecha {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .flecha-icono {
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   animation: pulsoFlecha 1.5s infinite ease-in-out;
 }
 
@@ -465,11 +897,11 @@ body {
 
 .flex-escenario {
   display: flex;
-  background: #f1f5f9;
-  border: 2px dashed #94a3b8;
-  border-radius: 8px;
+  background: var(--color-fondo);
+  border: 2px dashed var(--color-borde-fuerte);
+  border-radius: 10px;
   padding: 25px;
-  min-height: 270px;
+  min-height: 280px;
   position: relative;
   overflow: hidden;
   transition: gap 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.4s ease;
@@ -480,13 +912,13 @@ body {
   color: white;
   padding: 22px 26px;
   border-radius: 10px;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1.05rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(13, 71, 122, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   cursor: grab;
   user-select: none;
   transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, background 0.3s ease;
@@ -505,26 +937,7 @@ body {
   margin-top: 4px;
 }
 
-.codigo-visor {
-  background: #1e293b;
-  color: #38bdf8;
-  padding: 15px 20px;
-  border-radius: 8px;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.9rem;
-  margin-top: 15px;
-  white-space: pre-wrap;
-  overflow-x: auto;
-  border-left: 4px solid var(--color-acento);
-}
-
-.codigo-comentario {
-  color: #94a3b8;
-}
-
-/* ==========================================================================
-   MÓDULO 3: SIMULADOR VISUAL DE CSS GRID
-   ========================================================================== */
+/* Grid Presets & Escenario */
 .grid-panel-control {
   display: flex;
   flex-wrap: wrap;
@@ -533,134 +946,155 @@ body {
 }
 
 .btn-grid-preset {
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
+  background: var(--color-tarjeta-bg);
+  color: var(--color-texto);
+  border: 1px solid var(--color-borde);
   padding: 9px 18px;
-  border-radius: 6px;
+  border-radius: var(--radio-pildora);
   font-weight: 600;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   transition: all 0.25s ease;
 }
 
-.btn-grid-preset:hover, .btn-grid-preset.activo {
+.btn-grid-preset:hover,
+.btn-grid-preset.activo {
   background: var(--color-primario);
   color: white;
   border-color: var(--color-primario);
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(13, 71, 122, 0.25);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .grid-escenario {
   display: grid;
   gap: 15px;
-  background: #f1f5f9;
-  border: 2px dashed #94a3b8;
-  border-radius: 8px;
+  background: var(--color-fondo);
+  border: 2px dashed var(--color-borde-fuerte);
+  border-radius: 10px;
   padding: 25px;
-  min-height: 270px;
+  min-height: 280px;
   transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .grid-caja {
-  background: #0284c7;
+  background: var(--color-acento);
   color: white;
   padding: 22px;
   border-radius: 8px;
-  font-weight: bold;
+  font-weight: 700;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease;
   will-change: transform;
 }
 
 .grid-caja:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
 }
 
-.grid-area-header  { grid-area: header;  background: #0d477a; }
-.grid-area-lateral { grid-area: lateral; background: #0284c7; }
-.grid-area-main    { grid-area: main;    background: #0369a1; }
+.grid-area-header  { grid-area: header;  background: var(--color-primario); }
+.grid-area-lateral { grid-area: lateral; background: var(--color-acento); }
+.grid-area-main    { grid-area: main;    background: #0284c7; }
 .grid-area-footer  { grid-area: footer;  background: #334155; }
 
 /* ==========================================================================
-   MÓDULO 4: PROBADOR RESPONSIVE DE MEDIA QUERIES
+   11. SIMULADOR RESPONSIVE DE MEDIA QUERIES (CV SON GOKU) - ESTILOS COMPLETOS
    ========================================================================== */
+
 .responsive-tester-wrapper {
-  background: #f8fafc;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  background: var(--color-tarjeta-secundaria);
+  padding: 24px;
+  border-radius: var(--radio-tarjeta);
+  border: 1px solid var(--color-borde);
   text-align: center;
+  margin: 20px 0;
 }
 
 .btn-simular-pantalla {
   background: var(--color-acento);
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: var(--radio-pildora);
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 0.9rem;
   cursor: pointer;
-  margin: 10px 5px;
-  transition: transform 0.1s, background 0.2s, box-shadow 0.2s;
+  margin: 8px 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .btn-simular-pantalla:hover {
   background: var(--color-primario);
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(13, 71, 122, 0.25);
+}
+
+.btn-simular-pantalla.activo {
+  background: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(25, 114, 185, 0.35);
 }
 
 .viewport-frame {
-  max-width: 950px;
-  margin: 20px auto;
-  border: 3px solid #334155;
+  max-width: 960px;
+  margin: 20px auto 0 auto;
+  border: 3px solid #1e293b;
   border-radius: 12px;
   overflow: hidden;
-  background: white;
-  transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  background: var(--color-tarjeta-bg);
+  box-shadow: var(--sombra-elevada);
   text-align: left;
+  transition: max-width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .viewport-header {
-  background: #334155;
+  background: #1e293b;
   color: #94a3b8;
-  padding: 8px 15px;
-  font-size: 0.8rem;
+  padding: 10px 16px;
+  font-size: 0.82rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-family: monospace;
+}
+
+.viewport-header strong {
+  color: #38bdf8;
 }
 
 .mini-cv-contenedor {
   display: flex;
   flex-direction: row;
   transition: all 0.4s ease;
+  background: var(--color-tarjeta-bg);
 }
 
 .mini-cv-sidebar {
   flex: 1;
-  background: #eaf4fb;
-  padding: 20px;
-  border-right: 1px solid #dce5ed;
+  background: var(--color-tarjeta-secundaria);
+  padding: 24px;
+  border-right: 1px solid var(--color-borde);
   transition: all 0.3s ease;
 }
 
 .mini-cv-main {
   flex: 3;
-  padding: 20px;
+  padding: 24px;
   transition: all 0.3s ease;
 }
 
+/* Modo Móvil simulado */
 .modo-movil .viewport-frame {
-  max-width: 420px;
+  max-width: 400px;
 }
 
 .modo-movil .mini-cv-contenedor {
@@ -669,32 +1103,33 @@ body {
 
 .modo-movil .mini-cv-sidebar {
   border-right: none;
-  border-bottom: 2px solid #dce5ed;
+  border-bottom: 2px solid var(--color-borde);
 }
 
 .demo-competencia {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .demo-competencia-info {
   display: flex;
   justify-content: space-between;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-primario);
   margin-bottom: 4px;
-  font-weight: 600;
 }
 
 .demo-barra-fondo {
   width: 100%;
   height: 8px;
-  background: #dce5ed;
+  background: var(--color-borde);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .demo-barra-progreso {
   height: 100%;
-  background: var(--color-primario);
+  background: var(--color-acento);
   border-radius: 10px;
   transition: width 0.4s ease;
 }
@@ -703,100 +1138,1354 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 8px;
-}
-
-.chip-item {
-  background: white;
-  border: 1px solid #cbd5e1;
-  padding: 4px 10px;
-  border-radius: var(--radio-pildora);
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: var(--color-primario);
+  margin-top: 10px;
 }
 
 .mini-tabla {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .mini-tabla th, .mini-tabla td {
-  padding: 8px;
+  padding: 10px 12px;
   text-align: left;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--color-borde);
 }
 
 .mini-tabla th {
-  background: #f1f5f9;
+  background: var(--color-tarjeta-secundaria);
   color: var(--color-primario);
+  font-weight: 700;
 }
 
-.victoria { color: var(--color-verde); font-weight: bold; }
-.derrota { color: var(--color-rojo); font-weight: bold; }
-.decisivo { color: var(--color-naranja); font-weight: bold; }
+.victoria { color: var(--color-verde); font-weight: 700; }
+.derrota { color: var(--color-rojo); font-weight: 700; }
+.decisivo { color: var(--color-dorado-oscuro); font-weight: 700; }
 
 /* ==========================================================================
-   MÓDULO 5: CUESTIONARIO TEÓRICO AUTOEVALUABLE
+   12. PLAYGROUND DE POSICIONAMIENTO EN VIVO (POSITION)
    ========================================================================== */
-.faq-item {
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  background: #ffffff;
+
+.position-playground-wrapper {
+  background: var(--color-tarjeta-secundaria);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 22px;
+  margin: 20px 0;
 }
 
-.faq-pregunta {
-  padding: 16px 20px;
-  background: #f8fafc;
-  font-weight: bold;
-  cursor: pointer;
+.position-btn-group {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background 0.2s;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
-.faq-pregunta:hover {
-  background: #eff6ff;
+.btn-position-mode {
+  background: var(--color-tarjeta-bg);
+  color: var(--color-texto);
+  border: 1.5px solid var(--color-borde);
+  padding: 8px 18px;
+  border-radius: var(--radio-pildora);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-position-mode:hover,
+.btn-position-mode.activo {
+  background: var(--color-primario);
+  color: white;
+  border-color: var(--color-primario);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(13, 71, 122, 0.25);
+}
+
+.position-stage-container {
+  background: var(--color-fondo);
+  border: 2px dashed var(--color-borde-fuerte);
+  border-radius: 10px;
+  padding: 25px;
+  min-height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.position-box-demo {
+  background: linear-gradient(135deg, var(--color-dorado), var(--color-dorado-oscuro));
+  color: #ffffff;
+  padding: 18px 24px;
+  border-radius: 8px;
+  font-weight: 800;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  display: inline-block;
+  z-index: 10;
+}
+
+.position-sibling-box {
+  background: var(--color-tarjeta-bg);
+  border: 1px solid var(--color-borde);
+  padding: 14px 20px;
+  border-radius: 8px;
+  color: var(--color-texto-muted);
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+/* ==========================================================================
+   13. PLAYGROUND INTERACTIVO DE FONDOS E IMÁGENES (BACKGROUND EXPLORER)
+   ========================================================================== */
+
+.background-explorer-wrapper {
+  background: var(--color-tarjeta-secundaria);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px 0;
+}
+
+.bg-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.bg-preview-canvas {
+  height: 320px;
+  border: 3px solid var(--color-primario);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--sombra-elevada);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-preview-overlay-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 16px 24px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  max-width: 480px;
+  text-align: center;
+}
+
+[data-theme="dark"] .bg-preview-overlay-card {
+  background: rgba(15, 23, 42, 0.85);
+  color: #f8fafc;
+}
+
+/* ==========================================================================
+   14. PLAYGROUND INTERACTIVO DE GRADIENTES (GRADIENT STUDIO)
+   ========================================================================== */
+
+.gradient-studio-wrapper {
+  background: var(--color-tarjeta-secundaria);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px 0;
+}
+
+.gradient-preview-box {
+  height: 200px;
+  border-radius: 12px;
+  box-shadow: var(--sombra-elevada);
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 1.3rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   15. PLAYGROUND INTERACTIVO DE SELECTORES & PSEUDOCLASES
+   ========================================================================== */
+
+.selector-tester-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.selector-item-card {
+  background: var(--color-tarjeta-bg);
+  border: 2px solid var(--color-borde);
+  border-radius: 8px;
+  padding: 14px 10px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 0.25s ease;
+}
+
+.selector-item-card.resaltado {
+  background: var(--color-dorado);
+  color: #451a03;
+  border-color: var(--color-dorado-oscuro);
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+}
+
+/* Demostración interactiva de pseudoelementos ::before y ::after */
+#tarjeta-pseudoelemento-demo.con-before::before {
+  content: "🥋 ";
+  display: inline-block;
+  margin-right: 8px;
+}
+
+#tarjeta-pseudoelemento-demo.con-after::after {
+  content: " [NIVEL SAIYAN]";
+  font-size: 0.75rem;
+  background: var(--color-dorado);
+  color: #451a03;
+  padding: 3px 8px;
+  border-radius: var(--radio-pildora);
+  font-weight: 800;
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+/* ==========================================================================
+   16. FORMULARIOS: BUENAS PRÁCTICAS Y ESTILOS ACCESIBLES
+   ========================================================================== */
+
+.formulario-educativo {
+  background: var(--color-tarjeta-bg);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+  padding: 30px;
+  box-shadow: var(--sombra-suave);
+}
+
+.form-grid-dos-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.form-grupo label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-texto);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-grupo label .required-asterisco {
+  color: var(--color-rojo);
+  font-size: 1.1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-borde-fuerte);
+  background: var(--color-tarjeta-bg);
+  color: var(--color-texto);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:hover {
+  border-color: var(--color-acento);
+}
+
+.form-control:focus,
+.form-control:focus-visible {
+  outline: none;
+  border-color: var(--color-acento);
+  box-shadow: 0 0 0 3px rgba(25, 114, 185, 0.25);
+}
+
+.form-control:user-valid {
+  border-color: var(--color-verde);
+  background-color: rgba(46, 125, 50, 0.04);
+}
+
+.form-control:user-invalid {
+  border-color: var(--color-rojo);
+  background-color: rgba(211, 47, 47, 0.04);
+}
+
+.form-pista {
+  font-size: 0.78rem;
+  color: var(--color-texto-muted);
+}
+
+.grupo-opciones-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 6px;
+}
+
+.control-seleccionable {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  user-select: none;
+}
+
+.control-seleccionable input[type="checkbox"],
+.control-seleccionable input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primario);
+  cursor: pointer;
+}
+
+.btn-formulario-submit {
+  background: linear-gradient(135deg, var(--color-primario), var(--color-acento));
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: var(--radio-pildora);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(13, 71, 122, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-formulario-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(13, 71, 122, 0.35);
+}
+
+.btn-formulario-submit:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   17. INTERACTIVIDAD, TIPOGRAFÍA Y MICROINTERACCIONES
+   ========================================================================== */
+
+.playground-tipografia {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 25px;
+  background: var(--color-tarjeta-secundaria);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.muestra-texto-box {
+  background: var(--color-tarjeta-bg);
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 200px;
+}
+
+.grid-comparador-opacidad {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin: 20px 0;
+}
+
+.caja-demo-opacidad {
+  padding: 25px;
+  border-radius: 10px;
+  border: 2px solid var(--color-borde);
+  position: relative;
+  background-image: repeating-linear-gradient(45deg, #e2e8f0 0, #e2e8f0 10px, transparent 10px, transparent 20px);
+}
+
+.caja-hija-opacidad {
+  background-color: var(--color-primario);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.galeria-botones-interactivos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.btn-interactivo {
+  padding: 12px 24px;
+  border-radius: var(--radio-pildora);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-hover-elevate {
+  background: var(--color-primario);
+  color: white;
+}
+.btn-hover-elevate:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(13, 71, 122, 0.35);
+}
+.btn-hover-elevate:active {
+  transform: translateY(-1px);
+}
+
+.btn-hover-glow {
+  background: var(--color-dorado);
+  color: #451a03;
+}
+.btn-hover-glow:hover {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+  transform: scale(1.03);
+}
+
+.animacion-aura-ki {
+  animation: pulsoKi 2s infinite ease-in-out;
+}
+
+@keyframes pulsoKi {
+  0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(245, 158, 11, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+.spinner-rotatorio {
+  width: 45px;
+  height: 45px;
+  border: 4px solid var(--color-borde);
+  border-top-color: var(--color-acento);
+  border-radius: 50%;
+  animation: girar 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   20. CALCULADORA Y BATALLA DE ESPECIFICIDAD
+   ========================================================================== */
+
+.batalla-especificidad-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.batalla-vs-badge {
+  background: var(--color-dorado);
+  color: #451a03;
+  font-weight: 900;
+  font-size: 1.3rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  align-self: center;
+  justify-self: center;
+  user-select: none;
+}
+
+.card-batalla-selector {
+  background: var(--color-tarjeta-bg);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+  padding: 22px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--sombra-suave);
+}
+
+.card-batalla-selector.ganador {
+  border-color: var(--color-verde);
+  box-shadow: 0 0 25px rgba(46, 125, 50, 0.35);
+  transform: translateY(-4px);
+}
+
+.card-batalla-selector.perdedor {
+  opacity: 0.72;
+  transform: scale(0.98);
+}
+
+.card-batalla-selector.empate {
+  border-color: var(--color-dorado);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.badge-ganador-flotante {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  background: var(--color-verde);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radio-pildora);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.5px;
+  display: none;
+}
+
+.card-batalla-selector.ganador .badge-ganador-flotante {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.especificidad-badges-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.badge-especificidad {
+  padding: 10px 6px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease;
+}
+
+.badge-esp-inline {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+[data-theme="dark"] .badge-esp-inline {
+  background: rgba(239, 68, 68, 0.25);
+  color: #f87171;
+}
+
+.badge-esp-id {
+  background: rgba(249, 115, 22, 0.12);
+  color: #ea580c;
+  border-color: rgba(249, 115, 22, 0.3);
+}
+[data-theme="dark"] .badge-esp-id {
+  background: rgba(249, 115, 22, 0.25);
+  color: #fb923c;
+}
+
+.badge-esp-class {
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563eb;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+[data-theme="dark"] .badge-esp-class {
+  background: rgba(59, 130, 246, 0.25);
+  color: #60a5fa;
+}
+
+.badge-esp-element {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+[data-theme="dark"] .badge-esp-element {
+  background: rgba(16, 185, 129, 0.25);
+  color: #34d399;
+}
+
+.badge-esp-titulo {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.badge-esp-valor {
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.selector-presets-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 15px 0 20px 0;
+}
+
+.btn-preset-selector {
+  background: var(--color-tarjeta-secundaria);
+  border: 1px solid var(--color-borde);
+  color: var(--color-primario);
+  padding: 8px 14px;
+  border-radius: var(--radio-pildora);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-preset-selector:hover {
+  background: var(--color-acento);
+  color: white;
+  border-color: var(--color-acento);
+  transform: translateY(-2px);
+}
+
+.resultado-batalla-panel {
+  background: var(--color-tarjeta-secundaria);
+  border-left: 4px solid var(--color-acento);
+  padding: 16px 20px;
+  border-radius: 0 10px 10px 0;
+  margin-top: 18px;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   21. GUÍA DEFINITIVA DE CENTRADO EN CSS
+   ========================================================================== */
+
+.escenario-centrado-demo {
+  background-color: var(--color-tarjeta-secundaria);
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border: 2px dashed var(--color-borde-fuerte);
+  border-radius: 12px;
+  min-height: 280px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  margin: 20px 0;
+}
+
+[data-theme="dark"] .escenario-centrado-demo {
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+}
+
+.escenario-centrado-demo::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(25, 114, 185, 0.25);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.escenario-centrado-demo::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(25, 114, 185, 0.25);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.caja-centrada-elemento {
+  width: 150px;
+  height: 90px;
+  background: linear-gradient(135deg, var(--color-primario), var(--color-acento));
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: center;
+  padding: 10px;
+  z-index: 2;
+}
+
+.controles-centrado-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.btn-centrado-modo {
+  background: var(--color-tarjeta-bg);
+  border: 2px solid var(--color-borde);
+  color: var(--color-texto);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-centrado-modo:hover {
+  border-color: var(--color-acento);
   color: var(--color-acento);
 }
 
-.faq-respuesta {
+.btn-centrado-modo.activo {
+  background: var(--color-primario);
+  border-color: var(--color-primario);
+  color: white;
+  box-shadow: var(--sombra-suave);
+}
+
+/* ==========================================================================
+   22. COMPARADOR DE UNIDADES (px, rem, em, %)
+   ========================================================================== */
+
+.control-raiz-panel {
+  background: var(--color-tarjeta-secundaria);
+  border: 1px solid var(--color-borde);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.btn-raiz-opcion {
+  padding: 8px 16px;
+  border-radius: var(--radio-pildora);
+  border: 2px solid var(--color-borde);
+  background: var(--color-tarjeta-bg);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--color-texto);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-raiz-opcion:hover {
+  border-color: var(--color-acento);
+}
+
+.btn-raiz-opcion.activo {
+  background: var(--color-primario);
+  color: white;
+  border-color: var(--color-primario);
+}
+
+.comparador-unidades-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin: 20px 0;
+}
+
+.card-unidad-box {
+  background: var(--color-tarjeta-bg);
+  border: 1px solid var(--color-borde);
+  border-radius: 10px;
   padding: 20px;
-  display: none;
-  border-top: 1px solid #e2e8f0;
+  box-shadow: var(--sombra-suave);
+}
+
+.anidamiento-cascada-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.caja-anidada-nivel-1 {
+  background: rgba(13, 71, 122, 0.08);
+  border: 2px solid var(--color-primario);
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 10px;
+}
+
+.caja-anidada-nivel-2 {
+  background: rgba(25, 114, 185, 0.12);
+  border: 2px solid var(--color-acento);
+  border-radius: 8px;
+  padding: 14px;
+  margin-top: 10px;
+}
+
+.caja-anidada-nivel-3 {
+  background: rgba(245, 158, 11, 0.15);
+  border: 2px solid var(--color-dorado);
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+/* ==========================================================================
+   23. LABORATORIO DE SOMBRAS (box-shadow) Y FILTROS (filter)
+   ========================================================================== */
+
+.lab-sombras-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr;
+  gap: 25px;
+  align-items: start;
+  margin: 20px 0;
+}
+
+.lab-controles-card {
+  background: var(--color-tarjeta-secundaria);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lab-preview-card {
+  background: var(--color-tarjeta-bg);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  min-height: 380px;
+  background-image: 
+    linear-gradient(45deg, rgba(0,0,0,0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0,0,0,0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.03) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.03) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+[data-theme="dark"] .lab-preview-card {
+  background-image: 
+    linear-gradient(45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.03) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.03) 75%);
+}
+
+.muestra-box-shadow {
+  width: 220px;
+  padding: 20px;
+  background: var(--color-tarjeta-bg);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--color-texto);
+  font-weight: 700;
+  transition: box-shadow 0.15s ease;
+  border: 1px solid var(--color-borde);
+}
+
+.muestra-filter-silhouette {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  transition: filter 0.15s ease;
+  user-select: none;
+}
+
+/* ==========================================================================
+   24. BIBLIOTECA DE COMPONENTES UI REUTILIZABLES DE SON GOKU
+   ========================================================================== */
+
+/* Barra de Ki interactiva */
+.ki-bar-wrapper {
+  background: var(--color-tarjeta-secundaria);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px 0;
+}
+
+.ki-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: 700;
   font-size: 0.95rem;
-  line-height: 1.7;
 }
 
-.faq-item.abierto .faq-respuesta {
+.ki-bar-track {
+  width: 100%;
+  height: 22px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: var(--radio-pildora);
+  padding: 3px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .ki-bar-track {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.ki-bar-fill {
+  height: 100%;
+  border-radius: var(--radio-pildora);
+  background: linear-gradient(90deg, #38bdf8, #0284c7, #2563eb);
+  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
+  position: relative;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+
+.ki-bar-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: brilloKi 2s infinite linear;
+}
+
+@keyframes brilloKi {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Píldoras / Chips de Técnicas */
+.tecnicas-chips-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.chip-tecnica {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--radio-pildora);
+  font-size: 0.86rem;
+  font-weight: 700;
+  border: 1px solid var(--color-borde);
+  background: var(--color-tarjeta-bg);
+  color: var(--color-texto);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.chip-tecnica:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-hover);
+  border-color: var(--color-acento);
+}
+
+.chip-tecnica.ki {
+  border-color: rgba(56, 189, 248, 0.4);
+  background: rgba(56, 189, 248, 0.1);
+  color: #0284c7;
+}
+[data-theme="dark"] .chip-tecnica.ki {
+  color: #38bdf8;
+}
+
+.chip-tecnica.saiyan {
+  border-color: rgba(245, 158, 11, 0.4);
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+[data-theme="dark"] .chip-tecnica.saiyan {
+  color: #fbbf24;
+}
+
+.chip-tecnica.dios {
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+[data-theme="dark"] .chip-tecnica.dios {
+  color: #f87171;
+}
+
+/* Tabla de Combates Redondeada Estilo Torneo */
+.tabla-torneo-wrap {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--color-borde);
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+  margin: 18px 0;
+}
+
+.tabla-torneo {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+.tabla-torneo thead {
+  background: var(--color-primario);
+  color: white;
+}
+
+.tabla-torneo th {
+  padding: 14px 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.tabla-torneo td {
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--color-borde);
+  color: var(--color-texto);
+}
+
+.tabla-torneo tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla-torneo tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.tabla-torneo tbody tr:hover {
+  background-color: var(--color-tarjeta-secundaria);
+}
+
+.tabla-torneo tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+[data-theme="dark"] .tabla-torneo tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Tarjeta de Guerrero con Insignia Flotante (relative + absolute) */
+.card-guerrero-componente {
+  position: relative;
+  background: var(--color-tarjeta-bg);
+  border-radius: var(--radio-tarjeta);
+  border: 1px solid var(--color-borde);
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 340px;
+}
+
+.card-guerrero-componente:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-elevada);
+}
+
+.card-guerrero-img-header {
+  width: 100%;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0d477a, #1972b9);
+}
+
+.card-guerrero-img-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  animation: fadeIn 0.3s ease;
 }
 
-.faq-item.abierto .faq-icono {
-  transform: rotate(180deg);
+.card-guerrero-insignia {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--color-dorado);
+  color: #451a03;
+  padding: 5px 12px;
+  border-radius: var(--radio-pildora);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  z-index: 3;
 }
 
-.faq-icono {
-  transition: transform 0.2s;
+.card-guerrero-cuerpo {
+  padding: 22px;
+}
+
+.card-guerrero-nombre {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-primario);
+  margin-bottom: 4px;
+}
+
+.card-guerrero-rol {
+  font-size: 0.85rem;
+  color: var(--color-acento);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Barra de Navegación Responsive Limpia */
+.navbar-componente {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-tarjeta-bg);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 14px 24px;
+  box-shadow: var(--sombra-suave);
+  margin: 18px 0;
+}
+
+.navbar-componente-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  color: var(--color-primario);
+  font-size: 1.1rem;
+}
+
+.navbar-componente-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar-componente-links a {
+  text-decoration: none;
+  color: var(--color-texto);
+  font-weight: 600;
   font-size: 0.9rem;
+  transition: color 0.2s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+.navbar-componente-links a:hover {
+  color: var(--color-acento);
 }
 
-@media (max-width: 768px) {
+.navbar-componente-cta {
+  background: var(--color-primario);
+  color: white;
+  padding: 8px 18px;
+  border-radius: var(--radio-pildora);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navbar-componente-cta:hover {
+  background: var(--color-acento);
+  transform: translateY(-2px);
+}
+
+/* Botón para Copiar Bloques de Código */
+.bloque-codigo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e293b;
+  color: #94a3b8;
+  padding: 8px 16px;
+  border-radius: 10px 10px 0 0;
+  font-size: 0.82rem;
+  font-family: system-ui, sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
+  margin-top: 15px;
+}
+
+.bloque-codigo-header + .codigo-visor {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn-copiar-codigo {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f8fafc;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-copiar-codigo:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* ==========================================================================
+   18. PIE DE PÁGINA DOCENTE
+   ========================================================================== */
+
+.footer-principal {
+  background: var(--color-primario);
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: auto;
+  font-size: 0.92rem;
+}
+
+.footer-principal a {
+  color: var(--color-dorado);
+  text-decoration: underline;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.footer-nav a {
+  color: white;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.footer-nav a:hover {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   19. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .cv-hero-card {
+    flex-direction: column;
+  }
+  .cv-hero-lateral {
+    border-right: none;
+    border-bottom: 1px solid var(--color-borde);
+  }
   .box-model-demo {
     grid-template-columns: 1fr;
   }
-  .nav-tabs {
+  .playground-tipografia {
+    grid-template-columns: 1fr;
+  }
+  .grid-comparador-opacidad {
+    grid-template-columns: 1fr;
+  }
+  .batalla-especificidad-grid {
+    grid-template-columns: 1fr;
+  }
+  .lab-sombras-grid {
+    grid-template-columns: 1fr;
+  }
+  .anidamiento-cascada-demo {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-contenedor {
     flex-direction: column;
+    text-align: center;
+  }
+  .header-branding {
+    flex-direction: column;
+  }
+  .nav-tabs {
+    flex-direction: row;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 10px;
+  }
+  .nav-btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  .tarjeta-seccion {
+    padding: 20px 15px;
+  }
+  .tarjeta-seccion h2 {
+    font-size: 1.35rem;
+  }
+  .form-grid-dos-cols {
+    grid-template-columns: 1fr;
+  }
+  .navbar-componente {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  .navbar-componente-links {
+    flex-direction: column;
+    gap: 10px;
   }
 }
